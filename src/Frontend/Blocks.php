@@ -68,7 +68,7 @@ final class Blocks {
 			if ( 'blocks' === $entry ) {
 				wp_register_script( $handle, WPITRAVEL_URL . 'assets/build/blocks.js', $asset['dependencies'], $asset['version'], true );
 				wp_set_script_translations( $handle, 'wpinterface-travel' );
-				wp_add_inline_script( $handle, 'var wpitravelBlocks = ' . wp_json_encode( self::editor_data() ) . ';', 'before' );
+				wp_add_inline_script( $handle, 'var wpitravelBlocks = ' . wp_json_encode( self::editor_data(), JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );
 				wp_register_style( $handle, WPITRAVEL_URL . 'assets/build/blocks.css', array(), $asset['version'] );
 				wp_style_add_data( $handle, 'rtl', 'replace' );
 				continue;
@@ -133,7 +133,7 @@ final class Blocks {
 
 		$trip = TripData::resolve( $trip_id );
 
-		if ( ! $trip || ( 'publish' !== $trip->post_status && ! current_user_can( 'read_post', $trip->ID ) ) ) {
+		if ( ! $trip || ! TripData::is_viewable( $trip ) ) {
 			return self::placeholder( __( 'Shows the trip\'s details on a trip page, or pick a trip in the block settings.', 'wpinterface-travel' ) );
 		}
 

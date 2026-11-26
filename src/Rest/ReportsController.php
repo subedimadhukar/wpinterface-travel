@@ -40,14 +40,16 @@ final class ReportsController extends Controller {
 						'default' => '30d',
 					),
 					'from'   => array(
-						'type'    => 'string',
-						'pattern' => '^(\d{4}-\d{2}-\d{2})?$',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'pattern'           => '^(\d{4}-\d{2}-\d{2})?$',
+						'default'           => '',
 					),
 					'to'     => array(
-						'type'    => 'string',
-						'pattern' => '^(\d{4}-\d{2}-\d{2})?$',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'pattern'           => '^(\d{4}-\d{2}-\d{2})?$',
+						'default'           => '',
 					),
 				),
 			)

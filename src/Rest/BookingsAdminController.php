@@ -48,28 +48,33 @@ final class BookingsAdminController extends Controller {
 				'permission_callback' => $this->require_capability( Capabilities::VIEW_BOOKINGS ),
 				'args'                => array(
 					'status'         => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
 					),
 					'payment_status' => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
 					),
 					'trip_id'        => array(
 						'type'    => 'integer',
 						'default' => 0,
 					),
 					'search'         => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'date_from'      => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'date_to'        => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'orderby'        => array(
 						'type'    => 'string',
@@ -109,19 +114,23 @@ final class BookingsAdminController extends Controller {
 						'required' => true,
 					),
 					'date'           => array(
-						'type'     => 'string',
-						'required' => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'required'          => true,
 					),
 					'time'           => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'price_option'   => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
 					),
 					'pax'            => array(
 						'type'                 => 'object',
+						'sanitize_callback'    => array( Controller::class, 'sanitize_counts' ),
 						'required'             => true,
 						'additionalProperties' => array(
 							'type'    => 'integer',
@@ -129,21 +138,25 @@ final class BookingsAdminController extends Controller {
 						),
 					),
 					'customer'       => array(
-						'type'     => 'object',
-						'required' => true,
+						'type'              => 'object',
+						'sanitize_callback' => array( Controller::class, 'sanitize_object' ),
+						'required'          => true,
 					),
 					'travelers'      => array(
-						'type'    => 'array',
-						'default' => array(),
-						'items'   => array( 'type' => 'object' ),
+						'type'              => 'array',
+						'sanitize_callback' => array( Controller::class, 'sanitize_object' ),
+						'default'           => array(),
+						'items'             => array( 'type' => 'object' ),
 					),
 					'coupon'         => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'note'           => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_textarea_field',
+						'default'           => '',
 					),
 					'status'         => array(
 						'type'    => 'string',
@@ -155,8 +168,9 @@ final class BookingsAdminController extends Controller {
 						'default' => true,
 					),
 					'payment_method' => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
 					),
 				),
 			)
@@ -182,8 +196,9 @@ final class BookingsAdminController extends Controller {
 							'required' => true,
 						),
 						'note'   => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_textarea_field',
+							'default'           => '',
 						),
 					),
 				),
@@ -199,9 +214,10 @@ final class BookingsAdminController extends Controller {
 				'permission_callback' => $this->require_capability( Capabilities::MANAGE_BOOKINGS ),
 				'args'                => array(
 					'note' => array(
-						'type'      => 'string',
-						'required'  => true,
-						'minLength' => 1,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_textarea_field',
+						'required'          => true,
+						'minLength'         => 1,
 					),
 				),
 			)

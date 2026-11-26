@@ -303,9 +303,12 @@ class FrontendTest extends WP_UnitTestCase {
 		ob_start();
 		( new Schema() )->print_head();
 		$head = (string) ob_get_clean();
+		ob_start();
+		( new Schema() )->print_json_ld();
+		$footer = (string) ob_get_clean();
 
-		$this->assertStringContainsString( 'application/ld+json', $head );
-		$this->assertSame( 1, substr_count( $head, '</script>' ), 'The title cannot close the script tag.' );
+		$this->assertStringContainsString( 'application/ld+json', $footer );
+		$this->assertSame( 1, substr_count( $footer, '</script>' ), 'The title cannot close the script tag.' );
 		$this->assertStringContainsString( 'og:title', $head );
 
 		add_filter( 'wpitravel_seo_plugin_active', '__return_true' );

@@ -290,7 +290,7 @@ class PayPal extends Gateway {
 
 		switch ( $type ) {
 			case 'CHECKOUT.ORDER.APPROVED':
-				$payment = $payments->find_by_reference( $this->id(), (string) ( $resource['id'] ?? '' ) );
+				$payment = $payments->find_by_reference( $this->id(), sanitize_text_field( (string) ( $resource['id'] ?? '' ) ) );
 
 				if ( $payment && 'pending' === $payment['status'] ) {
 					$this->capture( $payment );
@@ -298,23 +298,25 @@ class PayPal extends Gateway {
 				break;
 
 			case 'PAYMENT.CAPTURE.COMPLETED':
-				$order_id = (string) ( $resource['supplementary_data']['related_ids']['order_id'] ?? '' );
+				$order_id = sanitize_text_field( (string) ( $resource['supplementary_data']['related_ids']['order_id'] ?? '' ) );
 				$payment  = $payments->find_by_reference( $this->id(), $order_id );
 
 				if ( $payment && 'COMPLETED' === ( $resource['status'] ?? '' ) ) {
+					$capture_id = sanitize_text_field( (string) $resource['id'] );
+
 					( new PaymentService() )->complete(
 						$payment['id'],
-						(string) $resource['id'],
-						(string) ( $resource['amount']['value'] ?? '0' ),
-						(string) ( $resource['amount']['currency_code'] ?? '' ),
-						array( 'capture_id' => (string) $resource['id'] )
+						$capture_id,
+						sanitize_text_field( (string) ( $resource['amount']['value'] ?? '0' ) ),
+						sanitize_key( (string) ( $resource['amount']['currency_code'] ?? '' ) ),
+						array( 'capture_id' => $capture_id )
 					);
 				}
 				break;
 
 			case 'PAYMENT.CAPTURE.DENIED':
 			case 'PAYMENT.CAPTURE.DECLINED':
-				$order_id = (string) ( $resource['supplementary_data']['related_ids']['order_id'] ?? '' );
+				$order_id = sanitize_text_field( (string) ( $resource['supplementary_data']['related_ids']['order_id'] ?? '' ) );
 				$payment  = $payments->find_by_reference( $this->id(), $order_id );
 
 				if ( $payment ) {
@@ -329,8 +331,8 @@ class PayPal extends Gateway {
 				if ( $payment && 'COMPLETED' === ( $resource['status'] ?? '' ) ) {
 					( new PaymentService() )->record_provider_refund(
 						$payment,
-						(string) ( $resource['amount']['value'] ?? '0' ),
-						(string) $resource['id']
+						sanitize_text_field( (string) ( $resource['amount']['value'] ?? '0' ) ),
+						sanitize_text_field( (string) $resource['id'] )
 					);
 				}
 				break;
@@ -475,11 +477,11 @@ class PayPal extends Gateway {
 	 */
 	private function verify_signature( WP_REST_Request $request, string $raw, string $webhook_id ): bool {
 		$fields = array(
-			'auth_algo'         => (string) $request->get_header( 'paypal_auth_algo' ),
-			'cert_url'          => (string) $request->get_header( 'paypal_cert_url' ),
-			'transmission_id'   => (string) $request->get_header( 'paypal_transmission_id' ),
-			'transmission_sig'  => (string) $request->get_header( 'paypal_transmission_sig' ),
-			'transmission_time' => (string) $request->get_header( 'paypal_transmission_time' ),
+			'auth_algo'         => sanitize_text_field( (string) $request->get_header( 'paypal_auth_algo' ) ),
+			'cert_url'          => esc_url_raw( (string) $request->get_header( 'paypal_cert_url' ), array( 'https' ) ),
+			'transmission_id'   => sanitize_text_field( (string) $request->get_header( 'paypal_transmission_id' ) ),
+			'transmission_sig'  => sanitize_text_field( (string) $request->get_header( 'paypal_transmission_sig' ) ),
+			'transmission_time' => sanitize_text_field( (string) $request->get_header( 'paypal_transmission_time' ) ),
 			'webhook_id'        => $webhook_id,
 		);
 
@@ -502,7 +504,7 @@ class PayPal extends Gateway {
 	 */
 	private static function capture_id_from_links( array $links ): string {
 		foreach ( $links as $link ) {
-			if ( 'up' === ( $link['rel'] ?? '' ) && preg_match( '#/captures/([^/]+)$#', (string) ( $link['href'] ?? '' ), $match ) ) {
+			if ( 'up' === ( $link['rel'] ?? '' ) && preg_match( '#/captures/([^/]+)\z#', (string) ( $link['href'] ?? '' ), $match ) ) {
 				return $match[1];
 			}
 		}

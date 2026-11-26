@@ -47,8 +47,7 @@ final class TripQuery {
 			return;
 		}
 
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filters.
-		$filters = self::filters( wp_unslash( $_GET ) );
+		$filters = self::filters( self::from_request() );
 
 		foreach ( self::args( $filters ) as $key => $value ) {
 			if ( 'tax_query' === $key ) {
@@ -62,6 +61,39 @@ final class TripQuery {
 
 		/** This filter is documented in src/Frontend/TripQuery.php */
 		$query->set( 'posts_per_page', (int) apply_filters( 'wpitravel_trips_per_page', 12 ) );
+	}
+
+	/**
+	 * The search filters in the address bar, each read and sanitized on its own.
+	 *
+	 * @return array<string, string>
+	 */
+	public static function from_request(): array {
+		$values = array();
+
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only search filters.
+		foreach ( array( 'trip_q', 'destination', 'activity', 'trip_type', 'difficulty', 'min_price', 'max_price', 'min_days', 'max_days', 'sort' ) as $key ) {
+			if ( ! isset( $_GET[ $key ] ) || ! is_string( $_GET[ $key ] ) ) {
+				continue;
+			}
+
+			switch ( $key ) {
+				case 'destination':
+				case 'activity':
+				case 'trip_type':
+					$values[ $key ] = sanitize_title( wp_unslash( $_GET[ $key ] ) );
+					break;
+				case 'difficulty':
+				case 'sort':
+					$values[ $key ] = sanitize_key( wp_unslash( $_GET[ $key ] ) );
+					break;
+				default:
+					$values[ $key ] = sanitize_text_field( wp_unslash( $_GET[ $key ] ) );
+			}
+		}
+		// phpcs:enable
+
+		return $values;
 	}
 
 	/**

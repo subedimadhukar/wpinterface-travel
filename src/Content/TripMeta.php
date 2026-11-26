@@ -49,6 +49,29 @@ final class TripMeta {
 	 */
 	public function register(): void {
 		add_action( 'init', array( $this, 'register_meta' ), 6 );
+		add_filter( 'rest_prepare_' . PostTypes::TRIP, array( self::class, 'hide_protected_meta' ), 10, 2 );
+	}
+
+	/**
+	 * Core hides a password-protected trip's content over REST, but not its
+	 * meta (itinerary, prices, map). Empty it for anyone who cannot edit
+	 * the trip and has not entered the password.
+	 *
+	 * @param \WP_REST_Response $response Response.
+	 * @param \WP_Post          $post     Trip.
+	 * @return \WP_REST_Response
+	 */
+	public static function hide_protected_meta( $response, $post ) {
+		if ( $response instanceof \WP_REST_Response && $post instanceof \WP_Post && post_password_required( $post ) && ! current_user_can( 'edit_post', $post->ID ) ) {
+			$data = $response->get_data();
+
+			if ( is_array( $data ) && isset( $data['meta'] ) ) {
+				$data['meta'] = array();
+				$response->set_data( $data );
+			}
+		}
+
+		return $response;
 	}
 
 	/**

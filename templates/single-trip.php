@@ -10,6 +10,7 @@
  */
 
 use WPInterface\Travel\Frontend\Parts;
+use WPInterface\Travel\Frontend\Templates;
 use WPInterface\Travel\Reviews\Reviews;
 
 defined( 'ABSPATH' ) || exit;
@@ -76,7 +77,15 @@ while ( have_posts() ) :
 				<?php endif; ?>
 			</header>
 
-			<?php echo Parts::gallery( $wpitravel_trip_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the part. ?>
+			<?php
+			if ( post_password_required() ) :
+				// A password-protected trip shows only the password form until it is unlocked.
+				echo '<div class="wpitravel-trip__content">';
+				the_content();
+				echo '</div>';
+			else :
+				Templates::output( Parts::gallery( $wpitravel_trip_id ) );
+				?>
 
 			<div class="wpitravel-trip__layout">
 				<div class="wpitravel-trip__main">
@@ -87,7 +96,7 @@ while ( have_posts() ) :
 							the_content();
 							echo '</div>';
 						} elseif ( isset( $wpitravel_sections[ $wpitravel_section ] ) ) {
-							echo call_user_func( $wpitravel_sections[ $wpitravel_section ], $wpitravel_trip_id, array() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the part.
+							Templates::output( (string) call_user_func( $wpitravel_sections[ $wpitravel_section ], $wpitravel_trip_id, array() ) );
 						}
 					}
 					?>
@@ -97,13 +106,14 @@ while ( have_posts() ) :
 						<?php
 						foreach ( $wpitravel_side as $wpitravel_section ) {
 							if ( isset( $wpitravel_sections[ $wpitravel_section ] ) ) {
-								echo call_user_func( $wpitravel_sections[ $wpitravel_section ], $wpitravel_trip_id, array() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the part.
+								Templates::output( (string) call_user_func( $wpitravel_sections[ $wpitravel_section ], $wpitravel_trip_id, array() ) );
 							}
 						}
 						?>
 					</div>
 				</aside>
 			</div>
+			<?php endif; ?>
 		</article>
 	</main>
 	<?php

@@ -8,6 +8,7 @@
  */
 
 use WPInterface\Travel\Frontend\Parts;
+use WPInterface\Travel\Frontend\Templates;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -35,20 +36,22 @@ get_header();
 		$wpitravel_fields = array_diff( $wpitravel_fields, array( 'trip_type' ) );
 	}
 
-	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the parts.
-	echo Parts::search(
-		array(
-			'fields' => array_values( $wpitravel_fields ),
-			'target' => 'current',
+	Templates::output(
+		Parts::search(
+			array(
+				'fields' => array_values( $wpitravel_fields ),
+				'target' => 'current',
+			)
 		)
 	);
-	echo Parts::trips(
-		array(
-			'inherit' => true,
-			'columns' => 3,
+	Templates::output(
+		Parts::trips(
+			array(
+				'inherit' => true,
+				'columns' => 3,
+			)
 		)
 	);
-	// phpcs:enable
 	?>
 </main>
 <?php

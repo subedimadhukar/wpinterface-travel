@@ -130,6 +130,23 @@ class EnquiriesReviewsTest extends WP_UnitTestCase {
 			)->get_status()
 		);
 
+		// Staff can see the booking, but cannot write a review in the customer's name.
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'editor' ) ) );
+		$this->assertTrue( BookingAccess::can_access( $booking ) );
+		$this->assertSame(
+			403,
+			$this->api(
+				'POST',
+				$path,
+				array(
+					'rating'      => 5,
+					'content'     => 'Written by staff, not the customer.',
+					'booking_key' => $booking['booking_key'],
+				)
+			)->get_status()
+		);
+		wp_set_current_user( 0 );
+
 		$review = $this->api(
 			'POST',
 			$path,

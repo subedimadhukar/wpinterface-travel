@@ -51,11 +51,13 @@ final class DeparturesController extends Controller {
 						array(
 							'date' => array(
 								'type'              => 'string',
+								'sanitize_callback' => 'sanitize_text_field',
 								'required'          => true,
 								'validate_callback' => static fn( $value ) => '' !== Schedule::date( $value ),
 							),
 							'time' => array(
 								'type'              => 'string',
+								'sanitize_callback' => 'sanitize_text_field',
 								'default'           => '',
 								'validate_callback' => static fn( $value ) => '' === $value || '' !== Schedule::time( $value ),
 							),

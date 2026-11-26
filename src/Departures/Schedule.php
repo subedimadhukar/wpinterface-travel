@@ -246,7 +246,7 @@ final class Schedule {
 	 * @param mixed $value Raw value.
 	 */
 	public static function date( $value ): string {
-		if ( ! is_string( $value ) || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})$/', $value, $m ) ) {
+		if ( ! is_string( $value ) || ! preg_match( '/^(\d{4})-(\d{2})-(\d{2})\z/', $value, $m ) ) {
 			return '';
 		}
 
@@ -259,7 +259,7 @@ final class Schedule {
 	 * @param mixed $value Raw value.
 	 */
 	public static function time( $value ): string {
-		if ( ! is_string( $value ) || ! preg_match( '/^([01]\d|2[0-3]):([0-5]\d)$/', $value ) ) {
+		if ( ! is_string( $value ) || ! preg_match( '/^([01]\d|2[0-3]):([0-5]\d)\z/', $value ) ) {
 			return '';
 		}
 

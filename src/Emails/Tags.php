@@ -154,7 +154,7 @@ final class Tags {
 
 		// Other values the sender passed (plain text, e.g. Pro's {amount_due}).
 		foreach ( $extra as $key => $value ) {
-			if ( is_string( $key ) && ! isset( $values[ $key ] ) && is_scalar( $value ) && preg_match( '/^[a-z_]+$/', $key ) ) {
+			if ( is_string( $key ) && ! isset( $values[ $key ] ) && is_scalar( $value ) && preg_match( '/^[a-z_]+\z/', $key ) ) {
 				$values[ $key ] = (string) $value;
 			}
 		}

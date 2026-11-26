@@ -36,6 +36,25 @@ final class TripData {
 	}
 
 	/**
+	 * Whether the current visitor may see a trip's details: published and
+	 * not behind a password (or unlocked), or a draft/private trip the user
+	 * may read. Staff who can edit the trip always may.
+	 *
+	 * @param WP_Post $trip Trip.
+	 */
+	public static function is_viewable( WP_Post $trip ): bool {
+		if ( current_user_can( 'edit_post', $trip->ID ) ) {
+			return true;
+		}
+
+		if ( 'publish' !== $trip->post_status ) {
+			return current_user_can( 'read_post', $trip->ID );
+		}
+
+		return ! post_password_required( $trip );
+	}
+
+	/**
 	 * Data for a trip card in listings.
 	 *
 	 * @param WP_Post $trip Trip.

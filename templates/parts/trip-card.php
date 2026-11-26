@@ -9,6 +9,8 @@
  * @var array{card: array<string, mixed>, show: array{price: bool, rating: bool, excerpt: bool}} $args
  */
 
+use WPInterface\Travel\Frontend\Templates;
+
 defined( 'ABSPATH' ) || exit;
 
 $wpitravel_card = $args['card'];
@@ -17,7 +19,7 @@ $wpitravel_card = $args['card'];
 	<a class="wpitravel-card__media" href="<?php echo esc_url( $wpitravel_card['url'] ); ?>" tabindex="-1" aria-hidden="true">
 		<?php
 		if ( $wpitravel_card['image'] ) {
-			echo wp_kses_post( $wpitravel_card['image'] );
+			echo wp_kses( $wpitravel_card['image'], Templates::allowed_html() );
 		} else {
 			echo '<span class="wpitravel-card__placeholder"></span>';
 		}

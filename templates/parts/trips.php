@@ -19,17 +19,17 @@ defined( 'ABSPATH' ) || exit;
 	<?php else : ?>
 		<div class="wpitravel-trips__items wpitravel-trips__items--<?php echo esc_attr( $args['layout'] ); ?>" style="--wpitravel-columns: <?php echo (int) $args['columns']; ?>">
 			<?php
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- The part escapes its output.
 			foreach ( $args['cards'] as $wpitravel_card ) {
-				echo Templates::part(
-					'parts/trip-card',
-					array(
-						'card' => $wpitravel_card,
-						'show' => $args['show'],
+				Templates::output(
+					Templates::part(
+						'parts/trip-card',
+						array(
+							'card' => $wpitravel_card,
+							'show' => $args['show'],
+						)
 					)
 				);
 			}
-			// phpcs:enable
 			?>
 		</div>
 		<?php if ( '' !== $args['pagination'] ) : ?>

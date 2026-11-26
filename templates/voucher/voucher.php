@@ -13,6 +13,7 @@
  * @var array<string, mixed> $currency
  */
 
+use WPInterface\Travel\Frontend\Templates;
 use WPInterface\Travel\Support\Money;
 
 defined( 'ABSPATH' ) || exit;
@@ -33,39 +34,16 @@ $wpitravel_logo  = get_custom_logo();
 echo esc_html( sprintf( __( 'Voucher %s', 'wpinterface-travel' ), $view['number'] ) );
 ?>
 </title>
-<style>
-	* { box-sizing: border-box; }
-	body { margin: 0; background: #f4f4f5; color: #111827; font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Helvetica, Arial, sans-serif; }
-	.sheet { max-width: 780px; margin: 24px auto; background: #fff; padding: 40px; border-radius: 8px; }
-	header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; border-bottom: 2px solid #111827; padding-bottom: 16px; }
-	header img { max-height: 60px; width: auto; }
-	h1 { font-size: 26px; margin: 0 0 4px; }
-	h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .04em; color: #4b5563; margin: 28px 0 8px; }
-	.number { font-size: 22px; font-weight: 700; text-align: end; }
-	.status { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #dcfce7; color: #166534; font-size: 13px; font-weight: 600; }
-	.status.is-pending { background: #fef3c7; color: #92400e; }
-	dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 24px; margin: 0; }
-	dt { color: #4b5563; }
-	dd { margin: 0; }
-	table { width: 100%; border-collapse: collapse; }
-	td { padding: 6px 0; border-bottom: 1px solid #e5e7eb; }
-	td.amount { text-align: end; white-space: nowrap; }
-	tr.total td { font-weight: 700; border-bottom: 0; border-top: 2px solid #111827; }
-	.notice { margin-top: 24px; padding: 12px 16px; background: #fef3c7; border-radius: 6px; }
-	.actions { max-width: 780px; margin: 0 auto 24px; text-align: center; }
-	.actions button { font: inherit; padding: 10px 20px; border-radius: 6px; border: 0; background: #111827; color: #fff; cursor: pointer; }
-	@media print {
-		body { background: #fff; }
-		.sheet { margin: 0; padding: 0; max-width: none; border-radius: 0; }
-		.actions { display: none; }
-	}
-</style>
+<?php
+wp_register_style( 'wpitravel-voucher', WPITRAVEL_URL . 'assets/css/voucher.css', array(), WPITRAVEL_VERSION );
+wp_print_styles( 'wpitravel-voucher' );
+?>
 </head>
 <body>
 <main class="sheet">
 	<header>
 		<div>
-			<?php echo $wpitravel_logo ? wp_kses_post( $wpitravel_logo ) : '<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>'; ?>
+			<?php echo $wpitravel_logo ? wp_kses( $wpitravel_logo, Templates::allowed_html() ) : '<strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong>'; ?>
 			<h1><?php esc_html_e( 'Booking voucher', 'wpinterface-travel' ); ?></h1>
 		</div>
 		<div>
@@ -134,6 +112,7 @@ echo esc_html( sprintf( __( 'Voucher %s', 'wpinterface-travel' ), $view['number'
 		<p class="notice"><?php esc_html_e( 'This booking is not confirmed yet. Please bring the confirmed voucher on the day.', 'wpinterface-travel' ); ?></p>
 	<?php endif; ?>
 </main>
-<p class="actions"><button type="button" onclick="window.print()"><?php esc_html_e( 'Print or save as PDF', 'wpinterface-travel' ); ?></button></p>
+<p class="actions"><button type="button" id="wpitravel-print"><?php esc_html_e( 'Print or save as PDF', 'wpinterface-travel' ); ?></button></p>
+<?php wp_print_inline_script_tag( "document.getElementById('wpitravel-print').addEventListener('click',function(){window.print();});" ); ?>
 </body>
 </html>

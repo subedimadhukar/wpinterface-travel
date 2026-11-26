@@ -25,30 +25,51 @@ final class Schema {
 	 */
 	public function register(): void {
 		add_action( 'wp_head', array( $this, 'print_head' ), 5 );
+		add_action( 'wp_footer', array( $this, 'print_json_ld' ) );
 	}
 
 	/**
-	 * Prints the tags on single trip pages.
+	 * The trip of a single trip page whose details may be shown, or null
+	 * (password-protected trips show nothing until unlocked).
+	 */
+	private static function current_trip(): ?WP_Post {
+		$trip = is_singular( PostTypes::TRIP ) ? get_queried_object() : null;
+
+		return $trip instanceof WP_Post && ! post_password_required( $trip ) ? $trip : null;
+	}
+
+	/**
+	 * Prints the meta description and Open Graph tags on single trip pages.
 	 */
 	public function print_head(): void {
-		if ( ! is_singular( PostTypes::TRIP ) ) {
-			return;
+		$trip = self::current_trip();
+
+		if ( $trip && ! self::seo_plugin_active() ) {
+			echo wp_kses(
+				self::meta_tags( $trip ),
+				array(
+					'meta' => array(
+						'name'     => true,
+						'property' => true,
+						'content'  => true,
+					),
+				)
+			);
 		}
+	}
 
-		$trip = get_queried_object();
-
-		if ( ! $trip instanceof WP_Post ) {
-			return;
-		}
-
-		if ( ! self::seo_plugin_active() ) {
-			echo self::meta_tags( $trip ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in meta_tags().
-		}
-
-		$data = self::data( $trip );
+	/**
+	 * Prints the TouristTrip JSON-LD in the footer.
+	 */
+	public function print_json_ld(): void {
+		$trip = self::current_trip();
+		$data = $trip ? self::data( $trip ) : array();
 
 		if ( $data ) {
-			echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP ) . "</script>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON with < and & hex-escaped.
+			wp_print_inline_script_tag(
+				(string) wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP ),
+				array( 'type' => 'application/ld+json' )
+			);
 		}
 	}
 

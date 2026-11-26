@@ -72,6 +72,7 @@ final class AvailabilityController extends Controller {
 	public static function range_args(): array {
 		$date = array(
 			'type'              => 'string',
+			'sanitize_callback' => 'sanitize_text_field',
 			'validate_callback' => static fn( $value ) => '' === $value || '' !== Schedule::date( $value ),
 			'default'           => '',
 		);

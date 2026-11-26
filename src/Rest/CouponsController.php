@@ -48,8 +48,9 @@ final class CouponsController extends Controller {
 							'maximum' => 100,
 						),
 						'search'   => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_text_field',
+							'default'           => '',
 						),
 					),
 				),

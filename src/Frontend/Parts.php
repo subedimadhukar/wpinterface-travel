@@ -246,8 +246,7 @@ final class Parts {
 			$query = $wp_query;
 			$page  = max( 1, (int) get_query_var( 'paged' ) );
 		} else {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only filters and pagination.
-			$request = $atts['filters'] ? wp_unslash( $_GET ) : array();
+			$request = $atts['filters'] ? TripQuery::from_request() : array();
 			$filters = TripQuery::filters(
 				array_merge(
 					array(
@@ -260,7 +259,7 @@ final class Parts {
 				)
 			);
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination.
-			$page  = isset( $_GET['trips_page'] ) ? max( 1, absint( $_GET['trips_page'] ) ) : 1;
+			$page  = isset( $_GET['trips_page'] ) ? max( 1, absint( wp_unslash( $_GET['trips_page'] ) ) ) : 1;
 			$ids   = is_array( $atts['ids'] ) ? $atts['ids'] : array_filter( array_map( 'absint', explode( ',', (string) $atts['ids'] ) ) );
 			$query = TripQuery::query( $filters, (int) $atts['number'], $page, $ids );
 		}
@@ -329,8 +328,7 @@ final class Parts {
 			array(
 				'fields'       => $fields,
 				'terms'        => $terms,
-				// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only: fills in the current filters.
-				'values'       => TripQuery::filters( wp_unslash( $_GET ) ),
+				'values'       => TripQuery::filters( TripQuery::from_request() ),
 				'action'       => 'current' === $atts['target'] || ! $archive ? '' : $archive,
 				'button'       => (string) $atts['button'],
 				'sorts'        => array(

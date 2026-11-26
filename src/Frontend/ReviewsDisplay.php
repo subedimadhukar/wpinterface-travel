@@ -73,7 +73,7 @@ final class ReviewsDisplay {
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only pagination.
-		$page    = isset( $_GET['reviews_page'] ) ? max( 1, absint( $_GET['reviews_page'] ) ) : 1;
+		$page    = isset( $_GET['reviews_page'] ) ? max( 1, absint( wp_unslash( $_GET['reviews_page'] ) ) ) : 1;
 		$pages   = (int) ceil( $summary['count'] / 10 );
 		$reviews = Reviews::list( $trip_id, min( $page, max( 1, $pages ) ) );
 

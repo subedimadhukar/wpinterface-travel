@@ -82,26 +82,31 @@ final class BookingController extends Controller {
 				'permission_callback' => '__return_true',
 				'args'                => array(
 					'hold_key'       => array(
-						'type'     => 'string',
-						'required' => true,
-						'pattern'  => '^[a-f0-9]{32}$',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'required'          => true,
+						'pattern'           => '^[a-f0-9]{32}$',
 					),
 					'customer'       => array(
-						'type'     => 'object',
-						'required' => true,
+						'type'              => 'object',
+						'sanitize_callback' => array( Controller::class, 'sanitize_object' ),
+						'required'          => true,
 					),
 					'travelers'      => array(
-						'type'    => 'array',
-						'default' => array(),
-						'items'   => array( 'type' => 'object' ),
+						'type'              => 'array',
+						'sanitize_callback' => array( Controller::class, 'sanitize_object' ),
+						'default'           => array(),
+						'items'             => array( 'type' => 'object' ),
 					),
 					'coupon'         => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
 					),
 					'note'           => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_textarea_field',
+						'default'           => '',
 					),
 					'create_account' => array(
 						'type'    => 'boolean',
@@ -112,13 +117,15 @@ final class BookingController extends Controller {
 						'default' => false,
 					),
 					'gateway'        => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
 					),
 					// Extra checkout answers (Pro), checked by `wpitravel_validate_booking`.
 					'fields'         => array(
-						'type'    => 'object',
-						'default' => array(),
+						'type'              => 'object',
+						'sanitize_callback' => array( Controller::class, 'sanitize_object' ),
+						'default'           => array(),
 					),
 				),
 			)
@@ -139,19 +146,23 @@ final class BookingController extends Controller {
 				'minimum'  => 1,
 			),
 			'date'         => array(
-				'type'     => 'string',
-				'required' => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'required'          => true,
 			),
 			'time'         => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
 			),
 			'price_option' => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_key',
+				'default'           => '',
 			),
 			'pax'          => array(
 				'type'                 => 'object',
+				'sanitize_callback'    => array( Controller::class, 'sanitize_counts' ),
 				'required'             => true,
 				'additionalProperties' => array(
 					'type'    => 'integer',
@@ -161,6 +172,7 @@ final class BookingController extends Controller {
 			// Optional add-ons by key => quantity (Pro's tour extras).
 			'extras'       => array(
 				'type'                 => 'object',
+				'sanitize_callback'    => array( Controller::class, 'sanitize_counts' ),
 				'default'              => array(),
 				'additionalProperties' => array(
 					'type'    => 'integer',
@@ -172,8 +184,9 @@ final class BookingController extends Controller {
 
 		if ( $with_coupon ) {
 			$args['coupon'] = array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
 			);
 		}
 

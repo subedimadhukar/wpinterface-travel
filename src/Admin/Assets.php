@@ -52,7 +52,7 @@ final class Assets {
 		}
 
 		if ( '' !== $var_name ) {
-			wp_add_inline_script( $handle, 'var ' . $var_name . ' = ' . wp_json_encode( $data ) . ';', 'before' );
+			wp_add_inline_script( $handle, 'var ' . $var_name . ' = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );
 		}
 
 		return true;

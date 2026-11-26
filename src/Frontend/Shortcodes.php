@@ -126,7 +126,7 @@ final class Shortcodes {
 	public function section( string $section, array $atts ): string {
 		$trip = TripData::resolve( absint( $atts['trip'] ?? 0 ) );
 
-		if ( ! $trip || ( 'publish' !== $trip->post_status && ! current_user_can( 'read_post', $trip->ID ) ) ) {
+		if ( ! $trip || ! TripData::is_viewable( $trip ) ) {
 			return '';
 		}
 

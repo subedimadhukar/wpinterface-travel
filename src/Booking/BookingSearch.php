@@ -161,8 +161,8 @@ final class BookingSearch {
 		$status  = in_array( $args['status'], BookingRepository::STATUSES, true ) ? (string) $args['status'] : '';
 		$payment = in_array( $args['payment_status'], array( 'unpaid', 'partial', 'paid', 'refunded', 'partially_refunded' ), true ) ? (string) $args['payment_status'] : '';
 		$trip    = max( 0, (int) $args['trip_id'] );
-		$from    = preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) $args['date_from'] ) ? (string) $args['date_from'] : '';
-		$to      = preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) $args['date_to'] ) ? (string) $args['date_to'] : '';
+		$from    = preg_match( '/^\d{4}-\d{2}-\d{2}\z/', (string) $args['date_from'] ) ? (string) $args['date_from'] : '';
+		$to      = preg_match( '/^\d{4}-\d{2}-\d{2}\z/', (string) $args['date_to'] ) ? (string) $args['date_to'] : '';
 		$search  = trim( (string) $args['search'] );
 		$like    = '%' . $wpdb->esc_like( $search ) . '%';
 

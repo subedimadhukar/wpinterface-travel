@@ -93,7 +93,7 @@ final class BookingWidget {
 	 */
 	private function print_page_data(): void {
 		if ( ! $this->page_data_printed ) {
-			wp_add_inline_script( 'wpitravel-booking', 'window.wpitravelBooking = ' . wp_json_encode( $this->page_data() ) . ';', 'before' );
+			wp_add_inline_script( 'wpitravel-booking', 'window.wpitravelBooking = ' . wp_json_encode( $this->page_data(), JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );
 			$this->page_data_printed = true;
 		}
 	}
@@ -145,7 +145,7 @@ final class BookingWidget {
 		$this->print_page_data();
 
 		if ( empty( $this->printed[ $trip_id ] ) ) {
-			wp_add_inline_script( 'wpitravel-booking', 'window.wpitravelBooking.trips[' . $trip_id . '] = ' . wp_json_encode( $data ) . ';', 'before' );
+			wp_add_inline_script( 'wpitravel-booking', 'window.wpitravelBooking.trips[' . $trip_id . '] = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );
 			$this->printed[ $trip_id ] = true;
 		}
 
