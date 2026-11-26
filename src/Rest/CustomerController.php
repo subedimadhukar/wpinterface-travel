@@ -35,12 +35,14 @@ final class CustomerController extends Controller {
 	public function register_routes(): void {
 		$proof = array(
 			'email' => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_email',
+				'default'           => '',
 			),
 			'token' => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_key',
+				'default'           => '',
 			),
 		);
 
@@ -64,8 +66,9 @@ final class CustomerController extends Controller {
 				'permission_callback' => '__return_true',
 				'args'                => $proof + array(
 					'reason' => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_textarea_field',
+						'default'           => '',
 					),
 				),
 			)
@@ -80,12 +83,14 @@ final class CustomerController extends Controller {
 				'permission_callback' => '__return_true',
 				'args'                => array(
 					'number' => array(
-						'type'     => 'string',
-						'required' => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'required'          => true,
 					),
 					'email'  => array(
-						'type'     => 'string',
-						'required' => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_email',
+						'required'          => true,
 					),
 				),
 			)

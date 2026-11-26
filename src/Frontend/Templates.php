@@ -115,6 +115,160 @@ final class Templates {
 	}
 
 	/**
+	 * HTML the plugin's parts may print: the post allow-list plus forms,
+	 * responsive images, maps and the attributes the booking and search
+	 * markup use. Parts escape every value; this list is the final check
+	 * when a finished part is printed.
+	 *
+	 * @return array<string, array<string, bool>>
+	 */
+	public static function allowed_html(): array {
+		static $allowed = null;
+
+		if ( null !== $allowed ) {
+			return $allowed;
+		}
+
+		$global  = array(
+			'class'       => true,
+			'id'          => true,
+			'style'       => true,
+			'title'       => true,
+			'role'        => true,
+			'hidden'      => true,
+			'tabindex'    => true,
+			'lang'        => true,
+			'dir'         => true,
+			'aria-*'      => true,
+			'data-*'      => true,
+			'aria-hidden' => true,
+			'aria-label'  => true,
+		);
+		$form    = array(
+			'form'           => true,
+			'formaction'     => true,
+			'formmethod'     => true,
+			'formnovalidate' => true,
+			'formtarget'     => true,
+			'autocapitalize' => true,
+			'autocomplete'   => true,
+			'disabled'       => true,
+			'name'           => true,
+			'required'       => true,
+		);
+		$allowed = wp_kses_allowed_html( 'post' );
+		$extra   = array(
+			'form'     => array(
+				'action'         => true,
+				'method'         => true,
+				'novalidate'     => true,
+				'autocomplete'   => true,
+				'autocapitalize' => true,
+				'name'           => true,
+				'target'         => true,
+			),
+			'input'    => $form + array(
+				'type'        => true,
+				'value'       => true,
+				'placeholder' => true,
+				'min'         => true,
+				'max'         => true,
+				'step'        => true,
+				'minlength'   => true,
+				'maxlength'   => true,
+				'pattern'     => true,
+				'inputmode'   => true,
+				'checked'     => true,
+				'readonly'    => true,
+				'size'        => true,
+				'list'        => true,
+			),
+			'select'   => $form + array(
+				'multiple' => true,
+				'size'     => true,
+			),
+			'option'   => array(
+				'value'    => true,
+				'selected' => true,
+				'disabled' => true,
+				'label'    => true,
+			),
+			'optgroup' => array(
+				'label'    => true,
+				'disabled' => true,
+			),
+			'textarea' => $form + array(
+				'rows'        => true,
+				'cols'        => true,
+				'placeholder' => true,
+				'minlength'   => true,
+				'maxlength'   => true,
+				'readonly'    => true,
+			),
+			'button'   => $form + array(
+				'type'         => true,
+				'value'        => true,
+				'aria-pressed' => true,
+			),
+			'label'    => array( 'for' => true ),
+			'fieldset' => array( 'disabled' => true ),
+			'legend'   => array(),
+			'output'   => array( 'for' => true ),
+			'noscript' => array(),
+			'details'  => array( 'open' => true ),
+			'summary'  => array(),
+			'time'     => array( 'datetime' => true ),
+			'nav'      => array(),
+			'iframe'   => array(
+				'src'             => true,
+				'title'           => true,
+				'width'           => true,
+				'height'          => true,
+				'loading'         => true,
+				'referrerpolicy'  => true,
+				'allow'           => true,
+				'allowfullscreen' => true,
+				'sandbox'         => true,
+			),
+			'img'      => array(
+				'srcset'        => true,
+				'sizes'         => true,
+				'decoding'      => true,
+				'fetchpriority' => true,
+				'loading'       => true,
+			),
+			'a'        => array(
+				'target'   => true,
+				'rel'      => true,
+				'download' => true,
+				'hreflang' => true,
+			),
+		);
+
+		foreach ( $extra as $tag => $attributes ) {
+			$allowed[ $tag ] = array_merge( $allowed[ $tag ] ?? array(), $attributes, $global );
+		}
+
+		/**
+		 * Filters the HTML the plugin's template parts may print.
+		 *
+		 * @param array $allowed Tags and attributes, as for wp_kses().
+		 */
+		$allowed = (array) apply_filters( 'wpitravel_allowed_html', $allowed );
+
+		return $allowed;
+	}
+
+	/**
+	 * Prints a finished part through the allow-list.
+	 *
+	 * @param string $html Part HTML.
+	 */
+	public static function output( string $html ): void {
+		echo wp_kses( $html, self::allowed_html() );
+	}
+
+	/**
 	 * Whether this page's template already places the trip parts (booking
 	 * form, reviews…), so they must not also be appended to the content.
 	 */

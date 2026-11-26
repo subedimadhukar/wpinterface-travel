@@ -189,10 +189,11 @@ final class YatraImporter extends Importer {
 
 		return array(
 			'post'      => array(
-				'post_title'   => (string) $trip['title'],
-				'post_name'    => (string) $trip['slug'],
-				'post_content' => (string) $trip['description'],
-				'post_excerpt' => (string) $trip['short_description'],
+				// Read from Yatra's own table: cleaned like any other input.
+				'post_title'   => sanitize_text_field( (string) $trip['title'] ),
+				'post_name'    => sanitize_title( (string) $trip['slug'] ),
+				'post_content' => wp_kses_post( (string) $trip['description'] ),
+				'post_excerpt' => sanitize_textarea_field( (string) $trip['short_description'] ),
 				'post_status'  => in_array( $trip['status'], array( 'publish', 'published' ), true ) ? 'publish' : 'draft',
 			),
 			'meta'      => array(

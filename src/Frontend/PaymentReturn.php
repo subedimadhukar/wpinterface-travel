@@ -35,10 +35,16 @@ final class PaymentReturn {
 		}
 
 		$gateway = Gateways::get( sanitize_key( wp_unslash( $_GET['wpitravel_payment_return'] ) ) );
-		$params  = array_map(
-			static fn( $value ) => is_string( $value ) ? sanitize_text_field( $value ) : '',
-			wp_unslash( $_GET )
-		);
+		$params  = array();
+
+		// Gateways read their own return parameters (PayPal: token, booking, cancel).
+		foreach ( array_slice( array_keys( $_GET ), 0, 20 ) as $name ) {
+			$key = sanitize_key( (string) $name );
+
+			if ( '' !== $key && $key === $name && isset( $_GET[ $name ] ) && is_string( $_GET[ $name ] ) ) {
+				$params[ $key ] = sanitize_text_field( wp_unslash( $_GET[ $name ] ) );
+			}
+		}
 		// phpcs:enable
 
 		$booking = ( new BookingRepository() )->find_by_key( (string) ( $params['booking'] ?? '' ) );

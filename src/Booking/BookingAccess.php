@@ -62,6 +62,24 @@ final class BookingAccess {
 	}
 
 	/**
+	 * Whether the visitor is the customer: the logged-in owner, or someone
+	 * holding the signed link. Staff do not count (e.g. for reviews written
+	 * in the customer's name).
+	 *
+	 * @param array<string, mixed> $booking Booking.
+	 * @param string               $token   Token from a link ('' for none).
+	 */
+	public static function is_customer( array $booking, string $token = '' ): bool {
+		$user_id = get_current_user_id();
+
+		if ( $user_id > 0 && (int) $booking['user_id'] === $user_id ) {
+			return true;
+		}
+
+		return '' !== $token && hash_equals( self::token( $booking ), $token );
+	}
+
+	/**
 	 * Link to the booking on the "My bookings" page.
 	 *
 	 * @param array<string, mixed>  $booking Booking.

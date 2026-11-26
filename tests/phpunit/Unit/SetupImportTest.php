@@ -387,9 +387,9 @@ class SetupImportTest extends WP_UnitTestCase {
 		$wpdb->insert(
 			$trips,
 			array(
-				'title'                  => 'Druk Path',
+				'title'                  => 'Druk Path<script>alert(1)</script>',
 				'slug'                   => 'druk-path',
-				'description'            => 'Long text',
+				'description'            => 'Long text<script>alert(2)</script><p onclick="x()">kept</p>',
 				'short_description'      => 'Short',
 				'starting_location'      => 'Paro',
 				'starting_latitude'      => 27.43,
@@ -483,7 +483,10 @@ class SetupImportTest extends WP_UnitTestCase {
 
 		$trip = $this->import( 'yatra' )['created'][0];
 
-		$this->assertSame( 'Druk Path', get_the_title( $trip ) );
+		$this->assertSame( 'Druk Path', get_the_title( $trip ), 'Titles from Yatra are plain text.' );
+		$this->assertStringNotContainsString( '<script', get_post_field( 'post_content', $trip ), 'Content from Yatra is cleaned like any other input.' );
+		$this->assertStringNotContainsString( 'onclick', get_post_field( 'post_content', $trip ) );
+		$this->assertStringContainsString( '<p>kept</p>', get_post_field( 'post_content', $trip ) );
 		$this->assertSame( 'challenging', get_post_meta( $trip, TripMeta::DIFFICULTY, true ) );
 		$this->assertSame( array( 'Paro', 'Jangchulakha' ), wp_list_pluck( get_post_meta( $trip, TripMeta::ITINERARY, true ), 'title' ) );
 		$this->assertSame( array( 'Dzongs' ), get_post_meta( $trip, TripMeta::HIGHLIGHTS, true ) );

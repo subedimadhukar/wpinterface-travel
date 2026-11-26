@@ -410,7 +410,11 @@ final class BookingService {
 			}
 		}
 
-		$customer_id = $this->bookings->upsert_customer( $customer, $user_id );
+		// The customer record joins the account only when the account's email
+		// is the one typed at checkout, so nobody can claim someone else's.
+		$account     = $user_id > 0 ? get_userdata( $user_id ) : false;
+		$owner_id    = $account && strtolower( (string) $account->user_email ) === strtolower( $customer['email'] ) ? $user_id : 0;
+		$customer_id = $this->bookings->upsert_customer( $customer, $owner_id );
 		$now         = Db::now();
 		$booking_id  = $this->bookings->insert(
 			'bookings',

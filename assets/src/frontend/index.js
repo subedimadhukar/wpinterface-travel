@@ -8,7 +8,13 @@ document.addEventListener( 'click', ( event ) => {
 	const button = event.target.closest?.( '.wpitravel-map__load' );
 	const frame = button?.closest( '[data-wpitravel-map]' );
 
-	if ( ! frame ) {
+	// Only OpenStreetMap's embed is loaded, and it is not told which page asked.
+	if (
+		! frame ||
+		! frame.dataset.wpitravelMap.startsWith(
+			'https://www.openstreetmap.org/export/embed.html'
+		)
+	) {
 		return;
 	}
 
@@ -16,7 +22,7 @@ document.addEventListener( 'click', ( event ) => {
 	iframe.src = frame.dataset.wpitravelMap;
 	iframe.title = button.firstChild?.textContent?.trim() || 'Map';
 	iframe.loading = 'lazy';
-	iframe.referrerPolicy = 'no-referrer-when-downgrade';
+	iframe.referrerPolicy = 'no-referrer';
 	frame.replaceChildren( iframe );
 	frame.classList.add( 'is-loaded' );
 } );

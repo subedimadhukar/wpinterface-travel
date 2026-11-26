@@ -59,28 +59,34 @@ final class ReviewsController extends Controller {
 							'required' => true,
 						),
 						'title'       => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_text_field',
+							'default'           => '',
 						),
 						'content'     => array(
-							'type'     => 'string',
-							'required' => true,
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_textarea_field',
+							'required'          => true,
 						),
 						'booking_key' => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_key',
+							'default'           => '',
 						),
 						'token'       => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_key',
+							'default'           => '',
 						),
 						'name'        => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_text_field',
+							'default'           => '',
 						),
 						'email'       => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_email',
+							'default'           => '',
 						),
 					),
 				),
@@ -97,7 +103,7 @@ final class ReviewsController extends Controller {
 	public function list_reviews( WP_REST_Request $request ) {
 		$trip = get_post( (int) $request['id'] );
 
-		if ( ! $trip instanceof WP_Post || PostTypes::TRIP !== $trip->post_type || 'publish' !== $trip->post_status ) {
+		if ( ! $trip instanceof WP_Post || PostTypes::TRIP !== $trip->post_type || 'publish' !== $trip->post_status || post_password_required( $trip ) ) {
 			return new WP_Error( 'wpitravel_trip_not_found', __( 'Trip not found.', 'wpinterface-travel' ), array( 'status' => 404 ) );
 		}
 

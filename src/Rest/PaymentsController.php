@@ -39,8 +39,9 @@ final class PaymentsController extends Controller {
 				'permission_callback' => '__return_true',
 				'args'                => array(
 					'gateway' => array(
-						'type'     => 'string',
-						'required' => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'required'          => true,
 					),
 				),
 			)
@@ -72,20 +73,24 @@ final class PaymentsController extends Controller {
 					'permission_callback' => $this->require_capability( Capabilities::MANAGE_BOOKINGS ),
 					'args'                => array(
 						'amount'    => array(
-							'type'     => array( 'string', 'number' ),
-							'required' => true,
+							'type'              => array( 'string', 'number' ),
+							'sanitize_callback' => array( Controller::class, 'sanitize_amount' ),
+							'required'          => true,
 						),
 						'method'    => array(
-							'type'    => 'string',
-							'default' => 'manual',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_key',
+							'default'           => 'manual',
 						),
 						'note'      => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_textarea_field',
+							'default'           => '',
 						),
 						'reference' => array(
-							'type'    => 'string',
-							'default' => '',
+							'type'              => 'string',
+							'sanitize_callback' => 'sanitize_text_field',
+							'default'           => '',
 						),
 					),
 				),
@@ -105,12 +110,14 @@ final class PaymentsController extends Controller {
 						'required' => true,
 					),
 					'amount'     => array(
-						'type'     => array( 'string', 'number' ),
-						'required' => true,
+						'type'              => array( 'string', 'number' ),
+						'sanitize_callback' => array( Controller::class, 'sanitize_amount' ),
+						'required'          => true,
 					),
 					'reason'     => array(
-						'type'    => 'string',
-						'default' => '',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_textarea_field',
+						'default'           => '',
 					),
 					'manual'     => array(
 						'type'        => 'boolean',

@@ -109,7 +109,8 @@ final class AccountPage {
 					),
 					'reviews'  => (bool) $options->get( 'reviews.enabled', true ),
 					'pageUrl'  => BookingAccess::account_url(),
-				)
+				),
+				JSON_HEX_TAG | JSON_HEX_AMP
 			) . ';',
 			'before'
 		);

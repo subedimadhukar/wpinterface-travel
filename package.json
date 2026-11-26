@@ -17,6 +17,7 @@
 	},
 	"files": [
 		"assets/build",
+		"assets/css",
 		"assets/src",
 		"blocks",
 		"languages",

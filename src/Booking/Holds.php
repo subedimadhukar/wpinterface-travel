@@ -197,7 +197,7 @@ final class Holds {
 	public function find( string $key ): ?array {
 		global $wpdb;
 
-		if ( ! preg_match( '/^[a-f0-9]{32}$/', $key ) ) {
+		if ( ! preg_match( '/^[a-f0-9]{32}\z/', $key ) ) {
 			return null;
 		}
 

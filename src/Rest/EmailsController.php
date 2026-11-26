@@ -31,12 +31,14 @@ final class EmailsController extends Controller {
 	public function register_routes(): void {
 		$draft = array(
 			'subject' => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
 			),
 			'body'    => array(
-				'type'    => 'string',
-				'default' => '',
+				'type'              => 'string',
+				'sanitize_callback' => 'wp_kses_post',
+				'default'           => '',
 			),
 		);
 
@@ -62,8 +64,9 @@ final class EmailsController extends Controller {
 				'permission_callback' => $this->require_capability( Capabilities::MANAGE_BOOKINGS ),
 				'args'                => array(
 					'template' => array(
-						'type'     => 'string',
-						'required' => true,
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'required'          => true,
 					),
 				),
 			)

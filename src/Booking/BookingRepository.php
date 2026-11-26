@@ -49,7 +49,7 @@ final class BookingRepository {
 	public function find_by_key( string $key ): ?array {
 		global $wpdb;
 
-		if ( ! preg_match( '/^[a-f0-9]{32}$/', $key ) ) {
+		if ( ! preg_match( '/^[a-f0-9]{32}\z/', $key ) ) {
 			return null;
 		}
 

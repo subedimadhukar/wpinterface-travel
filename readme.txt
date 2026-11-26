@@ -14,7 +14,7 @@ Tour and trip booking for travel agencies: itineraries, departures, pricing, onl
 
 WPInterface Travel turns any WordPress site into a booking site for a tour operator or travel agency.
 
-This is an early development version. You can create trips with itineraries, highlights, included/excluded lists, FAQs, facts, a photo gallery and a map location, organised by destination, activity and trip type, with price options per traveler type and fixed or repeating departure dates. Customers book on the trip page: they pick a date and travelers, see the price live, and confirm with their details while their seats are held. Customers pay online with PayPal, or choose bank transfer or pay later; staff record offline payments and refunds. Customers get booking emails, reminders and review requests, and manage their bookings on a "My bookings" page (pay the balance, ask to cancel, print their voucher, write a review). Enquiries from trip pages arrive in an inbox.
+You can create trips with itineraries, highlights, included/excluded lists, FAQs, facts, a photo gallery and a map location, organised by destination, activity and trip type, with price options per traveler type and fixed or repeating departure dates. Customers book on the trip page: they pick a date and travelers, see the price live, and confirm with their details while their seats are held. Customers pay online with PayPal, or choose bank transfer or pay later; staff record offline payments and refunds. Customers get booking emails, reminders and review requests, and manage their bookings on a "My bookings" page (pay the balance, ask to cancel, print their voucher, write a review). Enquiries from trip pages arrive in an inbox.
 
 Staff manage everything from Travel → Bookings: search and filter bookings, see payments and history, change statuses, record payments and refunds, resend emails, add notes, and enter phone or walk-in bookings. The Travel dashboard shows money received over time, top trips, departures in the next two weeks and bookings that need attention. A setup wizard sets the currency, tax, booking rules and payment methods, can add sample trips, and imports trips from WP Travel, WP Travel Engine and Yatra.
 
@@ -87,9 +87,16 @@ The JavaScript in `assets/build` is compiled from the readable source in `assets
 
 == External services ==
 
-When PayPal is turned on, the plugin sends the booking amount, currency, booking number, trip name and your site name to PayPal (api-m.paypal.com, or api-m.sandbox.paypal.com in sandbox mode) to create and capture payments, issue refunds and verify webhooks. PayPal terms: https://www.paypal.com/legalhub/home. Privacy: https://www.paypal.com/myaccount/privacy/privacyhub.
+When PayPal is turned on, the plugin talks to PayPal (api-m.paypal.com, or api-m.sandbox.paypal.com in sandbox mode):
 
-Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map" on a trip page; until then nothing is sent to OpenStreetMap. Once loaded, the visitor's browser requests map tiles from openstreetmap.org, which receives the visitor's IP address and the map area. Terms: https://wiki.osmfoundation.org/wiki/Terms_of_Use. Privacy: https://osmfoundation.org/wiki/Privacy_Policy.
+* To sign in: your PayPal client ID and secret.
+* To create and capture a payment: the amount, currency, booking number, trip name, departure date and your site name; a booking reference and payment number (reference_id, custom_id, invoice_id); and the addresses PayPal returns the customer to, which contain the booking reference. No customer name, email or address is sent.
+* To refund: the refund amount and currency, and the refund reason you type (shown to the customer as a note).
+* To verify a webhook: your webhook ID, the signature headers PayPal sent and the notification itself.
+
+PayPal terms: https://www.paypal.com/legalhub/home. Privacy: https://www.paypal.com/myaccount/privacy/privacyhub.
+
+Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map" on a trip page; until then nothing is sent to OpenStreetMap. Once loaded, the visitor's browser requests the map from openstreetmap.org, which receives the visitor's IP address and the map area, but not the address of the page (no referrer is sent). Terms: https://wiki.osmfoundation.org/wiki/Terms_of_Use. Privacy: https://osmfoundation.org/wiki/Privacy_Policy.
 
 == Changelog ==
 

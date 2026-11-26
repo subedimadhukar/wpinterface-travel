@@ -360,7 +360,7 @@ final class Reviews {
 		if ( '' !== $key ) {
 			$booking = ( new BookingRepository() )->find_by_key( $key );
 
-			if ( ! $booking || (int) $booking['trip_id'] !== $trip_id || ! BookingAccess::can_access( $booking, '', (string) ( $data['token'] ?? '' ) ) ) {
+			if ( ! $booking || (int) $booking['trip_id'] !== $trip_id || ! BookingAccess::is_customer( $booking, (string) ( $data['token'] ?? '' ) ) ) {
 				return self::error( 'wpitravel_review_not_allowed', __( 'We could not find your booking for this trip.', 'wpinterface-travel' ), 403 );
 			}
 
