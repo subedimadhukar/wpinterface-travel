@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-faqs",
+	"title": "Trip FAQs",
+	"category": "wpitravel",
+	"icon": "editor-help",
+	"description": "Frequently asked questions.",
+	"keywords": [
+		"faq",
+		"questions"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"tripId": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

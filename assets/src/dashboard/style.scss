@@ -1,0 +1,143 @@
+.wpitravel-dashboard {
+	max-width: 1280px;
+	margin-top: 12px;
+
+	h2 {
+		margin: 0;
+		font-size: 14px;
+	}
+
+	.components-card {
+		margin-bottom: 16px;
+	}
+
+	.num {
+		text-align: right;
+	}
+}
+
+.wpitravel-dashboard__toolbar {
+	max-width: 220px;
+	margin-bottom: 16px;
+}
+
+.wpitravel-dashboard__attention {
+	margin: 0 0 16px;
+
+	ul {
+		margin: 0;
+	}
+
+	li {
+		margin: 2px 0;
+	}
+}
+
+.wpitravel-dashboard__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 16px;
+	margin-bottom: 16px;
+}
+
+.wpitravel-dashboard__stat {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 16px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.wpitravel-dashboard__stat-label {
+	color: #50575e;
+}
+
+.wpitravel-dashboard__stat-value {
+	font-size: 24px;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.2;
+}
+
+.wpitravel-dashboard__muted {
+	color: #646970;
+	font-size: 12px;
+}
+
+.wpitravel-dashboard__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+	align-items: start;
+	gap: 16px;
+
+	.components-card {
+		margin-bottom: 0;
+	}
+}
+
+.wpitravel-dashboard__list {
+	margin: 0;
+
+	li {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		margin: 0;
+		padding: 8px 0;
+		border-bottom: 1px solid #f0f0f1;
+
+		> :last-child {
+			text-align: right;
+			white-space: nowrap;
+		}
+	}
+
+	li:last-child {
+		border-bottom: 0;
+	}
+}
+
+.wpitravel-chart {
+	margin: 0;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.wpitravel-chart__bar {
+	fill: var(--wp-admin-theme-color, #3858e9);
+
+	&:hover {
+		fill: var(--wp-admin-theme-color-darker-10, #2145e6);
+	}
+}
+
+.wpitravel-chart__grid {
+	stroke: #dcdcde;
+	stroke-dasharray: 3 3;
+}
+
+.wpitravel-chart__axis {
+	stroke: #c3c4c7;
+}
+
+.wpitravel-chart__label {
+	fill: #646970;
+	font-size: 11px;
+}
+
+.wpitravel-dashboard__empty {
+	margin: 24px 0;
+	color: #646970;
+	text-align: center;
+}
+
+.wpitravel-dashboard__pro {
+	margin-top: 16px;
+	color: #50575e;
+}

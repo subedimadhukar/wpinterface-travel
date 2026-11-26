@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<ruleset name="WPInterface Travel">
+	<description>Coding standards for WPInterface Travel.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/assets/build/*</exclude-pattern>
+	<exclude-pattern>/docs/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_wp_version" value="6.7"/>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress-Extra">
+		<!-- PSR-4 file names (src/Foo/BarBaz.php). -->
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+	<rule ref="WordPress-Docs">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="wpinterface-travel"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="wpitravel_manage_settings"/>
+				<element value="wpitravel_manage_bookings"/>
+				<element value="wpitravel_view_bookings"/>
+				<element value="wpitravel_manage_enquiries"/>
+				<element value="wpitravel_manage_coupons"/>
+				<element value="wpitravel_view_reports"/>
+				<element value="edit_wpitravel_trips"/>
+				<element value="edit_others_wpitravel_trips"/>
+				<element value="edit_private_wpitravel_trips"/>
+				<element value="edit_published_wpitravel_trips"/>
+				<element value="publish_wpitravel_trips"/>
+				<element value="read_private_wpitravel_trips"/>
+				<element value="delete_wpitravel_trips"/>
+				<element value="delete_others_wpitravel_trips"/>
+				<element value="delete_private_wpitravel_trips"/>
+				<element value="delete_published_wpitravel_trips"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="wpitravel"/>
+				<element value="WPInterface\Travel"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

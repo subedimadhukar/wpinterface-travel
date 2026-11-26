@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-highlights",
+	"title": "Trip Highlights",
+	"category": "wpitravel",
+	"icon": "star-empty",
+	"description": "The trip's highlights.",
+	"keywords": [
+		"highlights"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"tripId": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

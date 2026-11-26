@@ -1,0 +1,176 @@
+.wpitravel-trip-editor {
+
+	.components-tab-panel__tabs {
+		border-bottom: 1px solid #ddd;
+		flex-wrap: wrap;
+	}
+}
+
+.wpitravel-trip-editor__panel {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px 0 4px;
+}
+
+.wpitravel-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	align-items: start;
+
+	&--3 {
+		grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	}
+}
+
+.wpitravel-fieldset,
+.wpitravel-string-list,
+.wpitravel-inline-checks {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+.wpitravel-field-label {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+	padding: 0;
+}
+
+.wpitravel-help {
+	color: #757575;
+	margin: 0;
+}
+
+.wpitravel-string-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	align-items: flex-start;
+
+	&__row {
+		display: flex;
+		gap: 4px;
+		width: 100%;
+
+		> :first-child {
+			flex: 1;
+		}
+	}
+}
+
+.wpitravel-inline-checks {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin: 12px 0;
+
+	.wpitravel-field-label {
+		width: 100%;
+		margin-bottom: 0;
+	}
+}
+
+.wpitravel-repeater {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: flex-start;
+
+	> .components-card {
+		width: 100%;
+	}
+
+	.components-card__body {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__actions {
+		display: flex;
+		gap: 2px;
+	}
+
+	&__empty {
+		color: #757575;
+		margin: 0;
+	}
+}
+
+.wpitravel-gallery {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&__item {
+		position: relative;
+		width: 96px;
+		height: 96px;
+		margin: 0;
+		background: #f0f0f0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__remove {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		background: #fff;
+		border-radius: 2px;
+	}
+}
+
+.wpitravel-price-rows,
+.wpitravel-date-rows {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.wpitravel-price-row {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: minmax(140px, 2fr) repeat(2, minmax(110px, 1.2fr)) repeat(2, minmax(64px, 0.6fr)) auto;
+	align-items: end;
+
+	@media (max-width: 782px) {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.wpitravel-date-row {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+
+	> .components-base-control {
+		flex: 0 1 220px;
+	}
+}
+
+.wpitravel-departures {
+	margin-top: 8px;
+
+	td,
+	th {
+		vertical-align: middle;
+	}
+}

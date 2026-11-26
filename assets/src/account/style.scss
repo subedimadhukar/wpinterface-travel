@@ -1,0 +1,130 @@
+.wpitravel-account__card {
+	max-width: 680px;
+}
+
+.wpitravel-account__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6em;
+}
+
+.wpitravel-account__item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2em;
+	width: 100%;
+	text-align: start;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	border: 1px solid var(--wpitravel-border);
+	border-radius: var(--wpitravel-radius);
+	padding: 0.8em 1em;
+	cursor: pointer;
+
+	&:hover {
+		border-color: var(--wpitravel-accent);
+	}
+}
+
+.wpitravel-account__detail {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
+.wpitravel-account__badges {
+	display: flex;
+	gap: 0.5em;
+	margin: 0;
+}
+
+.wpitravel-badge {
+	display: inline-block;
+	padding: 0.15em 0.7em;
+	border-radius: 999px;
+	background: var(--wpitravel-surface);
+	font-size: 0.85em;
+
+	&.is-confirmed,
+	&.is-completed {
+		background: #dcfce7;
+		color: #166534;
+	}
+
+	&.is-cancelled,
+	&.is-failed {
+		background: #fee2e2;
+		color: #991b1b;
+	}
+}
+
+.wpitravel-account__facts {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 0.3em 1.2em;
+	margin: 0;
+
+	dd {
+		margin: 0;
+	}
+
+	dt {
+		color: var(--wpitravel-muted);
+	}
+}
+
+.wpitravel-account__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1em;
+}
+
+.wpitravel-rating {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: 0.2em;
+
+	legend {
+		margin-bottom: 0.3em;
+		font-weight: 600;
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		width: 1px;
+		height: 1px;
+	}
+
+	label {
+		font-size: 1.8em;
+		line-height: 1;
+		color: rgba(0, 0, 0, 0.25);
+		cursor: pointer;
+
+		&.is-on {
+			color: #b45309;
+		}
+	}
+
+	input:focus-visible + label {
+		outline: 2px solid var(--wpitravel-accent);
+		outline-offset: 2px;
+	}
+}
+
+.wpitravel-booking .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+}

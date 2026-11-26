@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '7.4', '8.1', '8.3', '8.4' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - run: find . -name '*.php' -not -path './vendor/*' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
+
+  standards:
+    name: PHPCS + PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: composer
+      - run: composer install --no-progress
+      - run: composer lint
+      - run: composer analyse
+
+  js:
+    name: JS build + lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci || npm install
+      - run: npm run lint:js
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: assets/build
+
+  phpunit:
+    name: PHPUnit (WordPress ${{ matrix.wp }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        wp: [ '6.7', 'latest' ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+      - run: composer install --no-progress
+      - run: npm ci || npm install
+      - name: Pin WordPress version
+        if: matrix.wp != 'latest'
+        run: |
+          echo '{ "core": "WordPress/WordPress#${{ matrix.wp }}" }' > .wp-env.override.json
+      - run: npm run build
+      - run: npx wp-env start
+      # wp-env mounts the plugin under the checkout folder's name.
+      - run: npx wp-env run tests-cli --env-cwd=wp-content/plugins/$(basename "$PWD") vendor/bin/phpunit
+
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    needs: js
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: assets/build
+      - name: Build release folder
+        run: |
+          mkdir -p dist/wpinterface-travel
+          rsync -a --exclude=/dist --exclude-from=.distignore ./ dist/wpinterface-travel/
+      - uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: dist/wpinterface-travel

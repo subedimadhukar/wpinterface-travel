@@ -1,0 +1,20 @@
+.wpitravel-enquiries {
+	max-width: 1200px;
+	margin-top: 12px;
+
+	&__filters {
+		display: flex;
+		gap: 16px;
+		align-items: flex-end;
+		margin-bottom: 16px;
+		max-width: 560px;
+
+		> * {
+			flex: 1;
+		}
+	}
+
+	td {
+		vertical-align: top;
+	}
+}

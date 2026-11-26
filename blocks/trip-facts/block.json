@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-facts",
+	"title": "Trip Facts",
+	"category": "wpitravel",
+	"icon": "info-outline",
+	"description": "Duration, difficulty, group size and other facts.",
+	"keywords": [
+		"facts",
+		"details"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"tripId": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

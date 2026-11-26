@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-includes",
+	"title": "Trip Includes",
+	"category": "wpitravel",
+	"icon": "yes-alt",
+	"description": "What is and is not included.",
+	"keywords": [
+		"included",
+		"excluded"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"tripId": {
+			"type": "integer",
+			"default": 0
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

@@ -1,0 +1,34 @@
+/* Trip reviews. Neutral styles; themes can override. */
+.wpitravel-reviews {
+	margin: 2em 0;
+}
+
+.wpitravel-stars {
+	color: #b45309;
+	letter-spacing: 0.1em;
+}
+
+.wpitravel-reviews__summary {
+	font-size: 1.05em;
+}
+
+.wpitravel-reviews__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wpitravel-review {
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	padding: 1em 0;
+}
+
+.wpitravel-review__meta,
+.wpitravel-review__author {
+	margin: 0 0 0.4em;
+}
+
+.wpitravel-review__author {
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 0.9em;
+}

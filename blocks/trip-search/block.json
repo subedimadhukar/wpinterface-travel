@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-search",
+	"title": "Trip Search",
+	"category": "wpitravel",
+	"icon": "search",
+	"description": "Search and filter form for trips.",
+	"keywords": [
+		"search",
+		"filter"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"fields": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"default": [
+				"q",
+				"destination",
+				"activity",
+				"trip_type",
+				"duration",
+				"price",
+				"sort"
+			]
+		},
+		"target": {
+			"type": "string",
+			"enum": [
+				"archive",
+				"current"
+			],
+			"default": "archive"
+		},
+		"buttonText": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

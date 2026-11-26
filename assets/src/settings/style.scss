@@ -1,0 +1,55 @@
+.wpitravel-settings {
+	max-width: 860px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 16px;
+
+	&__section {
+
+		h2 {
+			font-size: 14px;
+			margin: 0;
+		}
+
+		.components-card__body {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+		}
+	}
+
+	&__preview {
+		margin: 0;
+	}
+
+	&__actions {
+		position: sticky;
+		bottom: 0;
+		padding: 12px 0;
+		background: #f0f0f1;
+	}
+
+	.components-notice {
+		margin: 0;
+	}
+}
+
+.wpitravel-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	align-items: start;
+}
+
+.wpitravel-gateway {
+	border-top: 1px solid #e0e0e0;
+	padding-top: 16px;
+
+	&__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin: 16px 0 0 48px;
+	}
+}

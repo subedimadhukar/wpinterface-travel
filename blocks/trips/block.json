@@ -1,0 +1,96 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trips",
+	"title": "Trips",
+	"category": "wpitravel",
+	"icon": "grid-view",
+	"description": "Trip grid or list, filtered and sorted.",
+	"keywords": [
+		"trips",
+		"tours",
+		"listing"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"number": {
+			"type": "integer",
+			"default": 6
+		},
+		"columns": {
+			"type": "integer",
+			"default": 3
+		},
+		"layout": {
+			"type": "string",
+			"enum": [
+				"grid",
+				"list"
+			],
+			"default": "grid"
+		},
+		"sort": {
+			"type": "string",
+			"default": ""
+		},
+		"destination": {
+			"type": "string",
+			"default": ""
+		},
+		"activity": {
+			"type": "string",
+			"default": ""
+		},
+		"tripType": {
+			"type": "string",
+			"default": ""
+		},
+		"ids": {
+			"type": "array",
+			"items": {
+				"type": "integer"
+			},
+			"default": []
+		},
+		"inherit": {
+			"type": "boolean",
+			"default": false
+		},
+		"filters": {
+			"type": "boolean",
+			"default": false
+		},
+		"showPrice": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRating": {
+			"type": "boolean",
+			"default": true
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

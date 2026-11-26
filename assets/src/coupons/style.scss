@@ -1,0 +1,27 @@
+.wpitravel-coupons {
+	max-width: 1100px;
+
+	.components-notice {
+		margin: 12px 0;
+	}
+}
+
+.wpitravel-coupon-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	min-width: min(560px, 80vw);
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+	}
+}
+
+.wpitravel-grid {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	align-items: start;
+}

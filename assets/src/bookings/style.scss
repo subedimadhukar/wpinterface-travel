@@ -1,0 +1,247 @@
+.wpitravel-bookings {
+	max-width: 1280px;
+	margin-top: 12px;
+
+	h2 {
+		margin: 0;
+		font-size: 14px;
+	}
+
+	.components-card {
+		margin-bottom: 16px;
+	}
+
+	.components-card__header {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+	}
+}
+
+.wpitravel-bookings__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+	margin-bottom: 8px;
+
+	h1 {
+		margin: 0;
+	}
+}
+
+.wpitravel-bookings__filters {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	align-items: start;
+	clear: both;
+	gap: 12px 16px;
+	margin: 12px 0 16px;
+	padding-top: 8px;
+}
+
+.subsubsub .components-button.is-link {
+	text-decoration: none;
+
+	&.current {
+		color: #000;
+		font-weight: 600;
+	}
+}
+
+.wpitravel-bookings__table {
+
+	td {
+		vertical-align: top;
+	}
+
+	.column-primary {
+		width: 24%;
+	}
+
+	th .components-button.is-link {
+		color: inherit;
+		font-weight: 400;
+		text-decoration: none;
+	}
+}
+
+.wpitravel-muted {
+	color: #646970;
+	font-size: 12px;
+}
+
+.wpitravel-prewrap {
+	white-space: pre-line;
+}
+
+.wpitravel-back {
+	margin: 0 0 8px;
+}
+
+.wpitravel-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 10px;
+	background: #f0f0f1;
+	color: #3c434a;
+	font-size: 12px;
+	line-height: 1.6;
+	white-space: nowrap;
+
+	&--confirmed,
+	&--paid {
+		background: #edfaef;
+		color: #005c12;
+	}
+
+	&--pending,
+	&--partial,
+	&--unpaid {
+		background: #fcf9e8;
+		color: #614200;
+	}
+
+	&--cancel_requested,
+	&--failed {
+		background: #fcf0f1;
+		color: #8a2424;
+	}
+
+	&--cancelled,
+	&--refunded,
+	&--partially_refunded {
+		background: #f0f0f1;
+		color: #50575e;
+	}
+
+	&--completed {
+		background: #e5f5fa;
+		color: #043959;
+	}
+}
+
+.wpitravel-booking-detail__grid {
+	display: grid;
+	gap: 16px;
+
+	@media (min-width: 1100px) {
+		grid-template-columns: minmax(0, 1fr) 340px;
+	}
+}
+
+.wpitravel-dl {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 6px 16px;
+	margin: 0 0 16px;
+
+	dt {
+		color: #646970;
+	}
+
+	dd {
+		margin: 0;
+	}
+}
+
+.wpitravel-booking-detail__items {
+
+	td,
+	th {
+		padding: 8px 10px;
+	}
+
+	.num {
+		text-align: right;
+	}
+
+	.is-total th,
+	.is-total td {
+		border-top: 1px solid #c3c4c7;
+		font-weight: 600;
+		text-align: left;
+	}
+
+	.is-total td {
+		text-align: right;
+	}
+}
+
+.wpitravel-history {
+	margin: 16px 0 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		flex-direction: column;
+		padding: 8px 0 8px 12px;
+		border-left: 2px solid #dcdcde;
+	}
+
+	.is-note {
+		border-left-color: #dba617;
+		background: #fcf9e8;
+	}
+
+	.is-payment_needs_review {
+		border-left-color: #d63638;
+		background: #fcf0f1;
+		font-weight: 600;
+	}
+}
+
+.wpitravel-history__message {
+	white-space: pre-line;
+}
+
+.wpitravel-booking-detail__note,
+.wpitravel-modal-form,
+.wpitravel-form-stack {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 12px;
+
+	> .components-button {
+		align-self: flex-start;
+	}
+}
+
+.wpitravel-booking-detail__side .components-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	> p {
+		margin: 0;
+	}
+
+	> .components-button {
+		align-self: flex-start;
+	}
+}
+
+.wpitravel-modal-form {
+	min-width: min(420px, 80vw);
+}
+
+.wpitravel-travelers {
+	margin: 0;
+
+	li + li {
+		margin-top: 8px;
+	}
+}
+
+.wpitravel-pax-fields,
+.wpitravel-form-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 12px 16px;
+}
+
+.wpitravel-form-grid > .components-base-control:last-child {
+	grid-column: 1 / -1;
+}
