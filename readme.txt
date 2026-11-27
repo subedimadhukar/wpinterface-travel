@@ -103,6 +103,8 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 == Changelog ==
 
 = 0.9.0 =
+* Pickup points: add places and times to a trip; customers choose one when they book, and the voucher, "My bookings", emails ({pickup_point}) and the traveler list show it.
+* Traveler list: a printable list of everyone on a departure (travelers, phone, pickup, amount still to collect, notes), opened from the trip's upcoming departures or a booking.
 * WPML and Polylang: translated trips share the original trip's departures, seats, prices, bookings and reviews; price option and traveler type names, trip texts and email texts can be translated; booking emails and "My bookings" name the trip in the customer's language. A wpml-config.xml is included.
 * Elementor: a widget for every block, in a "Travel" category, printing the same HTML as the blocks.
 * Upcoming departures: a list of the next dates with seats left, prices and a Book link that opens the booking form on that date (block, shortcode `[wpitravel_trip_departures]`, and on trip pages).

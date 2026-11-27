@@ -69,6 +69,15 @@ wp_print_styles( 'wpitravel-voucher' );
 			<dt><?php esc_html_e( 'Meeting point', 'wpinterface-travel' ); ?></dt>
 			<dd><?php echo esc_html( $meeting_point ); ?></dd>
 		<?php endif; ?>
+		<?php if ( ! empty( $view['pickup'] ) ) : ?>
+			<dt><?php esc_html_e( 'Pickup', 'wpinterface-travel' ); ?></dt>
+			<dd>
+				<?php echo esc_html( $view['pickup']['name'] . ( '' !== $view['pickup']['time'] ? ', ' . $view['pickup']['time'] : '' ) ); ?>
+				<?php if ( '' !== $view['pickup']['note'] ) : ?>
+					<br><?php echo esc_html( $view['pickup']['note'] ); ?>
+				<?php endif; ?>
+			</dd>
+		<?php endif; ?>
 		<dt><?php esc_html_e( 'Travelers', 'wpinterface-travel' ); ?></dt>
 		<dd><?php echo esc_html( (string) $view['pax'] ); ?></dd>
 	</dl>

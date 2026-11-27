@@ -47,6 +47,7 @@ final class Multilingual {
 	 */
 	public const COPY_ONCE_META = array(
 		TripMeta::PRICING,
+		TripMeta::PICKUPS,
 	);
 
 	/**

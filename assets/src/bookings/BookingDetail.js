@@ -202,7 +202,33 @@ export default function BookingDetail( { id, config, navigate } ) {
 								<dd>
 									{ formatDate( config, booking.date ) }
 									{ booking.time && ` ${ booking.time }` }
+									{ booking.manifest_url && (
+										<>
+											{ ' · ' }
+											<a href={ booking.manifest_url }>
+												{ __(
+													'Traveler list',
+													'wpinterface-travel'
+												) }
+											</a>
+										</>
+									) }
 								</dd>
+								{ booking.pickup && (
+									<>
+										<dt>
+											{ __(
+												'Pickup',
+												'wpinterface-travel'
+											) }
+										</dt>
+										<dd>
+											{ booking.pickup.name }
+											{ booking.pickup.time &&
+												`, ${ booking.pickup.time }` }
+										</dd>
+									</>
+								) }
 								<dt>
 									{ __( 'Travelers', 'wpinterface-travel' ) }
 								</dt>

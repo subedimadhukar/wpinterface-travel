@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 import apiFetch from '@wordpress/api-fetch';
+import { addQueryArgs } from '@wordpress/url';
 import { Button, Notice, Spinner } from '@wordpress/components';
 
 const STATUS_LABELS = {
@@ -138,6 +139,33 @@ export default function UpcomingDepartures() {
 											departure.status }
 									</td>
 									<td>
+										{ departure.seats_booked > 0 && (
+											<>
+												<a
+													href={ addQueryArgs(
+														'edit.php',
+														{
+															post_type:
+																'wpitravel_trip',
+															page: 'wpitravel-manifest',
+															trip: postId,
+															date: departure.date,
+															time:
+																departure.time ||
+																undefined,
+														}
+													) }
+													target="_blank"
+													rel="noreferrer"
+												>
+													{ __(
+														'Traveler list',
+														'wpinterface-travel'
+													) }
+												</a>
+												{ ' · ' }
+											</>
+										) }
 										<Button
 											variant="link"
 											isBusy={ busy === key }

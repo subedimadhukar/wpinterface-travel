@@ -24,6 +24,7 @@ final class Admin {
 	public function register(): void {
 		( new DashboardPage() )->register();
 		( new BookingsPage() )->register();
+		( new ManifestPage() )->register();
 		( new EnquiriesPage() )->register();
 		( new CouponsPage() )->register();
 		( new EmailsPage() )->register();

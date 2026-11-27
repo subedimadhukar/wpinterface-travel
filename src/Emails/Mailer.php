@@ -59,7 +59,7 @@ final class Mailer {
 		$values     = Tags::for_booking( $booking, $extra );
 		$recipients = '' !== $to ? array( $to ) : ( $customer ? array( $values['customer_email'] ) : self::admin_recipients() );
 		$reply_to   = $customer ? self::admin_recipients()[0] : $values['customer_email'];
-		$sent       = $this->deliver( $template, $definition, $values, $recipients, $reply_to );
+		$sent       = $this->deliver( $template, $definition, $values, $recipients, $reply_to, $booking );
 
 		if ( $switched ) {
 			restore_previous_locale();
@@ -169,8 +169,9 @@ final class Mailer {
 	 * @param array<string, string> $values     Tag values.
 	 * @param string[]              $recipients Recipients.
 	 * @param string                $reply_to   Reply-To address.
+	 * @param array<string, mixed>  $booking    Booking the email is about ([] for none).
 	 */
-	private function deliver( string $template, array $definition, array $values, array $recipients, string $reply_to ): bool {
+	private function deliver( string $template, array $definition, array $values, array $recipients, string $reply_to, array $booking = array() ): bool {
 		$recipients = array_values( array_filter( $recipients, 'is_email' ) );
 
 		if ( empty( $recipients ) ) {
@@ -191,25 +192,41 @@ final class Mailer {
 		}
 
 		/**
-		 * Filters an email before it is sent.
+		 * Filters an email before it is sent (Pro attaches PDF files).
 		 *
-		 * @param array  $email    to, subject, message, headers.
+		 * @param array  $email    to, subject, message, headers, attachments (file paths).
 		 * @param string $template Template ID.
 		 * @param array  $values   Tag values.
+		 * @param array  $booking  Booking the email is about ([] for none).
 		 */
 		$email = (array) apply_filters(
 			'wpitravel_email',
 			array(
-				'to'      => $recipients,
-				'subject' => $email['subject'],
-				'message' => $email['html'],
-				'headers' => $headers,
+				'to'          => $recipients,
+				'subject'     => $email['subject'],
+				'message'     => $email['html'],
+				'headers'     => $headers,
+				'attachments' => array(),
 			),
 			$template,
-			$values
+			$values,
+			$booking
 		);
 
-		return (bool) wp_mail( $email['to'], $email['subject'], $email['message'], $email['headers'] );
+		$attachments = array_values( array_filter( array_map( 'strval', (array) ( $email['attachments'] ?? array() ) ), 'is_readable' ) );
+		$sent        = (bool) wp_mail( $email['to'], $email['subject'], $email['message'], $email['headers'], $attachments );
+
+		/**
+		 * Fires after a plugin email was handed to wp_mail(), e.g. to delete
+		 * temporary attachments.
+		 *
+		 * @param list<string> $attachments Attached file paths.
+		 * @param string       $template    Template ID.
+		 * @param bool         $sent        Whether wp_mail() accepted it.
+		 */
+		do_action( 'wpitravel_email_sent', $attachments, $template, $sent );
+
+		return $sent;
 	}
 
 	/**

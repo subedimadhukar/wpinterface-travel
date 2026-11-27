@@ -38,6 +38,7 @@ final class TripMeta {
 	public const MAP           = '_wpitravel_map';
 	public const PRICING       = '_wpitravel_pricing';
 	public const SCHEDULE      = '_wpitravel_departure_rules';
+	public const PICKUPS       = '_wpitravel_pickups';
 
 	/**
 	 * Maximum rows in any list field, to keep a malicious request small.
@@ -218,6 +219,23 @@ final class TripMeta {
 				'type'     => 'string',
 				'default'  => '',
 				'sanitize' => 'sanitize_text_field',
+			),
+			self::PICKUPS       => array(
+				'type'     => 'array',
+				'default'  => array(),
+				'sanitize' => array( \WPInterface\Travel\Booking\Pickups::class, 'sanitize' ),
+				'schema'   => array(
+					'type'  => 'array',
+					'items' => array(
+						'type'       => 'object',
+						'properties' => array(
+							'key'  => array( 'type' => 'string' ),
+							'name' => array( 'type' => 'string' ),
+							'time' => array( 'type' => 'string' ),
+							'note' => array( 'type' => 'string' ),
+						),
+					),
+				),
 			),
 			self::HIGHLIGHTS    => array(
 				'type'     => 'array',

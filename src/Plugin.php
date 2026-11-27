@@ -109,6 +109,7 @@ final class Plugin {
 		( new PostTypes( $this->options() ) )->register();
 		( new TripMeta() )->register();
 		( new Multilingual() )->register();
+		( new \WPInterface\Travel\Booking\Pickups() )->register();
 		( new \WPInterface\Travel\Elementor\Elementor() )->register();
 		( new Cron() )->register();
 		( new Triggers() )->register();

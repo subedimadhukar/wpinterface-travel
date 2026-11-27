@@ -108,6 +108,12 @@ final class BookingController extends Controller {
 						'sanitize_callback' => 'sanitize_textarea_field',
 						'default'           => '',
 					),
+					'pickup'         => array(
+						'description'       => __( 'Key of the chosen pickup point.', 'wpinterface-travel' ),
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+						'default'           => '',
+					),
 					'locale'         => array(
 						'description'       => __( 'Language of the page the booking was made on, e.g. fr_FR. Emails use it.', 'wpinterface-travel' ),
 						'type'              => 'string',
@@ -293,6 +299,7 @@ final class BookingController extends Controller {
 				'coupon'         => (string) $request['coupon'],
 				'note'           => (string) $request['note'],
 				'locale'         => (string) $request['locale'],
+				'pickup'         => (string) $request['pickup'],
 				'create_account' => (bool) $request['create_account'],
 				'terms_accepted' => (bool) $request['terms_accepted'],
 				'gateway'        => (string) $request['gateway'],

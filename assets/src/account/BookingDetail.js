@@ -174,6 +174,22 @@ export default function BookingDetail( {
 					{ booking.end_date !== booking.date &&
 						` – ${ formatDate( booking.end_date ) }` }
 				</dd>
+				{ booking.pickup && (
+					<>
+						<dt>{ __( 'Pickup', 'wpinterface-travel' ) }</dt>
+						<dd>
+							{ booking.pickup.name }
+							{ booking.pickup.time &&
+								`, ${ booking.pickup.time }` }
+							{ booking.pickup.note && (
+								<>
+									<br />
+									{ booking.pickup.note }
+								</>
+							) }
+						</dd>
+					</>
+				) }
 				<dt>{ __( 'Travelers', 'wpinterface-travel' ) }</dt>
 				<dd>
 					{ booking.travelers

@@ -64,6 +64,10 @@ export default function CheckoutForm( {
 	const [ coupon, setCoupon ] = useState( '' );
 	const [ couponMessage, setCouponMessage ] = useState( '' );
 	const [ note, setNote ] = useState( '' );
+	const pickups = trip.pickups || [];
+	const [ pickup, setPickup ] = useState(
+		pickups.length === 1 ? pickups[ 0 ].key : ''
+	);
 	const [ createAccount, setCreateAccount ] = useState( false );
 	const [ terms, setTerms ] = useState( false );
 	const [ gateway, setGateway ] = useState( config.gateways[ 0 ]?.id || '' );
@@ -160,6 +164,7 @@ export default function CheckoutForm( {
 					.filter( ( row ) => row.first_name || row.last_name ),
 				coupon,
 				note,
+				pickup,
 				locale: config.locale || '',
 				create_account: createAccount,
 				terms_accepted: terms,
@@ -298,6 +303,56 @@ export default function CheckoutForm( {
 					/>
 				</div>
 			</fieldset>
+
+			{ pickups.length > 0 && (
+				<div className="wpitravel-field">
+					<label htmlFor={ `${ idBase }-pickup` }>
+						{ __( 'Pickup point', 'wpinterface-travel' ) }
+						<span aria-hidden="true" className="wpitravel-required">
+							{ ' ' }
+							*
+						</span>
+					</label>
+					<select
+						id={ `${ idBase }-pickup` }
+						required
+						value={ pickup }
+						onChange={ ( e ) => setPickup( e.target.value ) }
+					>
+						<option value="">
+							{ __(
+								'Choose a pickup point',
+								'wpinterface-travel'
+							) }
+						</option>
+						{ pickups.map( ( point ) => (
+							<option key={ point.key } value={ point.key }>
+								{ point.time
+									? sprintf(
+											/* translators: 1: pickup place, 2: time. */
+											__(
+												'%1$s, %2$s',
+												'wpinterface-travel'
+											),
+											point.name,
+											point.time
+									  )
+									: point.name }
+							</option>
+						) ) }
+					</select>
+					{ pickups.find( ( point ) => point.key === pickup )
+						?.note && (
+						<p className="wpitravel-booking__muted">
+							{
+								pickups.find(
+									( point ) => point.key === pickup
+								).note
+							}
+						</p>
+					) }
+				</div>
+			) }
 
 			{ travelerRows.length > 1 && (
 				<details className="wpitravel-checkout__group">

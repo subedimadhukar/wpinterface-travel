@@ -8,6 +8,7 @@
 namespace WPInterface\Travel\Emails;
 
 use WPInterface\Travel\Booking\BookingAccess;
+use WPInterface\Travel\Booking\Pickups;
 use WPInterface\Travel\Booking\BookingRepository;
 use WPInterface\Travel\Content\TripMeta;
 use WPInterface\Travel\Payments\Gateways;
@@ -88,6 +89,7 @@ final class Tags {
 			'start_time'           => __( 'Start time', 'wpinterface-travel' ),
 			'end_date'             => __( 'Return date', 'wpinterface-travel' ),
 			'meeting_point'        => __( 'Meeting point', 'wpinterface-travel' ),
+			'pickup_point'         => __( 'Pickup point and time the customer chose', 'wpinterface-travel' ),
 			'travelers'            => __( 'Number of travelers', 'wpinterface-travel' ),
 			'total'                => __( 'Total', 'wpinterface-travel' ),
 			'amount_paid'          => __( 'Amount paid', 'wpinterface-travel' ),
@@ -145,6 +147,7 @@ final class Tags {
 				'start_time'           => (string) $booking['start_time'],
 				'end_date'             => self::date( $end ),
 				'meeting_point'        => '' !== (string) get_post_meta( (int) $booking['trip_id'], TripMeta::MEETING_POINT, true ) ? (string) get_post_meta( (int) $booking['trip_id'], TripMeta::MEETING_POINT, true ) : '—',
+				'pickup_point'         => '' !== Pickups::label( Pickups::of_booking( $booking ) ) ? Pickups::label( Pickups::of_booking( $booking ) ) : '—',
 				'travelers'            => (string) $booking['pax'],
 				'total'                => $money( (string) $booking['total'] ),
 				'amount_paid'          => $money( (string) $booking['amount_paid'] ),

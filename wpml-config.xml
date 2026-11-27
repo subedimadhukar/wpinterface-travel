@@ -24,6 +24,7 @@
 		<custom-field action="copy">_wpitravel_map</custom-field>
 		<custom-field action="copy">_wpitravel_departure_rules</custom-field>
 		<custom-field action="copy-once">_wpitravel_pricing</custom-field>
+		<custom-field action="copy-once">_wpitravel_pickups</custom-field>
 		<custom-field action="translate">_wpitravel_meeting_point</custom-field>
 		<custom-field action="translate">_wpitravel_highlights</custom-field>
 		<custom-field action="translate">_wpitravel_itinerary</custom-field>

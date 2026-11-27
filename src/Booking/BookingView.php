@@ -94,6 +94,7 @@ final class BookingView {
 			),
 			'date'                 => $booking['start_date'],
 			'time'                 => $booking['start_time'],
+			'pickup'               => Pickups::of_booking( $booking ),
 			'end_date'             => $end,
 			'pax'                  => $booking['pax'],
 			'contact'              => array(

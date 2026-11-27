@@ -1,10 +1,12 @@
 /**
- * Overview: code, duration, difficulty, group size, age, meeting point, highlights.
+ * Overview: code, duration, difficulty, group size, age, meeting point,
+ * pickup points, highlights.
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import { IntegerField, TextField } from '../../components/fields';
 import StringList from '../../components/StringList';
+import Repeater from '../../components/Repeater';
 
 const { difficulties = [] } = window.wpitravelTripEditor || {};
 
@@ -128,6 +130,64 @@ export default function OverviewTab( { meta, set } ) {
 					set( '_wpitravel_meeting_point', value )
 				}
 			/>
+
+			<fieldset className="wpitravel-fieldset">
+				<legend className="wpitravel-field-label">
+					{ __( 'Pickup points', 'wpinterface-travel' ) }
+				</legend>
+				<p className="description">
+					{ __(
+						'When you add pickup points, customers choose one when they book. The voucher, emails ({pickup_point}) and the traveler list show it.',
+						'wpinterface-travel'
+					) }
+				</p>
+				<Repeater
+					items={ meta._wpitravel_pickups || [] }
+					onChange={ ( items ) => set( '_wpitravel_pickups', items ) }
+					newItem={ () => ( {
+						key: '',
+						name: '',
+						time: '',
+						note: '',
+					} ) }
+					addLabel={ __( 'Add pickup point', 'wpinterface-travel' ) }
+					emptyText={ __(
+						'No pickup points: travelers come to the meeting point.',
+						'wpinterface-travel'
+					) }
+					itemLabel={ ( point, index ) =>
+						point.name ||
+						sprintf(
+							/* translators: %d: pickup point number. */
+							__( 'Pickup point %d', 'wpinterface-travel' ),
+							index + 1
+						)
+					}
+					renderItem={ ( point, update ) => (
+						<div className="wpitravel-grid wpitravel-grid--3">
+							<TextField
+								label={ __( 'Place', 'wpinterface-travel' ) }
+								value={ point.name }
+								onChange={ ( name ) => update( { name } ) }
+							/>
+							<TextField
+								label={ __( 'Time', 'wpinterface-travel' ) }
+								help={ __(
+									'24-hour, e.g. 06:30',
+									'wpinterface-travel'
+								) }
+								value={ point.time }
+								onChange={ ( time ) => update( { time } ) }
+							/>
+							<TextField
+								label={ __( 'Note', 'wpinterface-travel' ) }
+								value={ point.note }
+								onChange={ ( note ) => update( { note } ) }
+							/>
+						</div>
+					) }
+				/>
+			</fieldset>
 
 			<StringList
 				label={ __( 'Highlights', 'wpinterface-travel' ) }

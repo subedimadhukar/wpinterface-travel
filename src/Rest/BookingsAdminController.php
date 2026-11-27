@@ -384,6 +384,8 @@ final class BookingsAdminController extends Controller {
 				'tax_total'      => $booking['tax_total'],
 				'coupon_code'    => $booking['coupon_code'],
 				'customer_note'  => (string) $booking['customer_note'],
+				'pickup'         => \WPInterface\Travel\Booking\Pickups::of_booking( $booking ),
+				'manifest_url'   => \WPInterface\Travel\Admin\ManifestPage::url( (int) $booking['trip_id'], (string) $booking['start_date'], (string) $booking['start_time'] ),
 				'customer'       => $customer + array(
 					'name' => trim( $customer['first_name'] . ' ' . $customer['last_name'] ),
 				),

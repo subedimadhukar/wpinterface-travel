@@ -21,6 +21,7 @@ Travel → Add New Trip. The editor has tabs:
 - **Highlights, Included, Not included, FAQs.**
 - **Gallery and map:** photos, and a map position. Maps load only when a visitor clicks "Show map".
 - **Pricing:** one or more price options (e.g. "Standard" and "Private"), each with prices per traveler type (adult, child, senior…), optional sale prices and group limits.
+- **Pickup points** (Overview tab): places and times travelers can be collected from. When a trip has any, customers choose one when they book.
 - **Departures:** fixed dates, repeating rules (e.g. every Saturday from March to May, at 07:30), excluded dates, seats per departure, booking cut-off (hours before departure) and how far ahead people can book.
 
 Organise trips with **Destinations**, **Activities** and **Trip types**. Each gets its own page listing its trips.
@@ -171,6 +172,8 @@ Open a booking to:
 - **Send an email again**, e.g. the confirmation.
 - **Add a note** (staff only).
 
+**Traveler list:** in a trip's Departures tab, each booked departure has a **Traveler list** link (a booking has one next to its date). It lists everyone on that departure, with their type, phone, pickup point, the amount still to collect and the customer's note, plus head-counts per pickup point. Click **Print**, or save it as a PDF from the print window, for guides, drivers and suppliers.
+
 **Add booking** enters a phone, email or walk-in booking. Prices and seats are checked as for online bookings. You can save it as confirmed and choose whether to email the customer.
 
 If money arrives for a booking that was already cancelled (for example a delayed PayPal payment), it is recorded and the booking history shows a red "needs review" entry: refund the money or reopen the booking.
@@ -189,7 +192,7 @@ Unpaid online bookings are cancelled after 60 minutes (changeable), so abandoned
 
 ## Emails
 
-Travel → Emails lists every email with a preview and test send. Edit the subject and text, and use merge tags such as `{customer_first_name}`, `{booking_number}`, `{trip_title}`, `{start_date}`, `{booking_summary}` and `{booking_link}`. Customers get reminders before their trip and a review request after it.
+Travel → Emails lists every email with a preview and test send. Edit the subject and text, and use merge tags such as `{customer_first_name}`, `{booking_number}`, `{trip_title}`, `{start_date}`, `{booking_summary}`, `{booking_link}` and `{pickup_point}`. Customers get reminders before their trip and a review request after it.
 
 ## Importing from another plugin
 

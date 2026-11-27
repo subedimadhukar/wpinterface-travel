@@ -9,6 +9,7 @@ namespace WPInterface\Travel\Frontend;
 
 use WP_Post;
 use WPInterface\Travel\Admin\Assets;
+use WPInterface\Travel\Booking\Pickups;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Content\TripMeta;
 use WPInterface\Travel\Payments\Gateway;
@@ -256,6 +257,7 @@ final class BookingWidget {
 				'id'      => $original,
 				'title'   => get_the_title( $trip ),
 				'options' => $options,
+				'pickups' => self::pickups( $trip->ID, $original ),
 			),
 			$trip
 		);
@@ -279,5 +281,32 @@ final class BookingWidget {
 		}
 
 		return array_filter( $labels, static fn( string $label ): bool => '' !== $label );
+	}
+	/**
+	 * Pickup points for the booking form: the original trip's points (the
+	 * ones bookings are checked against), with a translation's names.
+	 *
+	 * @param int $trip_id  Trip shown.
+	 * @param int $original Original trip.
+	 * @return list<array{key: string, name: string, time: string, note: string}>
+	 */
+	private static function pickups( int $trip_id, int $original ): array {
+		$names = array();
+
+		if ( $trip_id !== $original ) {
+			foreach ( Pickups::for_trip( $trip_id ) as $point ) {
+				$names[ $point['key'] ] = $point;
+			}
+		}
+
+		return array_map(
+			static fn( array $point ): array => array(
+				'key'  => $point['key'],
+				'name' => $names[ $point['key'] ]['name'] ?? $point['name'],
+				'time' => $point['time'],
+				'note' => $names[ $point['key'] ]['note'] ?? $point['note'],
+			),
+			Pickups::for_trip( $original )
+		);
 	}
 }
