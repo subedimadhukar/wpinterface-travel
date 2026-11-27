@@ -246,7 +246,7 @@ Colours, fonts and focus outlines come mostly from your theme, so check them wit
 
 ## AI tools and agents
 
-On WordPress 6.9 and newer, the plugin registers two abilities with the WordPress Abilities API: **Search trips** (`wpinterface-travel/search-trips`) and **Trip availability** (`wpinterface-travel/trip-availability`). They are read-only and return only what your trip pages already show. With the **MCP Adapter** plugin, AI tools such as Claude can use them to find trips and dates for you.
+The plugin registers two abilities with the WordPress Abilities API: **Search trips** (`wpinterface-travel/search-trips`) and **Trip availability** (`wpinterface-travel/trip-availability`). They are read-only and return only what your trip pages already show. With the **MCP Adapter** plugin, AI tools such as Claude can use them to find trips and dates for you.
 
 ## For developers
 

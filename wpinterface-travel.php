@@ -4,7 +4,7 @@
  * Plugin URI:        https://wpinterface.com/plugins/wpinterface-travel/
  * Description:       Tour and trip booking for travel agencies: itineraries, departures, pricing, online booking and payments.
  * Version:           0.9.0
- * Requires at least: 6.7
+ * Requires at least: 6.9
  * Requires PHP:      7.4
  * Author:            WPInterface
  * Author URI:        https://wpinterface.com
@@ -26,7 +26,7 @@ define( 'WPITRAVEL_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPITRAVEL_URL', plugin_dir_url( __FILE__ ) );
 define( 'WPITRAVEL_BASENAME', plugin_basename( __FILE__ ) );
 define( 'WPITRAVEL_MIN_PHP', '7.4' );
-define( 'WPITRAVEL_MIN_WP', '6.7' );
+define( 'WPITRAVEL_MIN_WP', '6.9' );
 
 /**
  * Whether the server meets the minimum PHP and WordPress versions.

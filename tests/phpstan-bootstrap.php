@@ -12,7 +12,7 @@ define( 'WPITRAVEL_PATH', dirname( __DIR__ ) . '/' );
 define( 'WPITRAVEL_URL', 'https://example.org/wp-content/plugins/wpinterface-travel/' );
 define( 'WPITRAVEL_BASENAME', 'wpinterface-travel/wpinterface-travel.php' );
 define( 'WPITRAVEL_MIN_PHP', '7.4' );
-define( 'WPITRAVEL_MIN_WP', '6.7' );
+define( 'WPITRAVEL_MIN_WP', '6.9' );
 
 // Polylang's API, for static analysis (the plugin checks it exists first).
 // phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter

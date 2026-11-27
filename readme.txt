@@ -1,7 +1,7 @@
 === WPInterface Travel – Tour & Trip Booking ===
 Contributors: wpinterface
 Tags: travel, tour, booking, trips, travel agency
-Requires at least: 6.7
+Requires at least: 6.9
 Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 0.9.0
@@ -110,7 +110,8 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 * Day tours: each start time can have its own seats (per repeating rule or fixed date), and each time slot sells them separately.
 * Private departures: a trip setting where each date is booked by one group only; the date closes for everyone else once it is held or booked, and opens again if that booking is cancelled.
 * Price on request: trips without a public price show "Price on request" on cards and trip pages and an enquiry form instead of the booking form.
-* Abilities for AI tools (WordPress 6.9+): "Search trips" and "Trip availability" are registered with the WordPress Abilities API, read-only and showing only what trip pages show; the MCP Adapter plugin serves them to AI agents.
+* Requires WordPress 6.9 or newer (was 6.7), for the Abilities API.
+* Abilities for AI tools: "Search trips" and "Trip availability" are registered with the WordPress Abilities API, read-only and showing only what trip pages show; the MCP Adapter plugin serves them to AI agents.
 * For add-ons: the `wpitravel.enquiries.actions` filter adds actions to each enquiry (Pro's AI reply drafts).
 * For add-ons: the `wpitravel_voucher_end` action adds to the voucher (Pro's check-in QR code); traveler list rows carry the booking ID.
 * For add-ons: the `wpitravel_seats_check` filter can refuse seats inside the booking lock (Pro uses it for resources shared across trips).

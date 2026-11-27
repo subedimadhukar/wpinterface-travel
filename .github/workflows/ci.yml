@@ -60,8 +60,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # 6.7.2: earlier 6.7 releases reject underscores in block template names.
-        wp: [ '6.7.2', 'latest' ]
+        # The oldest supported release (Requires at least) and the newest.
+        wp: [ '6.9', 'latest' ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
