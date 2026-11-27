@@ -244,6 +244,10 @@ Colours, fonts and focus outlines come mostly from your theme, so check them wit
 
 **Imported trips have only a year of dates.** Some repeating patterns cannot be kept as rules, so they were added as dates for the coming year. Add a rule in the trip's Departures tab, or run the import again next year.
 
+## AI tools and agents
+
+On WordPress 6.9 and newer, the plugin registers two abilities with the WordPress Abilities API: **Search trips** (`wpinterface-travel/search-trips`) and **Trip availability** (`wpinterface-travel/trip-availability`). They are read-only and return only what your trip pages already show. With the **MCP Adapter** plugin, AI tools such as Claude can use them to find trips and dates for you.
+
 ## For developers
 
 - Template overrides: `yourtheme/wpitravel/{single-trip,archive-trip}.php` and `yourtheme/wpitravel/parts/*.php`.
@@ -255,6 +259,7 @@ Colours, fonts and focus outlines come mostly from your theme, so check them wit
   - `wpitravel_send_booking_email`: send or skip a booking email.
   - `wpitravel_verify_request`: add a CAPTCHA to quotes, holds and bookings.
   - `wpitravel_seats_check`: refuse seats inside the booking lock (e.g. a vehicle shared by several trips).
+  - `wpitravel_voucher_end` (action) and `wpitravel.enquiries.actions` (JavaScript filter): add to the voucher and to each enquiry.
   - `wpitravel_client_ip`: real visitor IP behind a proxy or CDN.
   - `wpitravel_max_held_seats`, `wpitravel_rate_limit`: abuse limits.
   - `wpitravel_customer_role`: role of accounts created at checkout.

@@ -1,6 +1,7 @@
 /**
  * Enquiry inbox: filter, read, reply by email, change status, delete.
  */
+import { applyFilters } from '@wordpress/hooks';
 import { __, sprintf } from '@wordpress/i18n';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
@@ -189,6 +190,17 @@ export default function EnquiriesApp( { config } ) {
 									>
 										{ __( 'Reply', 'wpinterface-travel' ) }
 									</Button>{ ' ' }
+									{
+										/**
+										 * Lets Pro add actions to an enquiry, e.g. an AI reply
+										 * draft. Return an element (or null).
+										 */
+										applyFilters(
+											'wpitravel.enquiries.actions',
+											null,
+											{ enquiry }
+										)
+									}{ ' ' }
 									<Button
 										variant="link"
 										isDestructive

@@ -118,6 +118,7 @@ final class Plugin {
 		( new Reviews() )->register();
 		( new PersonalData() )->register();
 		( new TripIndex() )->register();
+		( new \WPInterface\Travel\Abilities\Abilities() )->register();
 		( new Blocks() )->register();
 		( new BlockTemplates() )->register();
 

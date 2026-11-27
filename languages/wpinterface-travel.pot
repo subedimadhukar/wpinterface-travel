@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T15:50:07+00:00\n"
+"POT-Creation-Date: 2026-11-27T16:16:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -37,6 +37,58 @@ msgstr ""
 #. Author URI of the plugin
 #: wpinterface-travel.php
 msgid "https://wpinterface.com"
+msgstr ""
+
+#: src/Abilities/Abilities.php:50
+#: src/Elementor/Elementor.php:57
+#: src/Frontend/Blocks.php:113
+msgid "Travel"
+msgstr ""
+
+#: src/Abilities/Abilities.php:51
+msgid "Trips, departures and bookings."
+msgstr ""
+
+#: src/Abilities/Abilities.php:73
+#: templates/parts/search-form.php:26
+msgid "Search trips"
+msgstr ""
+
+#: src/Abilities/Abilities.php:74
+msgid "Finds published trips by words, destination, price and length, with their price, duration and next departure dates."
+msgstr ""
+
+#: src/Abilities/Abilities.php:81
+msgid "Words to look for."
+msgstr ""
+
+#: src/Abilities/Abilities.php:85
+msgid "Destination slug."
+msgstr ""
+
+#: src/Abilities/Abilities.php:111
+msgid "Trip availability"
+msgstr ""
+
+#: src/Abilities/Abilities.php:112
+msgid "Departure dates of a trip between two dates, with start times, seats left, whether each can be booked and the price."
+msgstr ""
+
+#: src/Abilities/Abilities.php:123
+msgid "First date, YYYY-MM-DD (default today)."
+msgstr ""
+
+#: src/Abilities/Abilities.php:127
+msgid "Last date, YYYY-MM-DD (default 90 days on; at most a year)."
+msgstr ""
+
+#: src/Abilities/Abilities.php:206
+#: src/Booking/QuoteCalculator.php:82
+#: src/Rest/AvailabilityController.php:176
+#: src/Rest/DeparturesController.php:124
+#: src/Rest/ReviewsController.php:108
+#: src/Reviews/Reviews.php:92
+msgid "Trip not found."
 msgstr ""
 
 #. translators: %s: payment method, e.g. PayPal.
@@ -939,14 +991,6 @@ msgstr ""
 msgid "That pickup point is not available. Choose another."
 msgstr ""
 
-#: src/Booking/QuoteCalculator.php:82
-#: src/Rest/AvailabilityController.php:176
-#: src/Rest/DeparturesController.php:124
-#: src/Rest/ReviewsController.php:108
-#: src/Reviews/Reviews.php:92
-msgid "Trip not found."
-msgstr ""
-
 #: src/Booking/QuoteCalculator.php:86
 msgid "This trip is priced on request. Send us an enquiry for a quote."
 msgstr ""
@@ -1303,11 +1347,6 @@ msgstr ""
 
 #: src/Elementor/BookingFormWidget.php:25
 msgid "Booking Form"
-msgstr ""
-
-#: src/Elementor/Elementor.php:57
-#: src/Frontend/Blocks.php:113
-msgid "Travel"
 msgstr ""
 
 #: src/Elementor/TripDeparturesWidget.php:27
@@ -3651,10 +3690,6 @@ msgstr ""
 
 #: templates/parts/price.php:24
 msgid "per person"
-msgstr ""
-
-#: templates/parts/search-form.php:26
-msgid "Search trips"
 msgstr ""
 
 #: templates/parts/search-form.php:27
