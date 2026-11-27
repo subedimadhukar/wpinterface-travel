@@ -71,9 +71,9 @@ final class AnnouncementsPage {
 
 		check_admin_referer( 'wpitravel_save_announcement' );
 
-		$raw = isset( $_POST['wpitravel_bar'] ) && is_array( $_POST['wpitravel_bar'] ) ? wp_unslash( $_POST['wpitravel_bar'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Every field is cleaned in AnnouncementBar::sanitize().
+		$raw = isset( $_POST['wpitravel_bar'] ) ? wp_unslash( $_POST['wpitravel_bar'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Every field is cleaned in AnnouncementBar::sanitize().
 
-		update_option( AnnouncementBar::OPTION, AnnouncementBar::sanitize( (array) $raw ), true );
+		update_option( AnnouncementBar::OPTION, AnnouncementBar::sanitize( is_array( $raw ) ? $raw : array() ), true );
 
 		wp_safe_redirect(
 			add_query_arg(

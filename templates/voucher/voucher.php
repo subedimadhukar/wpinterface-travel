@@ -120,6 +120,17 @@ wp_print_styles( 'wpitravel-voucher' );
 	<?php if ( 'pending' === $view['status'] ) : ?>
 		<p class="notice"><?php esc_html_e( 'This booking is not confirmed yet. Please bring the confirmed voucher on the day.', 'wpinterface-travel' ); ?></p>
 	<?php endif; ?>
+
+	<?php
+	/**
+	 * Fires at the end of the voucher, e.g. for Pro's check-in QR code.
+	 * Print escaped HTML.
+	 *
+	 * @param array<string, mixed> $view    BookingView::for_customer().
+	 * @param array<string, mixed> $booking Booking.
+	 */
+	do_action( 'wpitravel_voucher_end', $view, isset( $booking ) && is_array( $booking ) ? $booking : array() );
+	?>
 </main>
 <p class="actions"><button type="button" id="wpitravel-print"><?php esc_html_e( 'Print or save as PDF', 'wpinterface-travel' ); ?></button></p>
 <?php wp_print_inline_script_tag( "document.getElementById('wpitravel-print').addEventListener('click',function(){window.print();});" ); ?>

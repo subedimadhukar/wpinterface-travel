@@ -217,7 +217,7 @@ final class ManifestPage {
 	 * @param int    $trip_id Original trip.
 	 * @param string $date    Y-m-d.
 	 * @param string $time    HH:MM, or '' for every start time.
-	 * @return array{bookings: list<array<string, mixed>>, travelers: int, due: int, pickups: array<string, int>}
+	 * @return array{bookings: list<array<string, mixed>>, travelers: int, due: int, pickups: array<string, int>} Each booking has id, number, status, url, travelers, pickup, pickup_time, due and note.
 	 */
 	public static function data( int $trip_id, string $date, string $time = '' ): array {
 		global $wpdb;
@@ -291,6 +291,7 @@ final class ManifestPage {
 			$due   += $balance;
 
 			$bookings[] = array(
+				'id'          => (int) $booking['id'],
 				'number'      => (string) $booking['number'],
 				'status'      => BookingAccess::status_label( (string) $booking['status'] ),
 				'url'         => add_query_arg( array( 'booking' => (int) $booking['id'] ), admin_url( 'admin.php?page=' . BookingsPage::SLUG ) ),

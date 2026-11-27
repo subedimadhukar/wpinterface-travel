@@ -110,6 +110,7 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 * Day tours: each start time can have its own seats (per repeating rule or fixed date), and each time slot sells them separately.
 * Private departures: a trip setting where each date is booked by one group only; the date closes for everyone else once it is held or booked, and opens again if that booking is cancelled.
 * Price on request: trips without a public price show "Price on request" on cards and trip pages and an enquiry form instead of the booking form.
+* For add-ons: the `wpitravel_voucher_end` action adds to the voucher (Pro's check-in QR code); traveler list rows carry the booking ID.
 * For add-ons: the `wpitravel_seats_check` filter can refuse seats inside the booking lock (Pro uses it for resources shared across trips).
 * Traveler list: a printable list of everyone on a departure (travelers, phone, pickup, amount still to collect, notes), opened from the trip's upcoming departures or a booking.
 * WPML and Polylang: translated trips share the original trip's departures, seats, prices, bookings and reviews; price option and traveler type names, trip texts and email texts can be translated; booking emails and "My bookings" name the trip in the customer's language. A wpml-config.xml is included.
