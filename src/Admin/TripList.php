@@ -9,6 +9,8 @@ namespace WPInterface\Travel\Admin;
 
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Content\TripMeta;
+use WPInterface\Travel\Support\Capabilities;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,6 +25,38 @@ final class TripList {
 	public function register(): void {
 		add_filter( 'manage_' . PostTypes::TRIP . '_posts_columns', array( $this, 'columns' ) );
 		add_action( 'manage_' . PostTypes::TRIP . '_posts_custom_column', array( $this, 'render_column' ), 10, 2 );
+		add_filter( 'post_row_actions', array( $this, 'row_actions' ), 10, 2 );
+	}
+
+	/**
+	 * Adds "Bookings" under each trip: the bookings screen for that trip.
+	 *
+	 * @param array<string, string> $actions Row actions.
+	 * @param \WP_Post              $post    Post.
+	 * @return array<string, string>
+	 */
+	public function row_actions( $actions, $post ): array {
+		$actions = (array) $actions;
+
+		if ( $post instanceof \WP_Post && PostTypes::TRIP === $post->post_type && current_user_can( Capabilities::VIEW_BOOKINGS ) ) {
+			$actions['wpitravel_bookings'] = sprintf(
+				'<a href="%1$s" aria-label="%2$s">%3$s</a>',
+				esc_url(
+					add_query_arg(
+						array(
+							'page'    => BookingsPage::SLUG,
+							'trip_id' => Multilingual::original_trip_id( $post->ID ),
+						),
+						admin_url( 'admin.php' )
+					)
+				),
+				/* translators: %s: trip title. */
+				esc_attr( sprintf( __( 'Bookings of “%s”', 'wpinterface-travel' ), get_the_title( $post ) ) ),
+				esc_html__( 'Bookings', 'wpinterface-travel' )
+			);
+		}
+
+		return $actions;
 	}
 
 	/**

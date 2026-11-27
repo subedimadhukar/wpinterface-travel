@@ -13,6 +13,10 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <section class="wpitravel-section wpitravel-itinerary">
 	<h2 class="wpitravel-section__title"><?php esc_html_e( 'Itinerary', 'wpinterface-travel' ); ?></h2>
+	<?php if ( count( $args['days'] ) > 1 ) : ?>
+		<?php // Shown by the trip page script; without JavaScript each day still opens on its own. ?>
+		<button type="button" class="wpitravel-itinerary__toggle" data-wpitravel-expand="<?php esc_attr_e( 'Expand all days', 'wpinterface-travel' ); ?>" data-wpitravel-collapse="<?php esc_attr_e( 'Collapse all days', 'wpinterface-travel' ); ?>" hidden><?php esc_html_e( 'Expand all days', 'wpinterface-travel' ); ?></button>
+	<?php endif; ?>
 	<ol class="wpitravel-itinerary__days">
 		<?php foreach ( $args['days'] as $wpitravel_index => $wpitravel_day ) : ?>
 			<li class="wpitravel-itinerary__day">

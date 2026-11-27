@@ -11,6 +11,7 @@ use WP_Post;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Content\TripMeta;
 use WPInterface\Travel\Support\Currencies;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -29,6 +30,7 @@ final class TripEditor {
 	public function register(): void {
 		add_action( 'add_meta_boxes_' . PostTypes::TRIP, array( $this, 'add_box' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_notices', array( $this, 'translation_notice' ) );
 	}
 
 	/**
@@ -117,5 +119,30 @@ final class TripEditor {
 		}
 
 		echo '<div id="wpitravel-trip-editor"></div>';
+	}
+	/**
+	 * On a translated trip: dates, seats, prices and bookings come from the
+	 * original trip (WPML, Polylang).
+	 */
+	public function translation_notice(): void {
+		$screen = get_current_screen();
+		$post   = get_post();
+
+		if ( ! $screen || 'post' !== $screen->base || PostTypes::TRIP !== $screen->post_type || ! $post instanceof WP_Post ) {
+			return;
+		}
+
+		$original = Multilingual::original_trip_id( $post->ID );
+
+		if ( $original === $post->ID ) {
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-info"><p>%1$s <a href="%2$s">%3$s</a></p></div>',
+			esc_html__( 'This is a translation. Departures, seats, prices, bookings and reviews come from the original trip; here you translate the texts and the names of price options and traveler types.', 'wpinterface-travel' ),
+			esc_url( (string) get_edit_post_link( $original ) ),
+			esc_html__( 'Edit the original trip', 'wpinterface-travel' )
+		);
 	}
 }

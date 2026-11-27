@@ -99,6 +99,7 @@ final class BlockTemplates {
 <!-- wp:post-content {"layout":{"type":"default"}} /-->
 <!-- wp:wpitravel/trip-highlights /-->
 <!-- wp:wpitravel/trip-itinerary /-->
+<!-- wp:wpitravel/trip-departures /-->
 <!-- wp:wpitravel/trip-includes /-->
 <!-- wp:wpitravel/trip-map /-->
 <!-- wp:wpitravel/trip-faqs /-->

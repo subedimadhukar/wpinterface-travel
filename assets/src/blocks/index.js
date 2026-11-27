@@ -22,6 +22,7 @@ import tripPrice from '../../../blocks/trip-price/block.json';
 import tripFacts from '../../../blocks/trip-facts/block.json';
 import tripHighlights from '../../../blocks/trip-highlights/block.json';
 import tripItinerary from '../../../blocks/trip-itinerary/block.json';
+import tripDepartures from '../../../blocks/trip-departures/block.json';
 import tripIncludes from '../../../blocks/trip-includes/block.json';
 import tripFaqs from '../../../blocks/trip-faqs/block.json';
 import tripGallery from '../../../blocks/trip-gallery/block.json';
@@ -394,6 +395,20 @@ registerBlockType( tripSearch, {
 ].forEach( ( metadata ) =>
 	registerBlockType( metadata, { edit: sectionEdit() } )
 );
+
+registerBlockType( tripDepartures, {
+	edit: sectionEdit( ( { attributes, setAttributes } ) => (
+		<RangeControl
+			__nextHasNoMarginBottom
+			__next40pxDefaultSize
+			label={ __( 'Number of departures', 'wpinterface-travel' ) }
+			value={ attributes.number }
+			min={ 1 }
+			max={ 50 }
+			onChange={ ( number ) => setAttributes( { number: number || 6 } ) }
+		/>
+	) ),
+} );
 
 registerBlockType( tripItinerary, {
 	edit: sectionEdit( ( { attributes, setAttributes } ) => (

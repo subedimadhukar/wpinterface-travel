@@ -43,6 +43,7 @@ use WPInterface\Travel\Rest\SetupController;
 use WPInterface\Travel\Rest\SystemController;
 use WPInterface\Travel\Reviews\Reviews;
 use WPInterface\Travel\Support\Capabilities;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -107,6 +108,8 @@ final class Plugin {
 		( new Capabilities() )->register();
 		( new PostTypes( $this->options() ) )->register();
 		( new TripMeta() )->register();
+		( new Multilingual() )->register();
+		( new \WPInterface\Travel\Elementor\Elementor() )->register();
 		( new Cron() )->register();
 		( new Triggers() )->register();
 		( new Reviews() )->register();

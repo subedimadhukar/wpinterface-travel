@@ -9,7 +9,9 @@ namespace WPInterface\Travel\Frontend;
 
 use WP_Post;
 use WPInterface\Travel\Content\PostTypes;
+use WPInterface\Travel\Departures\Availability;
 use WPInterface\Travel\Reviews\Reviews;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,6 +28,24 @@ final class Schema {
 	public function register(): void {
 		add_action( 'wp_head', array( $this, 'print_head' ), 5 );
 		add_action( 'wp_footer', array( $this, 'print_json_ld' ) );
+		add_filter( 'wp_sitemaps_posts_query_args', array( $this, 'sitemap_args' ), 10, 2 );
+	}
+
+	/**
+	 * Leaves password-protected trips out of the WordPress sitemap.
+	 *
+	 * @param array<string, mixed> $args      Query arguments.
+	 * @param string               $post_type Post type.
+	 * @return array<string, mixed>
+	 */
+	public function sitemap_args( $args, $post_type ): array {
+		$args = (array) $args;
+
+		if ( PostTypes::TRIP === $post_type ) {
+			$args['has_password'] = false;
+		}
+
+		return $args;
 	}
 
 	/**
@@ -130,13 +150,7 @@ final class Schema {
 		$price = TripData::price( $trip->ID );
 
 		if ( $price ) {
-			$data['offers'] = array(
-				'@type'         => 'Offer',
-				'price'         => $price['amount'],
-				'priceCurrency' => $price['currency'],
-				'url'           => get_permalink( $trip ),
-				'availability'  => 'https://schema.org/InStock',
-			);
+			$data['offers'] = self::offers( $trip, $price );
 		}
 
 		$rating = Reviews::summary( $trip->ID );
@@ -158,6 +172,48 @@ final class Schema {
 		 * @param WP_Post $trip Trip.
 		 */
 		return (array) apply_filters( 'wpitravel_schema', $data, $trip );
+	}
+
+	/**
+	 * Price and availability over the next year's departures: one Offer
+	 * when there are no departures to count, otherwise an AggregateOffer
+	 * with the lowest and highest "from" price and the bookable departures.
+	 *
+	 * @param WP_Post                    $trip  Trip.
+	 * @param array<string, string|bool> $price "From" price (TripData::price()).
+	 * @return array<string, mixed>
+	 */
+	private static function offers( WP_Post $trip, array $price ): array {
+		$availability = new Availability();
+		$today        = $availability->today();
+		$departures   = $availability->for_trip( Multilingual::original_trip_id( $trip->ID ), $today, gmdate( 'Y-m-d', (int) strtotime( $today . ' +365 days' ) ) );
+		$prices       = array();
+
+		foreach ( $departures as $departure ) {
+			if ( ! empty( $departure['bookable'] ) && null !== $departure['from_price'] ) {
+				$prices[] = (float) $departure['from_price'];
+			}
+		}
+
+		$offer = array(
+			'priceCurrency' => (string) $price['currency'],
+			'url'           => get_permalink( $trip ),
+			'availability'  => $prices || ! $departures ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
+		);
+
+		if ( ! $prices ) {
+			return array(
+				'@type' => 'Offer',
+				'price' => (string) $price['amount'],
+			) + $offer;
+		}
+
+		return array(
+			'@type'      => 'AggregateOffer',
+			'lowPrice'   => (string) min( $prices ),
+			'highPrice'  => (string) max( $prices ),
+			'offerCount' => count( $prices ),
+		) + $offer;
 	}
 
 	/**

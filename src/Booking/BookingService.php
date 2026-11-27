@@ -439,7 +439,7 @@ final class BookingService {
 				'pax'            => $quote['pax_total'],
 				'coupon_code'    => (string) $quote['coupon'],
 				'customer_note'  => sanitize_textarea_field( (string) ( $input['note'] ?? '' ) ),
-				'locale'         => determine_locale(),
+				'locale'         => self::locale( (string) ( $input['locale'] ?? '' ) ),
 				'ip'             => $ip,
 				'created'        => $now,
 				'updated'        => $now,
@@ -676,5 +676,17 @@ final class BookingService {
 		}
 
 		return $travelers;
+	}
+	/**
+	 * The booking's language: the page's language sent by the booking form
+	 * (with WPML or Polylang, REST requests may run in the default language),
+	 * when the site has it; otherwise the current one.
+	 *
+	 * @param string $requested Locale sent with the booking.
+	 */
+	private static function locale( string $requested ): string {
+		$known = array_merge( array( 'en_US', determine_locale(), get_locale() ), get_available_languages() );
+
+		return '' !== $requested && in_array( $requested, $known, true ) ? $requested : determine_locale();
 	}
 }

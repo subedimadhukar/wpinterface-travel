@@ -215,9 +215,12 @@ class PaymentsTest extends WP_UnitTestCase {
 	private function webhook( array $event ): \WP_REST_Response {
 		$request = new WP_REST_Request( 'POST', '/wpinterface-travel/v1/payments/paypal/webhook' );
 		$request->set_header( 'Content-Type', 'application/json' );
-		foreach ( array( 'auth_algo', 'cert_url', 'transmission_id', 'transmission_sig', 'transmission_time' ) as $header ) {
+		foreach ( array( 'auth_algo', 'transmission_id', 'transmission_sig', 'transmission_time' ) as $header ) {
 			$request->set_header( 'paypal_' . $header, 'value-' . $header );
 		}
+		// A real certificate address: a bare word only passes esc_url_raw() on
+		// WordPress 6.9+, which adds https:// where older versions add http://.
+		$request->set_header( 'paypal_cert_url', 'https://api-m.sandbox.paypal.com/v1/notifications/certs/CERT-360caa42' );
 		$request->set_body( wp_json_encode( $event ) );
 
 		return rest_do_request( $request );

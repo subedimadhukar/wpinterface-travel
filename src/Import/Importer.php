@@ -399,4 +399,192 @@ abstract class Importer {
 
 		return array_values( $out );
 	}
+	/**
+	 * How far ahead repeating dates that cannot be kept as a rule are
+	 * turned into fixed dates.
+	 */
+	protected const EXPAND_DAYS = 365;
+
+	/**
+	 * A repeating departure rule in the plugin's format (see Schedule), or
+	 * null when it ended before today.
+	 *
+	 * @param string            $start    First day (Y-m-d or '').
+	 * @param string            $end      Last day (Y-m-d or '' for no end).
+	 * @param array<int, mixed> $weekdays ISO weekdays 1–7; empty = every day.
+	 * @param array<int, mixed> $months   Months 1–12; empty = every month.
+	 * @param array<int, mixed> $times    Start times.
+	 * @return array{start: string, end: string, weekdays: list<int>, months: list<int>, times: list<string>}|null
+	 */
+	protected static function rule( string $start, string $end, array $weekdays, array $months, array $times ): ?array {
+		$end = self::ymd( $end );
+
+		if ( '' !== $end && $end < current_time( 'Y-m-d' ) ) {
+			return null;
+		}
+
+		$weekdays = array_values( array_unique( array_filter( array_map( 'intval', $weekdays ), static fn( int $day ): bool => $day >= 1 && $day <= 7 ) ) );
+		$months   = array_values( array_unique( array_filter( array_map( 'intval', $months ), static fn( int $month ): bool => $month >= 1 && $month <= 12 ) ) );
+		sort( $weekdays );
+		sort( $months );
+
+		return array(
+			'start'    => self::ymd( $start ),
+			'end'      => $end,
+			'weekdays' => 7 === count( $weekdays ) ? array() : $weekdays,
+			'months'   => 12 === count( $months ) ? array() : $months,
+			'times'    => self::times( $times ),
+		);
+	}
+
+	/**
+	 * Fixed departures from a repeating pattern the plugin's rules cannot
+	 * hold ("every 10 days", "last Sunday of the month"): the days from
+	 * $start to $end that pass $matches, kept from today for a year.
+	 *
+	 * @param string                             $start   First day (Y-m-d).
+	 * @param string                             $end     Last day (Y-m-d or '' for no end).
+	 * @param callable(\DateTimeImmutable): bool $matches Whether a day is a departure.
+	 * @param array<int, mixed>                  $times   Start times ('' when none).
+	 * @param int                                $count   Stop after this many departures counted from $start (0 = no limit).
+	 * @return list<array{date: string, time: string}>
+	 */
+	protected static function expand( string $start, string $end, callable $matches, array $times = array(), int $count = 0 ): array {
+		$timezone = wp_timezone();
+		$today    = new \DateTimeImmutable( current_time( 'Y-m-d' ), $timezone );
+		$first    = self::ymd( $start );
+		$day      = '' !== $first ? new \DateTimeImmutable( $first, $timezone ) : $today;
+		$last     = $today->modify( '+' . self::EXPAND_DAYS . ' days' );
+		$end      = self::ymd( $end );
+
+		if ( '' !== $end ) {
+			$last = min( $last, new \DateTimeImmutable( $end, $timezone ) );
+		}
+
+		// Counted patterns start in the past; look back at most three years.
+		if ( $day < $today->modify( '-3 years' ) ) {
+			$day = $count > 0 ? $today->modify( '-3 years' ) : $today;
+		}
+
+		$times = self::times( $times );
+		$times = $times ? $times : array( '' );
+		$out   = array();
+		$seen  = 0;
+
+		for ( ; $day <= $last; $day = $day->modify( '+1 day' ) ) {
+			if ( ! $matches( $day ) ) {
+				continue;
+			}
+
+			++$seen;
+
+			if ( $day >= $today ) {
+				foreach ( $times as $time ) {
+					$out[] = array(
+						'date' => $day->format( 'Y-m-d' ),
+						'time' => $time,
+					);
+				}
+			}
+
+			if ( ( $count > 0 && $seen >= $count ) || count( $out ) >= 200 ) {
+				break;
+			}
+		}
+
+		return $out;
+	}
+
+	/**
+	 * ISO weekdays (1 = Monday) from iCalendar codes ("MO,TH", ['MO'], [1 => 'MO']).
+	 *
+	 * @param mixed $codes Codes.
+	 * @return list<int>
+	 */
+	protected static function weekday_codes( $codes ): array {
+		$map  = array(
+			'MO' => 1,
+			'TU' => 2,
+			'WE' => 3,
+			'TH' => 4,
+			'FR' => 5,
+			'SA' => 6,
+			'SU' => 7,
+		);
+		$list = is_array( $codes ) ? $codes : explode( ',', (string) $codes );
+		$out  = array();
+
+		foreach ( $list as $code ) {
+			$code = strtoupper( substr( trim( (string) $code ), 0, 2 ) );
+
+			if ( isset( $map[ $code ] ) ) {
+				$out[] = $map[ $code ];
+			}
+		}
+
+		return array_values( array_unique( $out ) );
+	}
+
+	/**
+	 * Start times as HH:MM, from "09:00,14:30", ['09:00:00'] and the like.
+	 *
+	 * @param mixed $times Times.
+	 * @return list<string>
+	 */
+	protected static function times( $times ): array {
+		$out = array();
+
+		foreach ( is_array( $times ) ? $times : explode( ',', (string) $times ) as $time ) {
+			if ( preg_match( '/^\s*([01]?\d|2[0-3]):([0-5]\d)/', (string) $time, $parts ) ) {
+				$out[] = sprintf( '%02d:%s', (int) $parts[1], $parts[2] );
+			}
+		}
+
+		$out = array_values( array_unique( $out ) );
+		sort( $out );
+
+		return $out;
+	}
+
+	/**
+	 * A date as Y-m-d, or '' (empty, "0000-00-00" or unreadable).
+	 *
+	 * @param mixed $value Date.
+	 */
+	protected static function ymd( $value ): string {
+		$value = trim( (string) $value );
+
+		if ( '' === $value || 0 === strpos( $value, '0000-00-00' ) ) {
+			return '';
+		}
+
+		$time = strtotime( $value );
+
+		return $time ? gmdate( 'Y-m-d', $time ) : '';
+	}
+
+	/**
+	 * Every day from $start to $end (inclusive), for excluded periods.
+	 *
+	 * @param string $start First day.
+	 * @param string $end   Last day ('' = just $start).
+	 * @return list<string>
+	 */
+	protected static function days_between( string $start, string $end ): array {
+		$start = self::ymd( $start );
+		$end   = self::ymd( $end );
+
+		if ( '' === $start ) {
+			return array();
+		}
+
+		$end  = '' !== $end && $end >= $start ? $end : $start;
+		$days = array();
+
+		for ( $day = $start, $n = 0; $day <= $end && $n < 366; $day = gmdate( 'Y-m-d', (int) strtotime( $day . ' +1 day' ) ), ++$n ) {
+			$days[] = $day;
+		}
+
+		return $days;
+	}
 }

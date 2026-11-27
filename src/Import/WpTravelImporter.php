@@ -115,11 +115,8 @@ final class WpTravelImporter extends Importer {
 			);
 		}
 
-		list( $pricing, $schedule, $recurring ) = $this->pricing_and_dates( $source_id, $meta );
-
-		if ( $recurring ) {
-			$notes[] = __( 'repeating dates were not imported; add them in the Departures tab.', 'wpinterface-travel' );
-		}
+		list( $pricing, $schedule, $date_notes ) = $this->pricing_and_dates( $source_id, $meta );
+		$notes                                   = array_merge( $notes, $date_notes );
 
 		if ( ! $pricing ) {
 			$notes[] = __( 'no prices found; add them in the Pricing tab.', 'wpinterface-travel' );
@@ -153,11 +150,11 @@ final class WpTravelImporter extends Importer {
 	}
 
 	/**
-	 * Prices and fixed dates.
+	 * Prices and departures (fixed dates, repeating rules, excluded days).
 	 *
 	 * @param int      $trip_id Source trip.
 	 * @param callable $meta    Meta reader.
-	 * @return array{0: array<string, mixed>, 1: array<string, mixed>, 2: bool} Pricing, schedule, whether it had repeating dates.
+	 * @return array{0: array<string, mixed>, 1: array<string, mixed>, 2: list<string>} Pricing, schedule, notes.
 	 */
 	private function pricing_and_dates( int $trip_id, callable $meta ): array {
 		global $wpdb;
@@ -197,30 +194,135 @@ final class WpTravelImporter extends Importer {
 			$options = $option ? array( $option ) : array();
 		}
 
-		$fixed     = array();
-		$recurring = false;
+		$fixed    = array();
+		$rules    = array();
+		$excluded = array();
+		$notes    = array();
 
 		if ( self::table_exists( $dates ) ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- WP Travel's table.
-			foreach ( (array) $wpdb->get_results( $wpdb->prepare( 'SELECT start_date, recurring FROM %i WHERE trip_id = %d', $dates, $trip_id ), ARRAY_A ) as $row ) {
-				if ( ! empty( $row['recurring'] ) ) {
-					$recurring = true;
-				} else {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- WP Travel's table; columns vary by version, so all are read.
+			foreach ( (array) $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE trip_id = %d', $dates, $trip_id ), ARRAY_A ) as $row ) {
+				if ( empty( $row['recurring'] ) ) {
 					$fixed[] = (string) $row['start_date'];
+					continue;
 				}
+
+				list( $rule, $expanded, $note ) = self::repeating( $row );
+
+				if ( $rule ) {
+					$rules[] = $rule;
+				}
+
+				$fixed = array_merge( $fixed, $expanded );
+
+				if ( '' !== $note ) {
+					$notes[] = $note;
+				}
+			}
+
+			list( $excluded, $skipped ) = self::excluded( $wpdb->prefix . 'wt_excluded_dates_times', $trip_id );
+
+			if ( $skipped ) {
+				$notes[] = __( 'excluded dates that repeat or close only some start times were not imported; check the Departures tab.', 'wpinterface-travel' );
 			}
 		}
 
-		$schedule = array();
-		$fixed    = self::future_dates( $fixed );
+		$fixed = array_merge(
+			self::future_dates( array_filter( $fixed, 'is_string' ) ),
+			array_values( array_filter( $fixed, 'is_array' ) )
+		);
 
-		if ( $fixed ) {
+		$schedule = array();
+
+		if ( $fixed || $rules ) {
 			$schedule = array(
-				'fixed'    => $fixed,
-				'capacity' => absint( $meta( 'wp_travel_group_size' ) ),
+				'fixed'     => $fixed,
+				'recurring' => $rules,
+				'excluded'  => $excluded,
+				'capacity'  => absint( $meta( 'wp_travel_group_size' ) ),
 			);
 		}
 
-		return array( $options ? array( 'options' => $options ) : array(), $schedule, $recurring );
+		return array( $options ? array( 'options' => $options ) : array(), $schedule, array_values( array_unique( $notes ) ) );
+	}
+
+	/**
+	 * A repeating row of wt_dates: a rule when it fits, otherwise dates for
+	 * the coming year.
+	 *
+	 * Columns: years ("every_year" or "2026,2027"), months ("every_month" or
+	 * "4,5,6"), days ("MO,TH"), date_days ("1,15"), start_date, end_date,
+	 * trip_time ("09:00,14:30", used when the row's time switch is on).
+	 *
+	 * @param array<string, mixed> $row Row.
+	 * @return array{0: array<string, mixed>|null, 1: list<array{date: string, time: string}>, 2: string} Rule, dates, note.
+	 */
+	private static function repeating( array $row ): array {
+		$list  = static fn( $value, string $every ): array => in_array( trim( (string) $value ), array( '', $every ), true ) ? array() : array_values( array_filter( array_map( 'intval', explode( ',', (string) $value ) ) ) );
+		$years = $list( $row['years'] ?? '', 'every_year' );
+		$month = $list( $row['months'] ?? '', 'every_month' );
+		$days  = self::weekday_codes( (string) ( $row['days'] ?? '' ) );
+		$mdays = $list( $row['date_days'] ?? '', '' );
+		$start = self::ymd( $row['start_date'] ?? '' );
+		$end   = self::ymd( $row['end_date'] ?? '' );
+		$times = ! empty( $row['id'] ) && get_post_meta( (int) $row['id'], 'wp_travel_trip_time_enable', true ) ? self::times( (string) ( $row['trip_time'] ?? '' ) ) : array();
+		sort( $years );
+
+		// Years in a row: the rule's start and end cover them.
+		$span = $years && ( end( $years ) - $years[0] + 1 ) === count( $years );
+
+		if ( $span ) {
+			$start = max( $start, $years[0] . '-01-01' );
+			$end   = '' !== $end ? min( $end, end( $years ) . '-12-31' ) : end( $years ) . '-12-31';
+		}
+
+		// Weekdays win over days of the month, as in WP Travel.
+		if ( ( $days || ! $mdays ) && ( ! $years || $span ) ) {
+			return array( self::rule( $start, $end, $days, $month, $times ), array(), '' );
+		}
+
+		$dates = self::expand(
+			$start,
+			$end,
+			static fn( \DateTimeImmutable $day ): bool => ( ! $years || in_array( (int) $day->format( 'Y' ), $years, true ) )
+				&& ( ! $month || in_array( (int) $day->format( 'n' ), $month, true ) )
+				&& ( $days ? in_array( (int) $day->format( 'N' ), $days, true ) : in_array( (int) $day->format( 'j' ), $mdays, true ) ),
+			$times
+		);
+
+		return array( null, $dates, __( 'repeating dates on certain days of the month or in separate years were added as dates for the coming year; add more in the Departures tab later.', 'wpinterface-travel' ) );
+	}
+
+	/**
+	 * Whole days WP Travel excludes, from wt_excluded_dates_times. Rows that
+	 * repeat or close only some times are counted, not imported.
+	 *
+	 * @param string $table   Table.
+	 * @param int    $trip_id Trip.
+	 * @return array{0: list<string>, 1: int} Days, rows skipped.
+	 */
+	private static function excluded( string $table, int $trip_id ): array {
+		global $wpdb;
+
+		if ( ! self::table_exists( $table ) ) {
+			return array( array(), 0 );
+		}
+
+		$days    = array();
+		$skipped = 0;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery -- WP Travel's table.
+		foreach ( (array) $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE trip_id = %d', $table, $trip_id ), ARRAY_A ) as $row ) {
+			if ( ! empty( $row['recurring'] ) || '' !== trim( (string) ( $row['time'] ?? '' ) ) ) {
+				++$skipped;
+				continue;
+			}
+
+			$days = array_merge( $days, self::days_between( (string) $row['start_date'], (string) ( $row['end_date'] ?? '' ) ) );
+		}
+
+		$today = current_time( 'Y-m-d' );
+
+		return array( array_values( array_unique( array_filter( $days, static fn( string $day ): bool => $day >= $today ) ) ), $skipped );
 	}
 }

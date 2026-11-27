@@ -13,7 +13,7 @@
 	--wpitravel-gap: clamp(16px, 2.5vw, 32px);
 }
 
-.screen-reader-text:where(.wpitravel-card *, .wpitravel-search *, .wpitravel-price *) {
+.screen-reader-text:where(.wpitravel-card *, .wpitravel-search *, .wpitravel-price *, .wpitravel-departures *) {
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -231,6 +231,61 @@
 	color: var(--wpitravel-muted);
 	font-size: 0.9em;
 	list-style: none;
+}
+
+/* Upcoming departures */
+.wpitravel-departures__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wpitravel-departures__item {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 16px;
+	align-items: center;
+	padding: 12px 0;
+	border-bottom: 1px solid var(--wpitravel-border);
+
+	&:first-child {
+		border-top: 1px solid var(--wpitravel-border);
+	}
+
+	&.is-full {
+		color: var(--wpitravel-muted);
+	}
+}
+
+.wpitravel-departures__date {
+	flex: 1 1 14em;
+	font-weight: 600;
+}
+
+.wpitravel-departures__time {
+	margin-inline-start: 6px;
+	font-weight: 400;
+}
+
+.wpitravel-departures__seats {
+	flex: 0 1 9em;
+	color: var(--wpitravel-muted);
+}
+
+.wpitravel-departures__book {
+	margin-inline-start: auto;
+	text-decoration: none;
+}
+
+.wpitravel-itinerary__toggle {
+	margin: 0 0 12px;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .wpitravel-faqs__item {

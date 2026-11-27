@@ -8,6 +8,7 @@
 namespace WPInterface\Travel\Emails;
 
 use WPInterface\Travel\Booking\BookingRepository;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -50,6 +51,8 @@ final class Mailer {
 
 		$customer = 'customer' === $definition['recipient'];
 		$switched = $customer && '' !== (string) $booking['locale'] && switch_to_locale( (string) $booking['locale'] );
+		// WPML and Polylang: translated email texts (String Translation) and trip names.
+		$language = $customer ? Multilingual::switch_language( (string) $booking['locale'] ) : null;
 
 		// Templates are read again after switching, so default texts follow the customer's language.
 		$definition = (array) Templates::get( $template );
@@ -60,6 +63,11 @@ final class Mailer {
 
 		if ( $switched ) {
 			restore_previous_locale();
+		}
+
+		if ( null !== $language ) {
+			Multilingual::switch_language( $language );
+			wpitravel()->options()->flush();
 		}
 
 		if ( '' === $to ) {

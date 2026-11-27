@@ -18,7 +18,9 @@ You can create trips with itineraries, highlights, included/excluded lists, FAQs
 
 Staff manage everything from Travel → Bookings: search and filter bookings, see payments and history, change statuses, record payments and refunds, resend emails, add notes, and enter phone or walk-in bookings. The Travel dashboard shows money received over time, top trips, departures in the next two weeks and bookings that need attention. A setup wizard sets the currency, tax, booking rules and payment methods, can add sample trips, and imports trips from WP Travel, WP Travel Engine and Yatra.
 
-Trip pages, the trip list and destination pages work with any theme. Block themes get templates you can edit in the Site Editor, built from 13 Travel blocks (Trips, Trip Search, Price, Facts, Itinerary, Gallery, Map, Booking Form, Reviews and more). Classic themes get ready-made page templates that themes can override. Visitors can search trips and filter them by destination, activity, trip type, difficulty, length and price, and sort them by price, length or rating. Trip pages include TouristTrip structured data for search engines.
+Trip pages, the trip list and destination pages work with any theme. Block themes get templates you can edit in the Site Editor, built from 14 Travel blocks (Trips, Trip Search, Price, Facts, Itinerary, Departures, Gallery, Map, Booking Form, Reviews and more). Classic themes get ready-made page templates that themes can override. Every block is also a shortcode and, with Elementor, an Elementor widget. Visitors can search trips and filter them by destination, activity, trip type, difficulty, length and price, and sort them by price, length or rating. Trip pages include TouristTrip structured data for search engines, with prices and availability from the coming year's departures.
+
+Multilingual sites work with WPML and Polylang: each translation of a trip shows its own text and shares the original trip's departures, seats, prices, bookings and reviews, and booking emails use the customer's language.
 
 == Installation ==
 
@@ -53,7 +55,7 @@ Every booking email has a personal link to the "My bookings" page (created on in
 
 = Can I move my trips from another travel plugin? =
 
-Yes. The setup wizard (Travel → Settings → Setup wizard, or Tools → Import) copies trips from WP Travel, WP Travel Engine and Yatra 3: itinerary, prices, upcoming dates, photos, FAQs and destinations. Your old plugin's data is not changed, and running the import again skips trips already copied. Repeating date rules, bookings and customers are not imported.
+Yes. The setup wizard (Travel → Settings → Setup wizard, or Tools → Import) copies trips from WP Travel, WP Travel Engine and Yatra 3: itinerary, prices, upcoming dates, photos, FAQs and destinations. Your old plugin's data is not changed, and running the import again skips trips already copied. Repeating dates come across as repeating rules; patterns the plugin's rules cannot hold, such as "every 10 days" or "the last Saturday of the month", are added as dates for the coming year, and the import says so. Bookings and customers are not imported.
 
 = How do I show trips on a page? =
 
@@ -101,6 +103,13 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 == Changelog ==
 
 = 0.9.0 =
+* WPML and Polylang: translated trips share the original trip's departures, seats, prices, bookings and reviews; price option and traveler type names, trip texts and email texts can be translated; booking emails and "My bookings" name the trip in the customer's language. A wpml-config.xml is included.
+* Elementor: a widget for every block, in a "Travel" category, printing the same HTML as the blocks.
+* Upcoming departures: a list of the next dates with seats left, prices and a Book link that opens the booking form on that date (block, shortcode `[wpitravel_trip_departures]`, and on trip pages).
+* Itineraries have an "Expand all days" button.
+* Importers bring repeating dates and excluded dates from WP Travel, WP Travel Engine and Yatra; patterns that cannot be kept as rules become dates for the coming year.
+* Trips → each trip has a "Bookings" link to its bookings.
+* Structured data: prices and availability (in stock or sold out) from the coming year's departures. Password-protected trips are left out of the WordPress sitemap.
 * Accessibility: in the booking form, focus moves to the next step's heading; the calendar is one Tab stop and arrow keys, Home and End move between dates; traveler counts are read with their type; the seat-hold countdown is announced once and again near the end, not every second. Sale prices are read as "Original price" and "Sale price". On "My bookings", focus moves to the heading when a booking opens or closes. Admin lists of bookings, coupons and enquiries have table captions.
 * Sample trips are listed in the order they were created.
 * Reviews: with "Anyone can review" on, trip pages show a "Write a review" form, and the Reviews section appears before the first review. Reviews still wait for your approval.

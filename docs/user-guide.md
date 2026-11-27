@@ -75,6 +75,7 @@ Each part has a block and a shortcode. Leave out `trip` on the trip page itself;
 | Facts (duration, difficulty, group size and your own facts) | `[wpitravel_trip_facts]` |
 | Highlights | `[wpitravel_trip_highlights]` |
 | Itinerary (add `open="yes"`, or **Expand all days** in the block, to open every day) | `[wpitravel_trip_itinerary]` |
+| Upcoming departures: dates, seats left, prices and a Book link that opens the booking form on that date (`number="6"` sets how many) | `[wpitravel_trip_departures]` |
 | Included and not included | `[wpitravel_trip_includes]` |
 | FAQs | `[wpitravel_trip_faqs]` |
 | Gallery | `[wpitravel_trip_gallery]` |
@@ -84,6 +85,10 @@ Each part has a block and a shortcode. Leave out `trip` on the trip page itself;
 | Enquiry form | `[wpitravel_enquiry]` |
 
 The **My bookings** page uses `[wpitravel_account]`. It is created when you install the plugin.
+
+### Elementor
+
+With Elementor active, every block is also an Elementor widget, in the **Travel** category of the widget panel. The widgets print the same HTML as the blocks, so your theme styles them the same way. Trip-part widgets have a **Trip** setting: leave it empty on trip pages and Elementor trip templates to show the current trip, or pick a trip to show it anywhere.
 
 ## Settings
 
@@ -188,11 +193,24 @@ Travel → Emails lists every email with a preview and test send. Edit the subje
 
 ## Importing from another plugin
 
-The setup wizard (Trips step) or Tools → Import copies trips from **WP Travel**, **WP Travel Engine** and **Yatra 3**: itinerary, prices, upcoming fixed dates, photos, FAQs, includes, highlights, map and destinations. Your old plugin's data is not changed, and running the import again skips trips already copied. Repeating date rules, bookings and customers are not imported. Check each imported trip's Departures tab.
+The setup wizard (Trips step) or Tools → Import copies trips from **WP Travel**, **WP Travel Engine** and **Yatra 3**: itinerary, prices, upcoming fixed dates, photos, FAQs, includes, highlights, map and destinations. Your old plugin's data is not changed, and running the import again skips trips already copied. Repeating dates come across as repeating rules, with their weekdays, months and start times, and excluded dates come too. Patterns the plugin's rules cannot hold (every 10 days, the last Saturday of the month, the 1st and 15th) are added as dates for the coming year, and the import lists the trips where that happened. Bookings and customers are not imported. Check each imported trip's Departures tab.
 
 ## Privacy
 
 Tools → Export Personal Data and Erase Personal Data include bookings, travelers, enquiries and cancellation reasons. Erasing keeps booking dates and amounts for your accounts but removes names, contact details and notes. Settings → Privacy has suggested text for your privacy policy.
+
+## Multilingual sites (WPML and Polylang)
+
+Translate trips as you translate posts. Each translation shows its own title, description, itinerary, highlights, FAQs and other texts, and shares these with the original trip:
+
+- departures, seats and bookings: a booking from any language books the original trip's departure;
+- prices: amounts always come from the original trip. The names of price options and traveler types are copied once and can then be translated;
+- reviews and the star rating;
+- numbers and settings: duration, difficulty, group size, minimum age, gallery, map and departure rules.
+
+Edit dates, seats and prices on the original trip. A translation's edit screen says so and links to it.
+
+Booking emails use the language of the page the customer booked on: the trip name, its link and the default email texts. With WPML String Translation, the texts you change in Travel → Emails can be translated too (they are listed under the **wpitravel_settings** option). Destinations, activities and trip types are translatable.
 
 ## Accessibility
 
@@ -219,7 +237,7 @@ Colours, fonts and focus outlines come mostly from your theme, so check them wit
 
 **A caching plugin shows old prices or another customer's details.** Exclude the **My bookings** page from the cache. Trip pages can be cached: the dates, seats and prices in the booking form load fresh each time.
 
-**Imported trips have no dates.** Repeating date rules are not imported. Add them in each trip's Departures tab.
+**Imported trips have only a year of dates.** Some repeating patterns cannot be kept as rules, so they were added as dates for the coming year. Add a rule in the trip's Departures tab, or run the import again next year.
 
 ## For developers
 

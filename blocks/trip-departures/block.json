@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wpitravel/trip-departures",
+	"title": "Trip Departures",
+	"category": "wpitravel",
+	"icon": "calendar-alt",
+	"description": "Upcoming departure dates with seats left, prices and a Book button.",
+	"keywords": [
+		"dates",
+		"departures",
+		"seats",
+		"calendar"
+	],
+	"textdomain": "wpinterface-travel",
+	"attributes": {
+		"tripId": {
+			"type": "integer",
+			"default": 0
+		},
+		"number": {
+			"type": "integer",
+			"default": 6
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "wpitravel-blocks-editor",
+	"editorStyle": [
+		"wpitravel-blocks-editor",
+		"wpitravel-frontend"
+	]
+}

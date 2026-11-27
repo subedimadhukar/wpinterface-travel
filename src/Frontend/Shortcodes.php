@@ -25,7 +25,7 @@ final class Shortcodes {
 	/**
 	 * Sections that get a [wpitravel_trip_{name}] shortcode.
 	 */
-	public const SECTIONS = array( 'price', 'facts', 'highlights', 'itinerary', 'includes', 'faqs', 'gallery', 'map' );
+	public const SECTIONS = array( 'price', 'facts', 'highlights', 'itinerary', 'departures', 'includes', 'faqs', 'gallery', 'map' );
 
 	/**
 	 * Registers the shortcodes.
@@ -121,7 +121,7 @@ final class Shortcodes {
 	 * [wpitravel_trip_{section}].
 	 *
 	 * @param string                $section Section name.
-	 * @param array<string, string> $atts    trip (ID; defaults to the current post), open (itinerary).
+	 * @param array<string, string> $atts    trip (ID; defaults to the current post), open (itinerary), number (departures).
 	 */
 	public function section( string $section, array $atts ): string {
 		$trip = TripData::resolve( absint( $atts['trip'] ?? 0 ) );
@@ -134,7 +134,14 @@ final class Shortcodes {
 
 		$sections = Parts::sections();
 
-		return (string) call_user_func( $sections[ $section ], $trip->ID, array( 'open' => self::yes( $atts['open'] ?? 'no' ) ) );
+		return (string) call_user_func(
+			$sections[ $section ],
+			$trip->ID,
+			array(
+				'open'   => self::yes( $atts['open'] ?? 'no' ),
+				'number' => absint( $atts['number'] ?? 6 ),
+			)
+		);
 	}
 
 	/**

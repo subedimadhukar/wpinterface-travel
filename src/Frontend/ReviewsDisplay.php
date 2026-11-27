@@ -9,6 +9,7 @@ namespace WPInterface\Travel\Frontend;
 
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Reviews\Reviews;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -66,6 +67,8 @@ final class ReviewsDisplay {
 			return '';
 		}
 
+		// Every translation shows the original trip's reviews.
+		$trip_id = Multilingual::original_trip_id( $trip_id );
 		$summary = Reviews::summary( $trip_id );
 
 		// "Anyone can review": the section and its form show even before the first review.

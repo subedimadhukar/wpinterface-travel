@@ -11,6 +11,9 @@ use WP_Term;
 use WPInterface\Travel\Admin\Assets;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Content\TripMeta;
+use WPInterface\Travel\Departures\Availability;
+use WPInterface\Travel\Support\Money;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -36,6 +39,7 @@ final class Parts {
 			'facts'      => array( self::class, 'facts' ),
 			'highlights' => array( self::class, 'highlights' ),
 			'itinerary'  => array( self::class, 'itinerary' ),
+			'departures' => array( self::class, 'departures' ),
 			'includes'   => array( self::class, 'includes' ),
 			'faqs'       => array( self::class, 'faqs' ),
 			'gallery'    => array( self::class, 'gallery' ),
@@ -102,6 +106,11 @@ final class Parts {
 	public static function itinerary( int $trip_id, array $atts = array() ): string {
 		$days = TripData::itinerary( $trip_id );
 
+		if ( count( $days ) > 1 ) {
+			// The "Expand all days" button.
+			Assets::enqueue( 'frontend', '', array(), array() );
+		}
+
 		return $days ? Templates::part(
 			'parts/itinerary',
 			array(
@@ -109,6 +118,43 @@ final class Parts {
 				'open' => ! empty( $atts['open'] ),
 			)
 		) : '';
+	}
+
+	/**
+	 * Upcoming departures: date, seats left, price and a link that opens the
+	 * booking form on that date.
+	 *
+	 * @param int                  $trip_id Trip.
+	 * @param array<string, mixed> $atts    number: how many (default 6).
+	 */
+	public static function departures( int $trip_id, array $atts = array() ): string {
+		$number       = max( 1, min( 50, (int) ( $atts['number'] ?? 6 ) ) );
+		$availability = new Availability();
+		$today        = $availability->today();
+		$rows         = array_slice( $availability->for_trip( Multilingual::original_trip_id( $trip_id ), $today, gmdate( 'Y-m-d', (int) strtotime( $today . ' +365 days' ) ) ), 0, $number );
+
+		if ( ! $rows ) {
+			return '';
+		}
+
+		$currency = (array) wpitravel()->options()->get( 'currency', array() );
+		$link     = (string) get_permalink( $trip_id );
+		$items    = array();
+
+		foreach ( $rows as $row ) {
+			$items[] = array(
+				'date'       => (string) $row['date'],
+				'end_date'   => (string) $row['end_date'],
+				'time'       => (string) $row['time'],
+				'seats_left' => null === $row['seats_left'] ? null : (int) $row['seats_left'],
+				'bookable'   => ! empty( $row['bookable'] ),
+				'price'      => null !== $row['from_price'] ? Money::format( (string) $row['from_price'], $currency ) : '',
+				'amount'     => null !== $row['from_price'] ? (string) $row['from_price'] : '',
+				'url'        => add_query_arg( 'wpitravel_date', rawurlencode( (string) $row['date'] ), $link ) . '#wpitravel-booking',
+			);
+		}
+
+		return Templates::part( 'parts/departures', array( 'departures' => $items ) );
 	}
 
 	/**

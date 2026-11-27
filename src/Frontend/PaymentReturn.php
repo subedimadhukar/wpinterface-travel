@@ -9,6 +9,7 @@ namespace WPInterface\Travel\Frontend;
 
 use WPInterface\Travel\Booking\BookingRepository;
 use WPInterface\Travel\Payments\Gateways;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -49,7 +50,7 @@ final class PaymentReturn {
 
 		$booking = ( new BookingRepository() )->find_by_key( (string) ( $params['booking'] ?? '' ) );
 		$result  = $gateway && $booking ? $gateway->handle_return( $params ) : 'failed';
-		$target  = $booking ? get_permalink( $booking['trip_id'] ) : home_url( '/' );
+		$target  = $booking ? get_permalink( Multilingual::translated_id( (int) $booking['trip_id'] ) ) : home_url( '/' );
 
 		$args = array( 'wpitravel_result' => $result );
 

@@ -31,6 +31,7 @@ final class Blocks {
 		'trip-facts'      => 'facts',
 		'trip-highlights' => 'highlights',
 		'trip-itinerary'  => 'itinerary',
+		'trip-departures' => 'departures',
 		'trip-includes'   => 'includes',
 		'trip-faqs'       => 'faqs',
 		'trip-gallery'    => 'gallery',
@@ -138,7 +139,14 @@ final class Blocks {
 		}
 
 		$sections = Parts::sections();
-		$html     = (string) call_user_func( $sections[ $section ], $trip->ID, array( 'open' => ! empty( $attributes['open'] ) ) );
+		$html     = (string) call_user_func(
+			$sections[ $section ],
+			$trip->ID,
+			array(
+				'open'   => ! empty( $attributes['open'] ),
+				'number' => (int) ( $attributes['number'] ?? 6 ),
+			)
+		);
 
 		if ( '' === $html ) {
 			return self::placeholder( __( 'This trip has nothing to show here yet.', 'wpinterface-travel' ) );

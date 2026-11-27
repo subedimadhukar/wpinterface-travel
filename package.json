@@ -28,7 +28,8 @@
 		"webpack.config.js",
 		"readme.txt",
 		"uninstall.php",
-		"wpinterface-travel.php"
+		"wpinterface-travel.php",
+		"wpml-config.xml"
 	],
 	"devDependencies": {
 		"@wordpress/api-fetch": "^7.0.0",

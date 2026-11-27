@@ -155,18 +155,53 @@ final class YatraImporter extends Importer {
 				$capacity = max( $capacity, absint( $row['seats_total'] ) );
 			}
 		}
+		// Repeating rules.
+		$rules    = array();
+		$excluded = array();
+		$extra    = array();
+		$table    = self::table( 'trip_availability_rules' );
+
+		if ( '' !== $table ) {
+			foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE trip_id = %d AND status = 'active'", $table, $source_id ), ARRAY_A ) as $row ) {
+				if ( 'unavailable' === ( $row['availability_status'] ?? '' ) ) {
+					continue;
+				}
+
+				list( $rule, $expanded, $note ) = self::repeating( $row );
+
+				if ( $rule ) {
+					$rules[] = $rule;
+				}
+
+				$extra    = array_merge( $extra, $expanded );
+				$capacity = max( $capacity, absint( $row['seats_total'] ?? 0 ) );
+				$excluded = array_merge( $excluded, self::excluded( $row['excluded_dates'] ?? '' ) );
+
+				if ( '' !== $note ) {
+					$notes[] = $note;
+				}
+			}
+		}
 		// phpcs:enable
 
-		$dates    = self::future_dates( $dates );
-		$schedule = $dates ? array(
+		$dates    = array_merge( self::future_dates( $dates ), $extra );
+		$schedule = $dates || $rules ? array(
 			'fixed'        => $dates,
+			'recurring'    => $rules,
+			'excluded'     => array_values( array_unique( $excluded ) ),
 			'capacity'     => $capacity,
 			'cutoff_hours' => absint( $trip['booking_deadline_hours'] ?? 0 ),
 		) : array();
 
-		if ( ! $dates ) {
-			$notes[] = __( 'no upcoming fixed dates; add departures in the Departures tab.', 'wpinterface-travel' );
+		if ( ! $dates && ! $rules ) {
+			$notes[] = __( 'no upcoming dates; add departures in the Departures tab.', 'wpinterface-travel' );
 		}
+
+		if ( $excluded && count( $rules ) + ( $extra ? 1 : 0 ) > 1 ) {
+			$notes[] = __( 'excluded dates of each Yatra rule now apply to the whole trip; check the Departures tab.', 'wpinterface-travel' );
+		}
+
+		$notes = array_values( array_unique( $notes ) );
 
 		$pricing = $this->pricing( $trip );
 
@@ -275,5 +310,98 @@ final class YatraImporter extends Importer {
 		}
 
 		return array_values( array_filter( array_map( 'trim', $items ) ) );
+	}
+	/**
+	 * A repeating availability rule: a rule when it fits (weekly, every day,
+	 * every 7 days), otherwise dates for the coming year (Nth weekday of the
+	 * month, every N days).
+	 *
+	 * Row: rule_type (weekly, monthly, interval), start_date, end_date,
+	 * days_of_week (JSON 0–6, 0 = Sunday), week_of_month (1–4, 5 = last),
+	 * day_of_week, interval_days, interval_start_date, months (JSON 1–12),
+	 * time_slots (JSON [{departure_time}]) or departure_time.
+	 *
+	 * @param array<string, mixed> $row Row.
+	 * @return array{0: array<string, mixed>|null, 1: list<array{date: string, time: string}>, 2: string} Rule, dates, note.
+	 */
+	private static function repeating( array $row ): array {
+		$json   = static function ( $value ): array {
+			$decoded = is_string( $value ) ? json_decode( $value, true ) : $value;
+
+			return is_array( $decoded ) ? $decoded : ( is_string( $value ) && '' !== trim( $value ) ? explode( ',', $value ) : array() );
+		};
+		$months = array_values( array_filter( array_map( 'intval', $json( $row['months'] ?? '' ) ) ) );
+		$slots  = array_map( static fn( $slot ): string => is_array( $slot ) ? (string) ( $slot['departure_time'] ?? '' ) : '', $json( $row['time_slots'] ?? '' ) );
+		$times  = self::times( array_filter( $slots ) ? $slots : array( (string) ( $row['departure_time'] ?? '' ) ) );
+		$start  = self::ymd( $row['start_date'] ?? '' );
+		$end    = self::ymd( $row['end_date'] ?? '' );
+		$iso    = static fn( int $day ): int => 0 === $day ? 7 : $day;
+		$month  = static fn( \DateTimeImmutable $day ): bool => ! $months || in_array( (int) $day->format( 'n' ), $months, true );
+		$type   = (string) ( $row['rule_type'] ?? 'weekly' );
+		$note   = __( 'repeating dates on certain weeks of the month or every few days were added as dates for the coming year; add more in the Departures tab later.', 'wpinterface-travel' );
+
+		if ( 'weekly' === $type ) {
+			$days = array_map( static fn( $day ): int => $iso( (int) $day ), $json( $row['days_of_week'] ?? '' ) );
+
+			return array( self::rule( $start, $end, $days, $months, $times ), array(), '' );
+		}
+
+		if ( 'interval' === $type ) {
+			$every     = max( 1, (int) ( $row['interval_days'] ?? 1 ) );
+			$reference = self::ymd( '' !== (string) ( $row['interval_start_date'] ?? '' ) ? $row['interval_start_date'] : $start );
+
+			if ( 1 === $every || ( 7 === $every && '' !== $reference ) ) {
+				$weekday = 7 === $every ? array( (int) gmdate( 'N', (int) strtotime( $reference ) ) ) : array();
+
+				return array( self::rule( $start, $end, $weekday, $months, $times ), array(), '' );
+			}
+
+			$origin = (int) strtotime( '' !== $reference ? $reference : current_time( 'Y-m-d' ) );
+
+			return array(
+				null,
+				self::expand( $start, $end, static fn( \DateTimeImmutable $day ): bool => $month( $day ) && 0 === ( (int) round( ( strtotime( $day->format( 'Y-m-d' ) ) - $origin ) / DAY_IN_SECONDS ) ) % $every, $times ),
+				$note,
+			);
+		}
+
+		if ( 'monthly' === $type ) {
+			$week    = (int) ( $row['week_of_month'] ?? 1 );
+			$weekday = $iso( (int) ( $row['day_of_week'] ?? 0 ) );
+
+			return array(
+				null,
+				self::expand(
+					$start,
+					$end,
+					static fn( \DateTimeImmutable $day ): bool => $month( $day )
+						&& (int) $day->format( 'N' ) === $weekday
+						&& ( 5 === $week ? $day->modify( '+7 days' )->format( 'n' ) !== $day->format( 'n' ) : (int) ceil( (int) $day->format( 'j' ) / 7 ) === $week ),
+					$times
+				),
+				$note,
+			);
+		}
+
+		return array( null, array(), '' );
+	}
+
+	/**
+	 * Excluded days from a rule's JSON list of dates and {start, end} periods.
+	 *
+	 * @param mixed $value JSON.
+	 * @return list<string>
+	 */
+	private static function excluded( $value ): array {
+		$items = is_string( $value ) ? json_decode( $value, true ) : $value;
+		$days  = array();
+
+		foreach ( is_array( $items ) ? $items : array() as $item ) {
+			$days = array_merge( $days, is_array( $item ) ? self::days_between( (string) ( $item['start'] ?? '' ), (string) ( $item['end'] ?? '' ) ) : self::days_between( (string) $item, '' ) );
+		}
+
+		$today = current_time( 'Y-m-d' );
+
+		return array_values( array_filter( $days, static fn( string $day ): bool => $day >= $today ) );
 	}
 }

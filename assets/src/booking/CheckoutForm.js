@@ -160,6 +160,7 @@ export default function CheckoutForm( {
 					.filter( ( row ) => row.first_name || row.last_name ),
 				coupon,
 				note,
+				locale: config.locale || '',
 				create_account: createAccount,
 				terms_accepted: terms,
 				gateway: needsPayment ? gateway : '',

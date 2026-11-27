@@ -15,6 +15,7 @@ use WP_REST_Server;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Reviews\Reviews;
 use WPInterface\Travel\Support\RateLimiter;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -107,6 +108,7 @@ final class ReviewsController extends Controller {
 			return new WP_Error( 'wpitravel_trip_not_found', __( 'Trip not found.', 'wpinterface-travel' ), array( 'status' => 404 ) );
 		}
 
+		$trip     = get_post( Multilingual::original_trip_id( $trip->ID ) ) ?? $trip;
 		$summary  = Reviews::summary( $trip->ID );
 		$per_page = (int) $request['per_page'];
 		$response = new WP_REST_Response(

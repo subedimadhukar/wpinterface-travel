@@ -26,6 +26,12 @@ require_once $wpitravel_tests_dir . '/includes/functions.php';
 tests_add_filter(
 	'muplugins_loaded',
 	static function () {
+		// Elementor, for ElementorTest: WPITRAVEL_TESTS_ELEMENTOR=1 with Elementor installed next to the plugin.
+		$elementor = dirname( __DIR__, 3 ) . '/elementor/elementor.php';
+		if ( getenv( 'WPITRAVEL_TESTS_ELEMENTOR' ) && file_exists( $elementor ) ) {
+			require $elementor;
+		}
+
 		require dirname( __DIR__, 2 ) . '/wpinterface-travel.php';
 	}
 );

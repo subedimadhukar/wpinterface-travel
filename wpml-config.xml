@@ -1,0 +1,59 @@
+<wpml-config>
+	<!--
+		WPInterface Travel for WPML (Polylang reads this file too).
+		Translations of a trip share the original trip's dates, seats, prices,
+		bookings and reviews. Numbers and settings are copied; words are translated.
+		Price options are copied once so their names can be translated; the
+		amounts charged always come from the original trip.
+	-->
+	<custom-types>
+		<custom-type translate="1">wpitravel_trip</custom-type>
+	</custom-types>
+	<taxonomies>
+		<taxonomy translate="1">wpitravel_destination</taxonomy>
+		<taxonomy translate="1">wpitravel_activity</taxonomy>
+		<taxonomy translate="1">wpitravel_trip_type</taxonomy>
+	</taxonomies>
+	<custom-fields>
+		<custom-field action="copy">_wpitravel_trip_code</custom-field>
+		<custom-field action="copy">_wpitravel_duration</custom-field>
+		<custom-field action="copy">_wpitravel_difficulty</custom-field>
+		<custom-field action="copy">_wpitravel_group_size</custom-field>
+		<custom-field action="copy">_wpitravel_min_age</custom-field>
+		<custom-field action="copy">_wpitravel_gallery</custom-field>
+		<custom-field action="copy">_wpitravel_map</custom-field>
+		<custom-field action="copy">_wpitravel_departure_rules</custom-field>
+		<custom-field action="copy-once">_wpitravel_pricing</custom-field>
+		<custom-field action="translate">_wpitravel_meeting_point</custom-field>
+		<custom-field action="translate">_wpitravel_highlights</custom-field>
+		<custom-field action="translate">_wpitravel_itinerary</custom-field>
+		<custom-field action="translate">_wpitravel_includes</custom-field>
+		<custom-field action="translate">_wpitravel_excludes</custom-field>
+		<custom-field action="translate">_wpitravel_faqs</custom-field>
+		<custom-field action="translate">_wpitravel_facts</custom-field>
+		<!-- Kept by the plugin itself on every translation. -->
+		<custom-field action="ignore">_wpitravel_rating</custom-field>
+		<custom-field action="ignore">_wpitravel_rating_avg</custom-field>
+		<custom-field action="ignore">_wpitravel_price_from</custom-field>
+		<custom-field action="ignore">_wpitravel_duration_days</custom-field>
+		<custom-field action="ignore">_wpitravel_sample</custom-field>
+		<custom-field action="ignore">_wpitravel_imported_from</custom-field>
+	</custom-fields>
+	<admin-texts>
+		<key name="wpitravel_settings">
+			<key name="emails">
+				<key name="from_name"/>
+				<key name="footer"/>
+				<key name="templates">
+					<key name="*">
+						<key name="subject"/>
+						<key name="body"/>
+					</key>
+				</key>
+			</key>
+			<key name="tax">
+				<key name="label"/>
+			</key>
+		</key>
+	</admin-texts>
+</wpml-config>

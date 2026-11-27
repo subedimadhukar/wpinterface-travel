@@ -30,7 +30,7 @@ while ( have_posts() ) :
 	 * @param string[] $sections Section names (see Parts::sections()).
 	 * @param int      $trip_id  Trip.
 	 */
-	$wpitravel_main = (array) apply_filters( 'wpitravel_single_trip_sections', array( 'facts', 'content', 'highlights', 'itinerary', 'includes', 'map', 'faqs', 'reviews' ), $wpitravel_trip_id );
+	$wpitravel_main = (array) apply_filters( 'wpitravel_single_trip_sections', array( 'facts', 'content', 'highlights', 'itinerary', 'departures', 'includes', 'map', 'faqs', 'reviews' ), $wpitravel_trip_id );
 
 	/**
 	 * Sidebar sections of the single trip template, in order.

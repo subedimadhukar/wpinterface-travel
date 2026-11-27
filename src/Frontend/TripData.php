@@ -15,6 +15,7 @@ use WPInterface\Travel\Content\TripMeta;
 use WPInterface\Travel\Pricing\Pricing;
 use WPInterface\Travel\Reviews\Reviews;
 use WPInterface\Travel\Support\Money;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -86,7 +87,8 @@ final class TripData {
 	public static function price( int $trip_id ): ?array {
 		$currency = (array) wpitravel()->options()->get( 'currency', array() );
 		$decimals = (int) ( $currency['decimals'] ?? 2 );
-		$from     = Pricing::from_price( Pricing::sanitize( get_post_meta( $trip_id, TripMeta::PRICING, true ), $decimals ), '', $decimals );
+		// Translations show the original trip's prices.
+		$from = Pricing::from_price( Pricing::sanitize( get_post_meta( Multilingual::original_trip_id( $trip_id ), TripMeta::PRICING, true ), $decimals ), '', $decimals );
 
 		if ( ! $from ) {
 			return null;

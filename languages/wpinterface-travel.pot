@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T08:52:29+00:00\n"
+"POT-Creation-Date: 2026-11-27T11:03:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -71,6 +71,7 @@ msgstr ""
 #: src/Admin/BookingsPage.php:68
 #: src/Admin/BookingsPage.php:69
 #: src/Admin/BookingsPage.php:131
+#: src/Admin/TripList.php:55
 #: assets/build/bookings.js:1
 #: assets/build/dashboard.js:4
 #: assets/build/dashboard.js:6
@@ -202,28 +203,42 @@ msgstr ""
 msgid "Run setup"
 msgstr ""
 
-#: src/Admin/TripEditor.php:40
+#: src/Admin/TripEditor.php:42
 msgid "Trip details"
 msgstr ""
 
-#: src/Admin/TripEditor.php:110
+#: src/Admin/TripEditor.php:112
 msgid "Trip details need the block editor. Disable the Classic Editor for trips to edit them."
 msgstr ""
 
-#: src/Admin/TripList.php:42
-#: src/Frontend/TripData.php:146
+#: src/Admin/TripEditor.php:143
+msgid "This is a translation. Departures, seats, prices, bookings and reviews come from the original trip; here you translate the texts and the names of price options and traveler types."
+msgstr ""
+
+#: src/Admin/TripEditor.php:145
+msgid "Edit the original trip"
+msgstr ""
+
+#. translators: %s: trip title.
+#: src/Admin/TripList.php:54
+#, php-format
+msgid "Bookings of “%s”"
+msgstr ""
+
+#: src/Admin/TripList.php:76
+#: src/Frontend/TripData.php:148
 #: assets/build/trip-editor.js:9
 msgid "Trip code"
 msgstr ""
 
-#: src/Admin/TripList.php:43
-#: src/Frontend/TripData.php:126
+#: src/Admin/TripList.php:77
+#: src/Frontend/TripData.php:128
 #: assets/build/trip-editor.js:9
 msgid "Duration"
 msgstr ""
 
 #. translators: %d: number of days.
-#: src/Admin/TripList.php:78
+#: src/Admin/TripList.php:112
 #, php-format
 msgid "%d day"
 msgid_plural "%d days"
@@ -231,7 +246,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of nights.
-#: src/Admin/TripList.php:83
+#: src/Admin/TripList.php:117
 #, php-format
 msgid "%d night"
 msgid_plural "%d nights"
@@ -239,7 +254,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: number of hours.
-#: src/Admin/TripList.php:88
+#: src/Admin/TripList.php:122
 #, php-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -399,7 +414,7 @@ msgstr ""
 msgid "There are more traveler names than travelers."
 msgstr ""
 
-#: src/Booking/BookingView.php:55
+#: src/Booking/BookingView.php:56
 #: src/Rest/BookingsAdminController.php:341
 msgid "Recorded by staff"
 msgstr ""
@@ -485,8 +500,8 @@ msgstr ""
 #: src/Booking/QuoteCalculator.php:82
 #: src/Rest/AvailabilityController.php:176
 #: src/Rest/DeparturesController.php:124
-#: src/Rest/ReviewsController.php:107
-#: src/Reviews/Reviews.php:89
+#: src/Rest/ReviewsController.php:108
+#: src/Reviews/Reviews.php:92
 msgid "Trip not found."
 msgstr ""
 
@@ -840,141 +855,420 @@ msgstr ""
 msgid "Dinner"
 msgstr ""
 
-#. translators: %s: email name, e.g. Booking confirmed.
-#: src/Emails/Mailer.php:71
-#, php-format
-msgid "Email sent: %s"
+#: src/Elementor/BookingFormWidget.php:25
+msgid "Booking Form"
 msgstr ""
 
-#. translators: %s: email name, e.g. Booking confirmed.
-#: src/Emails/Mailer.php:71
-#, php-format
-msgid "Email could not be sent: %s"
+#: src/Elementor/Elementor.php:57
+#: src/Frontend/Blocks.php:113
+msgid "Travel"
 msgstr ""
 
-#: src/Emails/Tags.php:52
-msgid "Site name"
+#: src/Elementor/TripDeparturesWidget.php:27
+msgid "Trip Departures"
 msgstr ""
 
-#: src/Emails/Tags.php:53
-msgid "Site address"
+#: src/Elementor/TripDeparturesWidget.php:37
+#: assets/build/blocks.js:1
+msgid "Number of departures"
 msgstr ""
 
-#: src/Emails/Tags.php:58
+#: src/Elementor/TripEnquiryWidget.php:25
+msgid "Enquiry Form"
+msgstr ""
+
+#: src/Elementor/TripFactsWidget.php:25
+msgid "Trip Facts"
+msgstr ""
+
+#: src/Elementor/TripFaqsWidget.php:25
+msgid "Trip FAQs"
+msgstr ""
+
+#: src/Elementor/TripGalleryWidget.php:25
+msgid "Trip Gallery"
+msgstr ""
+
+#: src/Elementor/TripHighlightsWidget.php:25
+msgid "Trip Highlights"
+msgstr ""
+
+#: src/Elementor/TripIncludesWidget.php:25
+msgid "Included and Not Included"
+msgstr ""
+
+#: src/Elementor/TripItineraryWidget.php:27
+msgid "Trip Itinerary"
+msgstr ""
+
+#: src/Elementor/TripItineraryWidget.php:37
+#: templates/parts/itinerary.php:18
+#: assets/build/blocks.js:1
+msgid "Expand all days"
+msgstr ""
+
+#: src/Elementor/TripMapWidget.php:25
+msgid "Trip Map"
+msgstr ""
+
+#: src/Elementor/TripPriceWidget.php:25
+msgid "Trip Price"
+msgstr ""
+
+#: src/Elementor/TripReviewsWidget.php:25
+msgid "Trip Reviews"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:35
+#: src/Elementor/TripSearchWidget.php:56
+msgid "Trip Search"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:61
+#: assets/build/blocks.js:1
+msgid "Fields"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:66
+msgid "Search words"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:67
+#: src/Frontend/BlockTemplates.php:64
+#: src/Frontend/TripData.php:130
+#: templates/parts/search-form.php:17
+#: assets/build/blocks.js:1
+msgid "Destination"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:68
+#: src/Frontend/BlockTemplates.php:65
+#: templates/parts/search-form.php:18
+#: assets/build/blocks.js:1
+msgid "Activity"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:69
+#: templates/parts/search-form.php:19
+#: assets/build/blocks.js:1
+msgid "Trip type"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:70
+#: src/Frontend/TripData.php:129
+#: templates/parts/search-form.php:47
+#: assets/build/blocks.js:1
+#: assets/build/trip-editor.js:9
+msgid "Difficulty"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:71
+msgid "Length"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:72
+#: src/Elementor/TripsWidget.php:133
+#: templates/voucher/voucher.php:89
+#: assets/build/blocks.js:1
+msgid "Price"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:73
+#: assets/build/blocks.js:1
+msgid "Sort"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:81
+#: assets/build/blocks.js:1
+msgid "Show results on"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:84
+#: assets/build/blocks.js:1
+msgid "The trips page"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:85
+msgid "This page (with a Trips widget)"
+msgstr ""
+
+#: src/Elementor/TripSearchWidget.php:93
+#: assets/build/blocks.js:1
+msgid "Button text"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:31
+#: src/Elementor/TripsWidget.php:52
+#: assets/build/blocks.js:1
+#: assets/build/settings.js:3
+#: assets/build/setup.js:5
+msgid "Trips"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:57
+#: assets/build/blocks.js:1
+msgid "Number of trips"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:67
+#: assets/build/blocks.js:1
+msgid "Layout"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:70
+#: assets/build/blocks.js:1
+msgid "Grid"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:71
+#: assets/build/blocks.js:1
+msgid "List"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:79
+#: assets/build/blocks.js:1
+msgid "Columns"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:90
+#: templates/parts/search-form.php:85
+#: assets/build/blocks.js:1
+msgid "Sort by"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:93
+#: src/Frontend/Blocks.php:243
+#: src/Frontend/Parts.php:392
+msgid "Recommended"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:94
+#: src/Frontend/Blocks.php:247
+msgid "Newest"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:95
+#: src/Frontend/Blocks.php:251
+#: src/Frontend/Parts.php:393
+msgid "Price: low to high"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:96
+#: src/Frontend/Blocks.php:255
+#: src/Frontend/Parts.php:394
+msgid "Price: high to low"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:97
 #: src/Frontend/Blocks.php:259
-#: src/Frontend/Parts.php:351
+#: src/Frontend/Parts.php:395
+msgid "Shortest first"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:98
+#: src/Frontend/Blocks.php:263
+#: src/Frontend/Parts.php:396
+msgid "Top rated"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:99
+#: src/Emails/Tags.php:59
+#: src/Frontend/Blocks.php:267
+#: src/Frontend/Parts.php:397
 #: src/Privacy/PersonalData.php:182
 #: templates/voucher/voucher.php:78
 #: assets/build/booking.js:16
 msgid "Name"
 msgstr ""
 
-#: src/Emails/Tags.php:59
+#: src/Elementor/TripsWidget.php:106
+#: assets/build/settings.js:3
+msgid "Destinations"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:107
+#: src/Frontend/TripData.php:131
+#: assets/build/settings.js:3
+msgid "Activities"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:108
+#: assets/build/settings.js:3
+msgid "Trip types"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:125
+#: assets/build/blocks.js:1
+msgid "Follow the search form"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:126
+msgid "Apply filters from a Trip Search widget on this page."
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:134
+#: src/Reviews/Reviews.php:328
+#: assets/build/blocks.js:1
+msgid "Rating"
+msgstr ""
+
+#: src/Elementor/TripsWidget.php:135
+#: assets/build/blocks.js:1
+msgid "Excerpt"
+msgstr ""
+
+#: src/Elementor/Widget.php:85
+msgid "Shows the trip's details on a trip page, or pick a trip in the widget settings."
+msgstr ""
+
+#: src/Elementor/Widget.php:98
+#: src/Privacy/PersonalData.php:97
+#: src/Privacy/PersonalData.php:157
+#: templates/voucher/voucher.php:55
+#: templates/voucher/voucher.php:57
+#: assets/build/blocks.js:1
+#: assets/build/bookings.js:1
+#: assets/build/bookings.js:4
+#: assets/build/bookings.js:9
+#: assets/build/dashboard.js:6
+#: assets/build/enquiries.js:2
+msgid "Trip"
+msgstr ""
+
+#: src/Elementor/Widget.php:103
+msgid "Leave empty on trip pages and trip templates to show the current trip."
+msgstr ""
+
+#: src/Elementor/Widget.php:134
+msgid "Current trip"
+msgstr ""
+
+#. translators: %s: email name, e.g. Booking confirmed.
+#: src/Emails/Mailer.php:79
+#, php-format
+msgid "Email sent: %s"
+msgstr ""
+
+#. translators: %s: email name, e.g. Booking confirmed.
+#: src/Emails/Mailer.php:79
+#, php-format
+msgid "Email could not be sent: %s"
+msgstr ""
+
+#: src/Emails/Tags.php:53
+msgid "Site name"
+msgstr ""
+
+#: src/Emails/Tags.php:54
+msgid "Site address"
+msgstr ""
+
+#: src/Emails/Tags.php:60
 #: assets/build/booking.js:7
 #: assets/build/booking.js:16
 #: assets/build/bookings.js:9
 msgid "Email"
 msgstr ""
 
-#: src/Emails/Tags.php:60
+#: src/Emails/Tags.php:61
 #: src/Privacy/PersonalData.php:186
 #: assets/build/booking.js:7
 #: assets/build/bookings.js:9
 msgid "Phone"
 msgstr ""
 
-#: src/Emails/Tags.php:61
+#: src/Emails/Tags.php:62
 #: src/Privacy/PersonalData.php:190
 #: assets/build/emails.js:2
 #: assets/build/enquiries.js:2
 msgid "Message"
 msgstr ""
 
-#: src/Emails/Tags.php:62
+#: src/Emails/Tags.php:63
 msgid "Trip name (or \"our trips\")"
 msgstr ""
 
-#: src/Emails/Tags.php:63
-#: src/Emails/Tags.php:85
+#: src/Emails/Tags.php:64
+#: src/Emails/Tags.php:86
 msgid "Trip page address"
 msgstr ""
 
-#: src/Emails/Tags.php:73
+#: src/Emails/Tags.php:74
 msgid "Booking number, e.g. TRV-1042"
 msgstr ""
 
-#: src/Emails/Tags.php:74
+#: src/Emails/Tags.php:75
 #: assets/build/bookings.js:5
 msgid "Booking status"
 msgstr ""
 
-#: src/Emails/Tags.php:75
+#: src/Emails/Tags.php:76
 msgid "Link to see and manage the booking"
 msgstr ""
 
-#: src/Emails/Tags.php:76
+#: src/Emails/Tags.php:77
 msgid "Link to the printable voucher"
 msgstr ""
 
-#: src/Emails/Tags.php:77
+#: src/Emails/Tags.php:78
 msgid "Link to write a review"
 msgstr ""
 
-#: src/Emails/Tags.php:78
+#: src/Emails/Tags.php:79
 msgid "Table of travelers, prices and totals"
 msgstr ""
 
-#: src/Emails/Tags.php:79
+#: src/Emails/Tags.php:80
 msgid "Customer full name"
 msgstr ""
 
-#: src/Emails/Tags.php:80
+#: src/Emails/Tags.php:81
 msgid "Customer first name"
 msgstr ""
 
-#: src/Emails/Tags.php:81
+#: src/Emails/Tags.php:82
 msgid "Customer email"
 msgstr ""
 
-#: src/Emails/Tags.php:82
+#: src/Emails/Tags.php:83
 msgid "Customer phone"
 msgstr ""
 
-#: src/Emails/Tags.php:83
+#: src/Emails/Tags.php:84
 #: assets/build/bookings.js:4
 msgid "Note from the customer"
 msgstr ""
 
-#: src/Emails/Tags.php:84
+#: src/Emails/Tags.php:85
 msgid "Trip name"
 msgstr ""
 
-#: src/Emails/Tags.php:86
+#: src/Emails/Tags.php:87
 msgid "Departure date"
 msgstr ""
 
-#: src/Emails/Tags.php:87
+#: src/Emails/Tags.php:88
 #: assets/build/booking.js:2
 msgid "Start time"
 msgstr ""
 
-#: src/Emails/Tags.php:88
+#: src/Emails/Tags.php:89
 msgid "Return date"
 msgstr ""
 
-#: src/Emails/Tags.php:89
-#: src/Frontend/TripData.php:145
+#: src/Emails/Tags.php:90
+#: src/Frontend/TripData.php:147
 #: templates/voucher/voucher.php:69
 #: assets/build/trip-editor.js:9
 msgid "Meeting point"
 msgstr ""
 
-#: src/Emails/Tags.php:90
+#: src/Emails/Tags.php:91
 msgid "Number of travelers"
 msgstr ""
 
-#: src/Emails/Tags.php:91
-#: src/Emails/Tags.php:280
+#: src/Emails/Tags.php:92
+#: src/Emails/Tags.php:284
 #: src/Privacy/PersonalData.php:109
 #: templates/voucher/voucher.php:98
 #: assets/build/account.js:3
@@ -985,31 +1279,31 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: src/Emails/Tags.php:92
+#: src/Emails/Tags.php:93
 msgid "Amount paid"
 msgstr ""
 
-#: src/Emails/Tags.php:93
+#: src/Emails/Tags.php:94
 msgid "Balance to pay"
 msgstr ""
 
-#: src/Emails/Tags.php:94
+#: src/Emails/Tags.php:95
 msgid "Amount of the payment just received"
 msgstr ""
 
-#: src/Emails/Tags.php:95
+#: src/Emails/Tags.php:96
 msgid "Payment method"
 msgstr ""
 
-#: src/Emails/Tags.php:96
+#: src/Emails/Tags.php:97
 msgid "Bank details or other payment instructions"
 msgstr ""
 
-#: src/Emails/Tags.php:97
+#: src/Emails/Tags.php:98
 msgid "Reason given for cancelling"
 msgstr ""
 
-#: src/Emails/Tags.php:189
+#: src/Emails/Tags.php:193
 msgid "our trips"
 msgstr ""
 
@@ -1311,45 +1605,12 @@ msgstr ""
 msgid "Turn on JavaScript to see your bookings."
 msgstr ""
 
-#: src/Frontend/Blocks.php:112
-msgid "Travel"
-msgstr ""
-
-#: src/Frontend/Blocks.php:137
+#: src/Frontend/Blocks.php:138
 msgid "Shows the trip's details on a trip page, or pick a trip in the block settings."
 msgstr ""
 
-#: src/Frontend/Blocks.php:144
+#: src/Frontend/Blocks.php:152
 msgid "This trip has nothing to show here yet."
-msgstr ""
-
-#: src/Frontend/Blocks.php:235
-#: src/Frontend/Parts.php:346
-msgid "Recommended"
-msgstr ""
-
-#: src/Frontend/Blocks.php:239
-msgid "Newest"
-msgstr ""
-
-#: src/Frontend/Blocks.php:243
-#: src/Frontend/Parts.php:347
-msgid "Price: low to high"
-msgstr ""
-
-#: src/Frontend/Blocks.php:247
-#: src/Frontend/Parts.php:348
-msgid "Price: high to low"
-msgstr ""
-
-#: src/Frontend/Blocks.php:251
-#: src/Frontend/Parts.php:349
-msgid "Shortest first"
-msgstr ""
-
-#: src/Frontend/Blocks.php:255
-#: src/Frontend/Parts.php:350
-msgid "Top rated"
 msgstr ""
 
 #: src/Frontend/BlockTemplates.php:51
@@ -1368,19 +1629,6 @@ msgstr ""
 msgid "Lists all trips with search and filters."
 msgstr ""
 
-#: src/Frontend/BlockTemplates.php:64
-#: src/Frontend/TripData.php:128
-#: templates/parts/search-form.php:17
-#: assets/build/blocks.js:1
-msgid "Destination"
-msgstr ""
-
-#: src/Frontend/BlockTemplates.php:65
-#: templates/parts/search-form.php:18
-#: assets/build/blocks.js:1
-msgid "Activity"
-msgstr ""
-
 #: src/Frontend/BlockTemplates.php:66
 msgid "Trip Type"
 msgstr ""
@@ -1391,29 +1639,29 @@ msgstr ""
 msgid "Lists the trips of a %s."
 msgstr ""
 
-#: src/Frontend/BookingWidget.php:87
+#: src/Frontend/BookingWidget.php:88
 msgid "Turn on JavaScript to send us a message."
 msgstr ""
 
-#: src/Frontend/BookingWidget.php:155
+#: src/Frontend/BookingWidget.php:156
 msgid "Turn on JavaScript to book this trip."
 msgstr ""
 
-#: src/Frontend/Parts.php:313
+#: src/Frontend/Parts.php:359
 #: assets/build/blocks.js:1
 msgid "Find trips"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:88
+#: src/Frontend/ReviewsDisplay.php:91
 msgid "Reviews"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:90
+#: src/Frontend/ReviewsDisplay.php:93
 msgid "No reviews yet. Travelled with us? Be the first to share how it went."
 msgstr ""
 
 #. translators: 1: average rating, 2: number of reviews.
-#: src/Frontend/ReviewsDisplay.php:98
+#: src/Frontend/ReviewsDisplay.php:101
 #, php-format
 msgid "%1$s out of 5 · %2$d review"
 msgid_plural "%1$s out of 5 · %2$d reviews"
@@ -1421,119 +1669,107 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: stars out of 5.
-#: src/Frontend/ReviewsDisplay.php:109
-#: src/Reviews/Reviews.php:344
+#: src/Frontend/ReviewsDisplay.php:112
+#: src/Reviews/Reviews.php:349
 #, php-format
 msgid "%d out of 5 stars"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:119
+#: src/Frontend/ReviewsDisplay.php:122
 msgid "Verified traveler"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:126
+#: src/Frontend/ReviewsDisplay.php:129
 msgid "More reviews"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:168
+#: src/Frontend/ReviewsDisplay.php:171
 msgid "Thank you! Your review will appear once we have checked it."
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:169
+#: src/Frontend/ReviewsDisplay.php:172
 msgid "Thank you! Your review is now live."
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:170
-#: src/Reviews/Reviews.php:97
+#: src/Frontend/ReviewsDisplay.php:173
+#: src/Reviews/Reviews.php:100
 #: assets/build/account.js:2
 msgid "Choose 1 to 5 stars."
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:171
+#: src/Frontend/ReviewsDisplay.php:174
 msgid "Your review could not be sent. Try again."
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:177
+#: src/Frontend/ReviewsDisplay.php:180
 msgid "Write a review"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:180
+#: src/Frontend/ReviewsDisplay.php:183
 #: assets/build/account.js:2
 msgid "Your rating"
 msgstr ""
 
 #. translators: %d: stars out of 5.
-#: src/Frontend/ReviewsDisplay.php:184
-#: src/Frontend/ReviewsDisplay.php:186
+#: src/Frontend/ReviewsDisplay.php:187
+#: src/Frontend/ReviewsDisplay.php:189
 #, php-format
 msgid "%d star"
 msgid_plural "%d stars"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Frontend/ReviewsDisplay.php:193
+#: src/Frontend/ReviewsDisplay.php:196
 msgid "Your name"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:197
+#: src/Frontend/ReviewsDisplay.php:200
 msgid "Email (not shown)"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:202
+#: src/Frontend/ReviewsDisplay.php:205
 #: assets/build/account.js:3
 msgid "Title (optional)"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:206
+#: src/Frontend/ReviewsDisplay.php:209
 #: assets/build/account.js:3
 msgid "Your review"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:210
+#: src/Frontend/ReviewsDisplay.php:213
 msgid "Send review"
 msgstr ""
 
-#: src/Frontend/ReviewsDisplay.php:211
+#: src/Frontend/ReviewsDisplay.php:214
 msgid "Turn on JavaScript to send a review."
 msgstr ""
 
-#: src/Frontend/TripData.php:127
-#: templates/parts/search-form.php:47
-#: assets/build/blocks.js:1
-#: assets/build/trip-editor.js:9
-msgid "Difficulty"
-msgstr ""
-
-#: src/Frontend/TripData.php:129
-#: assets/build/settings.js:3
-msgid "Activities"
-msgstr ""
-
-#: src/Frontend/TripData.php:134
+#: src/Frontend/TripData.php:136
 #: assets/build/trip-editor.js:9
 msgid "Group size"
 msgstr ""
 
 #. translators: 1: minimum, 2: maximum travelers.
-#: src/Frontend/TripData.php:137
+#: src/Frontend/TripData.php:139
 #, php-format
 msgid "%1$d–%2$d people"
 msgstr ""
 
 #. translators: %d: minimum travelers.
-#: src/Frontend/TripData.php:139
+#: src/Frontend/TripData.php:141
 #, php-format
 msgid "From %d people"
 msgstr ""
 
 #. translators: %d: minimum age.
-#: src/Frontend/TripData.php:144
+#: src/Frontend/TripData.php:146
 #: assets/build/trip-editor.js:9
 msgid "Minimum age"
 msgstr ""
 
 #. translators: %d: minimum age.
-#: src/Frontend/TripData.php:144
+#: src/Frontend/TripData.php:146
 #, php-format
 msgid "%d years"
 msgstr ""
@@ -1570,19 +1806,39 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
-#: src/Import/WpTravelEngineImporter.php:133
-#: src/Import/WpTravelImporter.php:125
-#: src/Import/YatraImporter.php:174
+#: src/Import/WpTravelEngineImporter.php:135
+#: src/Import/WpTravelImporter.php:122
+#: src/Import/YatraImporter.php:209
 msgid "no prices found; add them in the Pricing tab."
 msgstr ""
 
-#: src/Import/WpTravelEngineImporter.php:137
-#: src/Import/YatraImporter.php:168
-msgid "no upcoming fixed dates; add departures in the Departures tab."
+#: src/Import/WpTravelEngineImporter.php:139
+#: src/Import/YatraImporter.php:197
+msgid "no upcoming dates; add departures in the Departures tab."
 msgstr ""
 
-#: src/Import/WpTravelImporter.php:121
-msgid "repeating dates were not imported; add them in the Departures tab."
+#: src/Import/WpTravelEngineImporter.php:253
+msgid "repeating dates saved by WP Travel Engine before version 5 were not imported; add them in the Departures tab."
+msgstr ""
+
+#: src/Import/WpTravelEngineImporter.php:313
+msgid "repeating dates that repeat monthly, yearly or a set number of times were added as dates for the coming year; add more in the Departures tab later."
+msgstr ""
+
+#: src/Import/WpTravelImporter.php:226
+msgid "excluded dates that repeat or close only some start times were not imported; check the Departures tab."
+msgstr ""
+
+#: src/Import/WpTravelImporter.php:293
+msgid "repeating dates on certain days of the month or in separate years were added as dates for the coming year; add more in the Departures tab later."
+msgstr ""
+
+#: src/Import/YatraImporter.php:201
+msgid "excluded dates of each Yatra rule now apply to the whole trip; check the Departures tab."
+msgstr ""
+
+#: src/Import/YatraImporter.php:341
+msgid "repeating dates on certain weeks of the month or every few days were added as dates for the coming year; add more in the Departures tab later."
 msgstr ""
 
 #: src/Options.php:207
@@ -1879,19 +2135,6 @@ msgstr ""
 msgid "Booking number"
 msgstr ""
 
-#: src/Privacy/PersonalData.php:97
-#: src/Privacy/PersonalData.php:157
-#: templates/voucher/voucher.php:55
-#: templates/voucher/voucher.php:57
-#: assets/build/blocks.js:1
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:9
-#: assets/build/dashboard.js:6
-#: assets/build/enquiries.js:2
-msgid "Trip"
-msgstr ""
-
 #: src/Privacy/PersonalData.php:101
 #: src/Privacy/PersonalData.php:178
 #: templates/voucher/voucher.php:59
@@ -1988,9 +2231,13 @@ msgstr ""
 msgid "Staff only: price dates past their booking cut-off, as when entering a booking by hand."
 msgstr ""
 
-#: src/Rest/BookingController.php:377
+#: src/Rest/BookingController.php:112
+msgid "Language of the page the booking was made on, e.g. fr_FR. Emails use it."
+msgstr ""
+
+#: src/Rest/BookingController.php:384
 #: src/Rest/PaymentsController.php:143
-#: src/Rest/ReviewsController.php:133
+#: src/Rest/ReviewsController.php:135
 msgid "Too many requests. Wait a few minutes and try again."
 msgstr ""
 
@@ -2117,45 +2364,40 @@ msgstr ""
 msgid "Unknown importer."
 msgstr ""
 
-#: src/Reviews/Reviews.php:101
+#: src/Reviews/Reviews.php:104
 msgid "Write a review of 10 to 5000 characters."
 msgstr ""
 
-#: src/Reviews/Reviews.php:148
+#: src/Reviews/Reviews.php:151
 msgid "Your review could not be saved. Try again."
 msgstr ""
 
-#: src/Reviews/Reviews.php:154
+#: src/Reviews/Reviews.php:157
 msgid "Customer wrote a review."
 msgstr ""
 
-#: src/Reviews/Reviews.php:310
+#: src/Reviews/Reviews.php:315
 #: assets/build/settings.js:3
 msgid "Trip reviews"
 msgstr ""
 
-#: src/Reviews/Reviews.php:323
-#: assets/build/blocks.js:1
-msgid "Rating"
-msgstr ""
-
-#: src/Reviews/Reviews.php:346
+#: src/Reviews/Reviews.php:351
 msgid "Verified booking"
 msgstr ""
 
-#: src/Reviews/Reviews.php:364
+#: src/Reviews/Reviews.php:369
 msgid "We could not find your booking for this trip."
 msgstr ""
 
-#: src/Reviews/Reviews.php:368
+#: src/Reviews/Reviews.php:373
 msgid "This booking cannot be reviewed (yet), or was already reviewed."
 msgstr ""
 
-#: src/Reviews/Reviews.php:382
+#: src/Reviews/Reviews.php:387
 msgid "Only travelers who booked this trip can review it, from the link in their booking."
 msgstr ""
 
-#: src/Reviews/Reviews.php:389
+#: src/Reviews/Reviews.php:394
 msgid "Enter your name and a valid email address."
 msgstr ""
 
@@ -2857,6 +3099,41 @@ msgstr ""
 msgid "Zambian kwacha"
 msgstr ""
 
+#: templates/parts/departures.php:15
+msgid "Upcoming departures"
+msgstr ""
+
+#: templates/parts/departures.php:35
+#: assets/build/booking.js:2
+msgid "Full"
+msgstr ""
+
+#. translators: %d: seats left.
+#: templates/parts/departures.php:38
+#, php-format
+msgid "%d seat left"
+msgid_plural "%d seats left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/parts/departures.php:44
+#: templates/parts/price.php:17
+#: templates/parts/trip-card.php:57
+#: assets/build/enquiries.js:2
+#: assets/build/trip-editor.js:7
+msgid "From"
+msgstr ""
+
+#: templates/parts/departures.php:50
+msgid "Book"
+msgstr ""
+
+#. translators: %s: departure date.
+#: templates/parts/departures.php:54
+#, php-format
+msgid "the departure on %s"
+msgstr ""
+
 #: templates/parts/faqs.php:15
 msgid "Questions"
 msgstr ""
@@ -2880,18 +3157,22 @@ msgstr ""
 msgid "Itinerary"
 msgstr ""
 
+#: templates/parts/itinerary.php:18
+msgid "Collapse all days"
+msgstr ""
+
 #. translators: %d: day number.
-#: templates/parts/itinerary.php:24
+#: templates/parts/itinerary.php:28
 #: assets/build/trip-editor.js:13
 #, php-format,js-format
 msgid "Day %d"
 msgstr ""
 
-#: templates/parts/itinerary.php:34
+#: templates/parts/itinerary.php:38
 msgid "Meals:"
 msgstr ""
 
-#: templates/parts/itinerary.php:37
+#: templates/parts/itinerary.php:41
 msgid "Stay:"
 msgstr ""
 
@@ -2912,13 +3193,6 @@ msgstr ""
 msgid "Open in OpenStreetMap"
 msgstr ""
 
-#: templates/parts/price.php:17
-#: templates/parts/trip-card.php:57
-#: assets/build/enquiries.js:2
-#: assets/build/trip-editor.js:7
-msgid "From"
-msgstr ""
-
 #: templates/parts/price.php:19
 #: templates/parts/trip-card.php:59
 #: assets/build/booking.js:2
@@ -2933,11 +3207,6 @@ msgstr ""
 
 #: templates/parts/price.php:24
 msgid "per person"
-msgstr ""
-
-#: templates/parts/search-form.php:19
-#: assets/build/blocks.js:1
-msgid "Trip type"
 msgstr ""
 
 #: templates/parts/search-form.php:26
@@ -2992,11 +3261,6 @@ msgstr ""
 msgid "Maximum price"
 msgstr ""
 
-#: templates/parts/search-form.php:85
-#: assets/build/blocks.js:1
-msgid "Sort by"
-msgstr ""
-
 #. translators: 1: average rating, 2: number of reviews.
 #: templates/parts/trip-card.php:42
 #, php-format
@@ -3044,11 +3308,6 @@ msgstr ""
 
 #: templates/voucher/voucher.php:84
 msgid "Also traveling"
-msgstr ""
-
-#: templates/voucher/voucher.php:89
-#: assets/build/blocks.js:1
-msgid "Price"
 msgstr ""
 
 #: templates/voucher/voucher.php:106
@@ -3187,21 +3446,11 @@ msgid "Leave at 0 to show the trip of the page it is on."
 msgstr ""
 
 #: assets/build/blocks.js:1
-#: assets/build/settings.js:3
-#: assets/build/setup.js:5
-msgid "Trips"
-msgstr ""
-
-#: assets/build/blocks.js:1
 msgid "Use the page’s trips"
 msgstr ""
 
 #: assets/build/blocks.js:1
 msgid "On trip archive and destination pages, list the trips of that page."
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Number of trips"
 msgstr ""
 
 #: assets/build/blocks.js:1
@@ -3225,10 +3474,6 @@ msgid "Comma-separated, in the order to show them."
 msgstr ""
 
 #: assets/build/blocks.js:1
-msgid "Follow the search form"
-msgstr ""
-
-#: assets/build/blocks.js:1
 msgid "Apply filters from a Trip Search block on this page."
 msgstr ""
 
@@ -3237,35 +3482,7 @@ msgid "Display"
 msgstr ""
 
 #: assets/build/blocks.js:1
-msgid "Layout"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Grid"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "List"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Columns"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Excerpt"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Fields"
-msgstr ""
-
-#: assets/build/blocks.js:1
 msgid "Keyword"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Sort"
 msgstr ""
 
 #: assets/build/blocks.js:1
@@ -3273,23 +3490,7 @@ msgid "Results"
 msgstr ""
 
 #: assets/build/blocks.js:1
-msgid "Show results on"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "The trips page"
-msgstr ""
-
-#: assets/build/blocks.js:1
 msgid "This page (with a Trips block that follows the search form)"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Button text"
-msgstr ""
-
-#: assets/build/blocks.js:1
-msgid "Expand all days"
 msgstr ""
 
 #: assets/build/booking.js:1
@@ -3304,10 +3505,6 @@ msgstr ""
 #: assets/build/booking.js:2
 #, js-format
 msgid "%1$s, from %2$s"
-msgstr ""
-
-#: assets/build/booking.js:2
-msgid "Full"
 msgstr ""
 
 #: assets/build/booking.js:2
@@ -4467,14 +4664,6 @@ msgid "Permalinks"
 msgstr ""
 
 #: assets/build/settings.js:3
-msgid "Destinations"
-msgstr ""
-
-#: assets/build/settings.js:3
-msgid "Trip types"
-msgstr ""
-
-#: assets/build/settings.js:3
 msgid "Data"
 msgstr ""
 
@@ -5226,6 +5415,36 @@ msgstr ""
 #: blocks/booking-form/block.json
 msgctxt "block keyword"
 msgid "checkout"
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block title"
+msgid "Trip Departures"
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block description"
+msgid "Upcoming departure dates with seats left, prices and a Book button."
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block keyword"
+msgid "dates"
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block keyword"
+msgid "departures"
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block keyword"
+msgid "seats"
+msgstr ""
+
+#: blocks/trip-departures/block.json
+msgctxt "block keyword"
+msgid "calendar"
 msgstr ""
 
 #: blocks/trip-enquiry/block.json

@@ -14,6 +14,7 @@ use WPInterface\Travel\Booking\BookingAccess;
 use WPInterface\Travel\Booking\BookingRepository;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Emails\Triggers;
+use WPInterface\Travel\Support\Multilingual;
 use WPInterface\Travel\Support\RateLimiter;
 
 defined( 'ABSPATH' ) || exit;
@@ -83,7 +84,9 @@ final class Reviews {
 	 * @return array<string, mixed>|WP_Error The review and whether it is published.
 	 */
 	public function create( int $trip_id, array $data ) {
-		$trip = get_post( $trip_id );
+		// Reviews of any translation belong to the original trip.
+		$trip_id = Multilingual::original_trip_id( $trip_id );
+		$trip    = get_post( $trip_id );
 
 		if ( ! wpitravel()->options()->get( 'reviews.enabled', true ) || ! $trip instanceof WP_Post || PostTypes::TRIP !== $trip->post_type || 'publish' !== $trip->post_status ) {
 			return self::error( 'wpitravel_trip_not_found', __( 'Trip not found.', 'wpinterface-travel' ), 404 );
@@ -219,7 +222,8 @@ final class Reviews {
 	 * @param int $trip_id Trip.
 	 */
 	public static function recalculate( int $trip_id ): void {
-		$ids = get_comments(
+		$trip_id = Multilingual::original_trip_id( $trip_id );
+		$ids     = get_comments(
 			array(
 				'type'    => self::TYPE,
 				'post_id' => $trip_id,
@@ -246,15 +250,16 @@ final class Reviews {
 			$sum += $stars * $number;
 		}
 
-		update_post_meta(
-			$trip_id,
-			self::RATING_META,
-			array(
-				'average'      => $count ? round( $sum / $count, 1 ) : 0.0,
-				'count'        => $count,
-				'distribution' => $distribution,
-			)
+		$summary = array(
+			'average'      => $count ? round( $sum / $count, 1 ) : 0.0,
+			'count'        => $count,
+			'distribution' => $distribution,
 		);
+
+		// Translations show the same rating, and sort by it in their language.
+		foreach ( Multilingual::translations( $trip_id ) as $id ) {
+			update_post_meta( $id, self::RATING_META, $summary );
+		}
 	}
 
 	/**

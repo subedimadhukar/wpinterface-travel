@@ -15,6 +15,7 @@ use WPInterface\Travel\Payments\Gateway;
 use WPInterface\Travel\Payments\Gateways;
 use WPInterface\Travel\Pricing\Pricing;
 use WPInterface\Travel\Support\Currencies;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -173,6 +174,7 @@ final class BookingWidget {
 			'currency'       => array_merge( $currency, array( 'symbol' => Currencies::all()[ $code ]['symbol'] ?? $code ) ),
 			'taxIncluded'    => $options->get( 'tax.enabled' ) && $options->get( 'tax.prices_include_tax' ),
 			'holdMinutes'    => (int) $options->get( 'booking.hold_minutes', 15 ),
+			'locale'         => determine_locale(),
 			'guestCheckout'  => (bool) $options->get( 'booking.guest_checkout', true ),
 			'createAccounts' => (bool) $options->get( 'booking.create_accounts', false ),
 			'terms'          => $terms_id && 'publish' === get_post_status( $terms_id )
@@ -213,7 +215,10 @@ final class BookingWidget {
 	 */
 	public static function trip_data( WP_Post $trip ): array {
 		$decimals = (int) wpitravel()->options()->get( 'currency.decimals', 2 );
-		$pricing  = Pricing::sanitize( get_post_meta( $trip->ID, TripMeta::PRICING, true ), $decimals );
+		// A translated trip books the original: its prices, dates and seats.
+		$original = Multilingual::original_trip_id( $trip->ID );
+		$pricing  = Pricing::sanitize( get_post_meta( $original, TripMeta::PRICING, true ), $decimals );
+		$labels   = $original !== $trip->ID ? self::labels( Pricing::sanitize( get_post_meta( $trip->ID, TripMeta::PRICING, true ), $decimals ) ) : array();
 		$options  = array();
 
 		foreach ( $pricing['options'] as $option ) {
@@ -222,7 +227,7 @@ final class BookingWidget {
 			foreach ( $option['categories'] as $category ) {
 				$categories[] = array(
 					'key'     => $category['key'],
-					'label'   => $category['label'],
+					'label'   => $labels[ $option['key'] . '/' . $category['key'] ] ?? $category['label'],
 					'price'   => Pricing::effective_price( $category, $decimals ),
 					'regular' => $category['price'],
 					'min'     => $category['min'],
@@ -232,7 +237,7 @@ final class BookingWidget {
 
 			$options[] = array(
 				'key'        => $option['key'],
-				'label'      => $option['label'],
+				'label'      => $labels[ $option['key'] ] ?? $option['label'],
 				'minPax'     => $option['min_pax'],
 				'maxPax'     => $option['max_pax'],
 				'categories' => $categories,
@@ -248,11 +253,31 @@ final class BookingWidget {
 		return (array) apply_filters(
 			'wpitravel_booking_trip_data',
 			array(
-				'id'      => $trip->ID,
+				'id'      => $original,
 				'title'   => get_the_title( $trip ),
 				'options' => $options,
 			),
 			$trip
 		);
+	}
+	/**
+	 * Translated names of price options and traveler types, by key
+	 * ("option" and "option/category").
+	 *
+	 * @param array<string, mixed> $pricing Sanitized pricing of a translation.
+	 * @return array<string, string>
+	 */
+	private static function labels( array $pricing ): array {
+		$labels = array();
+
+		foreach ( (array) ( $pricing['options'] ?? array() ) as $option ) {
+			$labels[ (string) $option['key'] ] = (string) $option['label'];
+
+			foreach ( (array) $option['categories'] as $category ) {
+				$labels[ $option['key'] . '/' . $category['key'] ] = (string) $category['label'];
+			}
+		}
+
+		return array_filter( $labels, static fn( string $label ): bool => '' !== $label );
 	}
 }

@@ -108,6 +108,12 @@ final class BookingController extends Controller {
 						'sanitize_callback' => 'sanitize_textarea_field',
 						'default'           => '',
 					),
+					'locale'         => array(
+						'description'       => __( 'Language of the page the booking was made on, e.g. fr_FR. Emails use it.', 'wpinterface-travel' ),
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+						'default'           => '',
+					),
 					'create_account' => array(
 						'type'    => 'boolean',
 						'default' => false,
@@ -286,6 +292,7 @@ final class BookingController extends Controller {
 				'travelers'      => (array) $request['travelers'],
 				'coupon'         => (string) $request['coupon'],
 				'note'           => (string) $request['note'],
+				'locale'         => (string) $request['locale'],
 				'create_account' => (bool) $request['create_account'],
 				'terms_accepted' => (bool) $request['terms_accepted'],
 				'gateway'        => (string) $request['gateway'],

@@ -60,7 +60,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wp: [ '6.7', 'latest' ]
+        # 6.7.2: earlier 6.7 releases reject underscores in block template names.
+        wp: [ '6.7.2', 'latest' ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -80,6 +81,12 @@ jobs:
       - run: npx wp-env start
       # wp-env mounts the plugin under the checkout folder's name.
       - run: npx wp-env run tests-cli --env-cwd=wp-content/plugins/$(basename "$PWD") vendor/bin/phpunit
+      # The Elementor widgets, against the current Elementor release.
+      - name: Elementor widgets
+        if: matrix.wp == 'latest'
+        run: |
+          npx wp-env run tests-cli wp plugin install elementor
+          npx wp-env run tests-cli --env-cwd=wp-content/plugins/$(basename "$PWD") env WPITRAVEL_TESTS_ELEMENTOR=1 vendor/bin/phpunit --filter ElementorTest
 
   plugin-check:
     name: Plugin Check

@@ -193,7 +193,8 @@ class SetupImportTest extends WP_UnitTestCase {
 		global $wpdb;
 		$pricings  = $this->table( 'wt_pricings', 'title varchar(255), trip_id bigint(20), min_pax int, max_pax int, sort_order int DEFAULT 0' );
 		$relations = $this->table( 'wt_price_category_relation', 'pricing_id bigint(20), pricing_category_id bigint(20), regular_price varchar(20), is_sale varchar(5), sale_price varchar(20)' );
-		$dates     = $this->table( 'wt_dates', 'trip_id bigint(20), start_date date, recurring tinyint(1) DEFAULT 0' );
+		$dates     = $this->table( 'wt_dates', "trip_id bigint(20), start_date date, end_date date NULL, recurring tinyint(1) DEFAULT 0, years varchar(255) DEFAULT '', months varchar(255) DEFAULT '', days varchar(255) DEFAULT '', date_days varchar(255) DEFAULT '', trip_time varchar(255) DEFAULT ''" );
+		$excluded  = $this->table( 'wt_excluded_dates_times', "trip_id bigint(20), start_date date, end_date date NULL, recurring tinyint(1) DEFAULT 0, time varchar(255) DEFAULT ''" );
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery -- Test fixture.
 		$wpdb->insert(
@@ -234,7 +235,39 @@ class SetupImportTest extends WP_UnitTestCase {
 			array(
 				'trip_id'    => $source,
 				'start_date' => '2031-01-01',
+				'end_date'   => '2031-10-31',
 				'recurring'  => 1,
+				'years'      => 'every_year',
+				'months'     => '4,5',
+				'days'       => 'MO,TH',
+			)
+		);
+		// The 1st and 15th of each month: not a weekday rule, so dates for the coming year.
+		$wpdb->insert(
+			$dates,
+			array(
+				'trip_id'    => $source,
+				'start_date' => gmdate( 'Y-m-d' ),
+				'end_date'   => '0000-00-00',
+				'recurring'  => 1,
+				'months'     => 'every_month',
+				'date_days'  => '1,15',
+			)
+		);
+		$wpdb->insert(
+			$excluded,
+			array(
+				'trip_id'    => $source,
+				'start_date' => '2031-04-02',
+				'end_date'   => '2031-04-03',
+			)
+		);
+		$wpdb->insert(
+			$excluded,
+			array(
+				'trip_id'    => $source,
+				'start_date' => '2031-04-09',
+				'time'       => '09:00',
 			)
 		);
 		// phpcs:enable
@@ -259,8 +292,30 @@ class SetupImportTest extends WP_UnitTestCase {
 		$this->assertSame( '1350.00', $option['categories'][0]['sale_price'] );
 
 		$schedule = get_post_meta( $trip, TripMeta::SCHEDULE, true );
-		$this->assertSame( array( '2031-04-01' ), wp_list_pluck( $schedule['fixed'], 'date' ), 'Past dates are dropped.' );
-		$this->assertStringContainsString( 'repeating dates', implode( ' ', $result['notes'] ) );
+		$fixed    = wp_list_pluck( $schedule['fixed'], 'date' );
+		$this->assertContains( '2031-04-01', $fixed );
+		$this->assertNotContains( '2001-04-01', $fixed, 'Past dates are dropped.' );
+		$this->assertSame(
+			array(
+				'start'    => '2031-01-01',
+				'end'      => '2031-10-31',
+				'weekdays' => array( 1, 4 ),
+				'months'   => array( 4, 5 ),
+				'times'    => array(),
+			),
+			$schedule['recurring'][0],
+			'Weekday rules are kept as rules.'
+		);
+		$monthdays = array_diff( $fixed, array( '2031-04-01' ) );
+		$this->assertNotEmpty( $monthdays );
+		foreach ( $monthdays as $day ) {
+			$this->assertContains( (int) substr( $day, 8 ), array( 1, 15 ), 'Days of the month become dates: ' . $day );
+		}
+		$this->assertLessThanOrEqual( gmdate( 'Y-m-d', strtotime( '+366 days' ) ), max( $monthdays ), 'Only the coming year.' );
+		$this->assertSame( array( '2031-04-02', '2031-04-03' ), $schedule['excluded'] );
+		$notes = implode( ' ', $result['notes'] );
+		$this->assertStringContainsString( 'days of the month', $notes );
+		$this->assertStringContainsString( 'excluded dates', $notes, 'A time-only exclusion is reported, not imported.' );
 
 		// Running again copies nothing twice.
 		$again = $this->import( 'wp-travel' );
@@ -331,6 +386,27 @@ class SetupImportTest extends WP_UnitTestCase {
 					'dtstart'      => '2031-06-01',
 					'is_recurring' => '',
 				),
+				'20310105' => array(
+					'dtstart'      => '2031-01-05',
+					'times'        => array( array( 'from' => '07:00' ) ),
+					'is_recurring' => '1',
+					'rrule'        => array(
+						'r_frequency' => 'WEEKLY',
+						'r_weekdays'  => array(
+							1 => 'MO',
+							5 => 'FR',
+						),
+						'r_until'     => '2031-12-31',
+					),
+				),
+				'monthly'  => array(
+					'dtstart'      => gmdate( 'Y-m-d', strtotime( '+3 days' ) ),
+					'is_recurring' => true,
+					'rrule'        => array(
+						'r_frequency' => 'MONTHLY',
+						'r_count'     => 4,
+					),
+				),
 			)
 		);
 		update_post_meta( $source, 'packages_ids', array( $package ) );
@@ -349,7 +425,12 @@ class SetupImportTest extends WP_UnitTestCase {
 		$this->assertSame( '1800.00', $option['categories'][0]['sale_price'] );
 
 		$schedule = get_post_meta( $trip, TripMeta::SCHEDULE, true );
-		$this->assertSame( '2031-06-01', $schedule['fixed'][0]['date'] );
+		$fixed    = wp_list_pluck( $schedule['fixed'], 'date' );
+		$this->assertContains( '2031-06-01', $fixed );
+		$this->assertSame( array( 1, 5 ), $schedule['recurring'][0]['weekdays'], 'Weekly until a date stays a rule.' );
+		$this->assertSame( '2031-12-31', $schedule['recurring'][0]['end'] );
+		$this->assertSame( array( '07:00' ), $schedule['recurring'][0]['times'] );
+		$this->assertCount( 5, $fixed, 'A monthly date repeated 4 times becomes 4 dates, plus the fixed one.' );
 		$this->assertSame( 72, $schedule['cutoff_hours'] );
 		$this->assertSame( 6, $schedule['capacity'] );
 	}
@@ -366,6 +447,7 @@ class SetupImportTest extends WP_UnitTestCase {
 		$classifications = $this->table( 'yatra_classifications', 'type varchar(20), name varchar(255)' );
 		$links           = $this->table( 'yatra_trip_classifications', 'trip_id bigint, classification_id bigint, classification_type varchar(20), sort_order smallint DEFAULT 0' );
 		$available       = $this->table( 'yatra_trip_availability_dates', 'trip_id bigint, departure_date date, seats_total smallint' );
+		$rules           = $this->table( 'yatra_trip_availability_rules', "trip_id bigint, status varchar(20) DEFAULT 'active', availability_status varchar(20) DEFAULT 'available', rule_type varchar(50) DEFAULT 'weekly', start_date date, end_date date NULL, days_of_week text, week_of_month smallint NULL, day_of_week tinyint NULL, interval_days int NULL, interval_start_date date NULL, months text, excluded_dates text, time_slots text, departure_time time NULL, seats_total smallint DEFAULT 0" );
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery -- Test fixture.
 		$wpdb->insert(
@@ -477,6 +559,40 @@ class SetupImportTest extends WP_UnitTestCase {
 				'seats_total'    => 10,
 			)
 		);
+		// Weekly on Sunday and Wednesday (0 = Sunday), with one closed period.
+		$wpdb->insert(
+			$rules,
+			array(
+				'trip_id'        => $id,
+				'start_date'     => '2031-03-01',
+				'days_of_week'   => '[0,3]',
+				'months'         => '[3,4,5]',
+				'excluded_dates' => '["2031-03-05",{"start":"2031-04-01","end":"2031-04-02"}]',
+				'time_slots'     => '[{"departure_time":"09:00"},{"departure_time":"14:30"}]',
+			)
+		);
+		// Last Saturday of each month: dates for the coming year.
+		$wpdb->insert(
+			$rules,
+			array(
+				'trip_id'       => $id,
+				'rule_type'     => 'monthly',
+				'start_date'    => gmdate( 'Y-m-d' ),
+				'week_of_month' => 5,
+				'day_of_week'   => 6,
+				'months'        => '[]',
+			)
+		);
+		// Paused rules are left out.
+		$wpdb->insert(
+			$rules,
+			array(
+				'trip_id'      => $id,
+				'status'       => 'paused',
+				'start_date'   => '2031-01-01',
+				'days_of_week' => '[1]',
+			)
+		);
 		// phpcs:enable
 
 		$this->assertSame( 1, Importers::get( 'yatra' )->count(), 'Deleted trips are left out.' );
@@ -500,6 +616,19 @@ class SetupImportTest extends WP_UnitTestCase {
 		$schedule = get_post_meta( $trip, TripMeta::SCHEDULE, true );
 		$this->assertSame( 10, $schedule['capacity'] );
 		$this->assertSame( 48, $schedule['cutoff_hours'] );
+
+		$this->assertCount( 1, $schedule['recurring'], 'The paused rule is left out.' );
+		$this->assertSame( array( 3, 7 ), $schedule['recurring'][0]['weekdays'], 'Sunday (0) becomes 7.' );
+		$this->assertSame( array( 3, 4, 5 ), $schedule['recurring'][0]['months'] );
+		$this->assertSame( array( '09:00', '14:30' ), $schedule['recurring'][0]['times'] );
+		$this->assertSame( array( '2031-03-05', '2031-04-01', '2031-04-02' ), $schedule['excluded'] );
+
+		$saturdays = array_diff( wp_list_pluck( $schedule['fixed'], 'date' ), array( '2031-10-01' ) );
+		$this->assertNotEmpty( $saturdays );
+		foreach ( $saturdays as $day ) {
+			$this->assertSame( '6', gmdate( 'N', strtotime( $day ) ), $day );
+			$this->assertNotSame( gmdate( 'n', strtotime( $day ) ), gmdate( 'n', strtotime( $day . ' +7 days' ) ), 'The last Saturday of its month: ' . $day );
+		}
 	}
 
 	public function test_detection_lists_only_sources_with_trips(): void {

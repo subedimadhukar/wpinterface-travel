@@ -51,8 +51,22 @@ export default function Calendar( {
 	// Reload when the price option changes; jump to the first month with a departure.
 	useEffect( () => {
 		load( config.today, true ).then( ( list ) => {
-			if ( list?.length ) {
-				setMonth( monthKey( list[ 0 ].date ) );
+			if ( ! list?.length ) {
+				return;
+			}
+			// A "Book" link from the departures list chooses its date.
+			const wanted = new window.URLSearchParams(
+				window.location.search
+			).get( 'wpitravel_date' );
+			const chosen =
+				wanted &&
+				list.find(
+					( departure ) =>
+						departure.date === wanted && departure.bookable
+				);
+			setMonth( monthKey( chosen ? chosen.date : list[ 0 ].date ) );
+			if ( chosen && ! value ) {
+				onChange( chosen );
 			}
 		} );
 		// eslint-disable-next-line react-hooks/exhaustive-deps

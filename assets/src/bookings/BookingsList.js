@@ -33,7 +33,7 @@ export default function BookingsList( { config, navigate } ) {
 		return {
 			status: params.get( 'status' ) || '',
 			search: '',
-			trip_id: 0,
+			trip_id: parseInt( params.get( 'trip_id' ) || '0', 10 ) || 0,
 			payment_status: params.get( 'payment_status' ) || '',
 			date_from: '',
 			date_to: '',

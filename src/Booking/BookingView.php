@@ -13,6 +13,7 @@ use WPInterface\Travel\Payments\PaymentRepository;
 use WPInterface\Travel\Payments\PaymentService;
 use WPInterface\Travel\Reviews\Reviews;
 use WPInterface\Travel\Support\Money;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -88,8 +89,8 @@ final class BookingView {
 			'payment_status_label' => BookingAccess::payment_status_label( (string) $booking['payment_status'] ),
 			'trip'                 => array(
 				'id'    => (int) $booking['trip_id'],
-				'title' => get_the_title( (int) $booking['trip_id'] ),
-				'url'   => (string) get_permalink( (int) $booking['trip_id'] ),
+				'title' => get_the_title( Multilingual::translated_id( (int) $booking['trip_id'] ) ),
+				'url'   => (string) get_permalink( Multilingual::translated_id( (int) $booking['trip_id'] ) ),
 			),
 			'date'                 => $booking['start_date'],
 			'time'                 => $booking['start_time'],

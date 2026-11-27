@@ -12,6 +12,7 @@ use WPInterface\Travel\Booking\BookingRepository;
 use WPInterface\Travel\Content\TripMeta;
 use WPInterface\Travel\Payments\Gateways;
 use WPInterface\Travel\Support\Money;
+use WPInterface\Travel\Support\Multilingual;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -121,6 +122,9 @@ final class Tags {
 			$instructions = is_array( $started ) ? (string) ( $started['instructions'] ?? '' ) : '';
 		}
 
+		// The trip's name and page in the customer's language.
+		$trip_in_language = Multilingual::translated_id( (int) $booking['trip_id'], (string) ( $booking['locale'] ?? '' ) );
+
 		$values = array_merge(
 			self::site(),
 			array(
@@ -135,8 +139,8 @@ final class Tags {
 				'customer_email'       => (string) $customer['email'],
 				'customer_phone'       => '' !== $customer['phone'] ? (string) $customer['phone'] : '—',
 				'customer_note'        => '' !== (string) $booking['customer_note'] ? nl2br( esc_html( (string) $booking['customer_note'] ) ) : '—',
-				'trip_title'           => get_the_title( (int) $booking['trip_id'] ),
-				'trip_link'            => (string) get_permalink( (int) $booking['trip_id'] ),
+				'trip_title'           => get_the_title( $trip_in_language ),
+				'trip_link'            => (string) get_permalink( $trip_in_language ),
 				'start_date'           => self::date( (string) $booking['start_date'] ),
 				'start_time'           => (string) $booking['start_time'],
 				'end_date'             => self::date( $end ),
@@ -283,7 +287,7 @@ final class Tags {
 
 		return sprintf(
 			'<p><strong>%1$s</strong><br>%2$s%3$s</p><table role="presentation" style="width:100%%;border-collapse:collapse">%4$s</table>',
-			esc_html( get_the_title( (int) $booking['trip_id'] ) ),
+			esc_html( get_the_title( Multilingual::translated_id( (int) $booking['trip_id'], (string) ( $booking['locale'] ?? '' ) ) ) ),
 			esc_html( self::date( (string) $booking['start_date'] ) ),
 			'' !== $booking['start_time'] ? esc_html( ' · ' . $booking['start_time'] ) : '',
 			$rows
