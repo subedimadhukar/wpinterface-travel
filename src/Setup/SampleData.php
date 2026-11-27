@@ -37,6 +37,9 @@ final class SampleData {
 					'post_status' => 'any',
 					'numberposts' => -1,
 					'fields'      => 'ids',
+					// Creation order: the trips are made in the same second, so dates tie.
+					'orderby'     => 'ID',
+					'order'       => 'ASC',
 					'meta_key'    => self::META, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_key -- A few posts.
 				)
 			)

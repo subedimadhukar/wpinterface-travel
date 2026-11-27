@@ -30,7 +30,120 @@ Organise trips with **Destinations**, **Activities** and **Trip types**. Each ge
 - **Block themes** get Single Trip, Trip Archive, Destination, Activity and Trip Type templates. Edit them in Appearance → Editor → Templates.
 - **Classic themes** get ready-made pages. To change one, copy a file from the plugin's `templates/` folder into a `wpitravel/` folder in your theme.
 - **Blocks** (Travel category): Trips (a grid or list, filtered and sorted), Trip Search, and every part of a trip page (price, facts, itinerary, gallery, map, booking form, reviews, enquiry form).
-- **Shortcodes:** `[wpitravel_trips number="6" columns="3" sort="price"]`, `[wpitravel_trip_search]`, `[wpitravel_booking trip="12"]`, `[wpitravel_reviews]`, `[wpitravel_enquiry]`, `[wpitravel_trip_itinerary trip="12"]` (also `_price`, `_facts`, `_highlights`, `_includes`, `_faqs`, `_gallery`, `_map`).
+- **Shortcodes** do the same in other editors and page builders. See **Blocks and shortcodes** below.
+
+## Blocks and shortcodes
+
+Every block has a matching shortcode, so the same content works in the block editor, classic editor, widgets and page builders.
+
+### Trips list
+
+Block **Trips**, or `[wpitravel_trips]`.
+
+| Shortcode option | Block setting | Default | What it does |
+| --- | --- | --- | --- |
+| `number` | **Number of trips** | `6` | How many trips to show |
+| `columns` | **Columns** | `3` | Columns in the grid |
+| `layout` | **Layout** | `grid` | `grid` or `list` |
+| `sort` | **Sort by** | newest | `date`, `price`, `price-desc`, `duration`, `rating` or `title` |
+| `destination`, `activity`, `trip_type` | (block sidebar) | all | Slugs of the terms to show, comma-separated |
+| `ids` | **Only these trips (IDs)** | none | Trip IDs, comma-separated, shown in that order |
+| `filters` | **Follow the search form** | `no` | `yes`: the list follows a Trip Search form on the same page |
+| `show_price`, `show_rating`, `show_excerpt` | **Price**, **Rating**, **Excerpt** | `yes` | `no` hides that part of each card |
+
+In a block theme, turn on **Use the page’s trips** to make the block the list on archive and destination templates.
+
+Example: `[wpitravel_trips number="9" columns="3" sort="price" destination="nepal"]`
+
+### Trip search
+
+Block **Trip Search**, or `[wpitravel_trip_search]`.
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| `fields` | `q,destination,activity,trip_type,duration,price,sort` | Which fields to show, in order. Also available: `difficulty` |
+| `target` | `archive` | `archive` sends visitors to the trip list; `current` filters a Trips list on the same page (block: **Show results on**) |
+| `button` | "Find trips" | The button text (block: **Button text**) |
+
+### Trip page parts
+
+Each part has a block and a shortcode. Leave out `trip` on the trip page itself; add `trip="12"` (the trip ID) to show it anywhere else.
+
+| Part | Shortcode |
+| --- | --- |
+| Price ("From $1,290 per person") | `[wpitravel_trip_price]` |
+| Facts (duration, difficulty, group size and your own facts) | `[wpitravel_trip_facts]` |
+| Highlights | `[wpitravel_trip_highlights]` |
+| Itinerary (add `open="yes"`, or **Expand all days** in the block, to open every day) | `[wpitravel_trip_itinerary]` |
+| Included and not included | `[wpitravel_trip_includes]` |
+| FAQs | `[wpitravel_trip_faqs]` |
+| Gallery | `[wpitravel_trip_gallery]` |
+| Map | `[wpitravel_trip_map]` |
+| Booking form | `[wpitravel_booking]` |
+| Reviews | `[wpitravel_reviews]` |
+| Enquiry form | `[wpitravel_enquiry]` |
+
+The **My bookings** page uses `[wpitravel_account]`. It is created when you install the plugin.
+
+## Settings
+
+Travel → Settings.
+
+| Section | Setting | Default | Notes |
+| --- | --- | --- | --- |
+| Currency | **Currency**, **Symbol position**, **Thousand separator**, **Decimal separator**, **Decimals** | USD, left, `,`, `.`, 2 | One currency for the whole site |
+| Tax | **Charge tax on bookings**, **Tax label**, **Tax rate (%)** | Off, "Tax", 0 | The label is what customers see, e.g. VAT or GST |
+| Tax | **Trip prices already include tax** | Off | On: tax is shown as part of the price. Off: tax is added at checkout |
+| Booking | **Booking number prefix** | `TRV-` | Booking numbers look like TRV-1042 |
+| Booking | **Hold seats during checkout (minutes)** | 15 | Seats are reserved while the customer fills in the form |
+| Booking | **Allow booking without an account** | On | Off: customers must log in to book |
+| Booking | **Let guests create an account while booking** | Off | The customer gets an email to set a password |
+| Booking | **Add the booking form to trip pages** | On | Turn off to place the form yourself with `[wpitravel_booking]` |
+| Booking | **Terms and conditions page** | none | When set, customers must accept it to book |
+| Customers | **"My bookings" page** | created on install | Links in emails point here |
+| Customers | **Trip reviews**, **Who can review**, **Publish reviews from travelers who booked right away** | On, travelers who booked, on | See **Reviews** |
+| Payments | **Confirm bookings automatically when fully paid** | On | |
+| Payments | **Cancel unpaid online bookings after (minutes)** | 60 | 0 = never. Bank transfer and pay later bookings are not affected |
+| Payments | PayPal, bank transfer, pay later | | See **Payments** |
+| Permalinks | **Trips**, **Destinations**, **Activities**, **Trip types** | `trips`, `destination`, `activity`, `trip-type` | The first part of each address, e.g. /trips/annapurna/ |
+| Data | **Delete all data when the plugin is deleted** | Off | Leave off unless you are sure; deleting cannot be undone |
+
+## Coupons
+
+Travel → Coupons → **Add coupon**.
+
+- **Code:** letters, digits, `-` and `_`. Customers can type it in any case.
+- **Discount type:** a percentage or a fixed amount off the booking.
+- **Valid from** and **Valid until:** leave empty for no limit.
+- **Total uses** and **Uses per customer:** 0 = unlimited. Uses per customer are counted by email address.
+- **Only for these trips:** leave empty for all trips.
+- **Status:** turn a coupon off without deleting it.
+
+Customers enter the code at checkout and see the discount before they pay. A cancelled booking gives its use back; reopening it counts it again.
+
+## Reviews
+
+Reviews appear on trip pages with an average star rating, and in search results when you sort by rating.
+
+- **Who can review:** "Travelers who booked" (verified reviews) or "Anyone".
+- **Travelers who booked** are invited by email the day after their trip ends (change the delay in Travel → Emails). They write the review from **My bookings**. Their reviews are marked as verified.
+- **Anyone:** a **Write a review** form appears on trip pages. These reviews always wait for your approval.
+- Moderate reviews in Comments → Trip reviews. Your spam plugin checks them as for comments.
+
+## Enquiries
+
+Visitors ask questions with the **Have a question? Ask us** link under the booking form, or the enquiry block or shortcode. You get an email, and the enquiry appears in Travel → Enquiries, where you mark it **replied** or **closed**. The visitor gets an automatic reply, at most once every 10 minutes per address.
+
+## My bookings and vouchers
+
+The **My bookings** page shows a logged-in customer all their bookings. Guests open a booking from the link in their emails, or enter their booking number and email to have the link sent again.
+
+From a booking, customers can:
+
+- pay what is due, online;
+- print the voucher, or save it as a PDF from the print window;
+- ask to cancel, with a reason (you decide in Travel → Bookings);
+- write a review after the trip.
 
 ## How customers book
 
@@ -80,6 +193,33 @@ The setup wizard (Trips step) or Tools → Import copies trips from **WP Travel*
 ## Privacy
 
 Tools → Export Personal Data and Erase Personal Data include bookings, travelers, enquiries and cancellation reasons. Erasing keeps booking dates and amounts for your accounts but removes names, contact details and notes. Settings → Privacy has suggested text for your privacy policy.
+
+## Accessibility
+
+The plugin aims to meet WCAG 2.2 level AA in its own pages, forms and admin screens.
+
+- **Booking form:** works by keyboard alone. In the calendar, Tab reaches the chosen date (or the first bookable one), and the arrow keys, Home and End move between dates. After each step, focus moves to the next step's heading. Traveler counts, prices, errors and the seat-hold time are announced to screen readers.
+- **Trip pages and lists:** headings in order, labelled search fields, image descriptions, and sale prices read as "Original price" and "Sale price".
+- **Maps** load only when asked for. The trip's place is also written as text.
+- **Admin screens** use WordPress's own components and keyboard behaviour.
+
+Colours, fonts and focus outlines come mostly from your theme, so check them with your theme. Report a barrier on the support forum and we will fix it.
+
+## Troubleshooting
+
+**Trip pages show "Page not found".** Go to Settings → Permalinks and click **Save Changes**. This also applies after changing the addresses in Travel → Settings → Permalinks.
+
+**There is no booking form on trip pages.** Check that the trip has a price option and at least one future departure, and that **Add the booking form to trip pages** is on. Some themes leave out the content area; then add the Booking form block or `[wpitravel_booking]`.
+
+**Customers don't receive emails.** WordPress sends email through your server, which many hosts block or mark as spam. Install an SMTP plugin and send a test from Travel → Emails.
+
+**PayPal payments stay "pending".** Add the webhook shown in Travel → Settings → Payments to your PayPal app. Without it, a payment is confirmed only if the customer returns to your site.
+
+**Every visitor is told they are booking too often.** Your site is behind Cloudflare or another proxy, so everyone appears to share one address. See **For developers**: `wpitravel_client_ip`.
+
+**A caching plugin shows old prices or another customer's details.** Exclude the **My bookings** page from the cache. Trip pages can be cached: the dates, seats and prices in the booking form load fresh each time.
+
+**Imported trips have no dates.** Repeating date rules are not imported. Add them in each trip's Departures tab.
 
 ## For developers
 

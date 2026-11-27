@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T07:52:23+00:00\n"
+"POT-Creation-Date: 2026-11-27T08:52:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -81,6 +81,7 @@ msgstr ""
 #: src/Admin/CouponsPage.php:43
 #: src/Admin/CouponsPage.php:44
 #: src/Admin/CouponsPage.php:94
+#: assets/build/coupons.js:4
 msgid "Coupons"
 msgstr ""
 
@@ -148,6 +149,7 @@ msgstr ""
 #: src/Admin/EnquiriesPage.php:49
 #: src/Admin/EnquiriesPage.php:50
 #: src/Admin/EnquiriesPage.php:76
+#: assets/build/enquiries.js:2
 msgid "Enquiries"
 msgstr ""
 
@@ -1557,14 +1559,14 @@ msgid "%1$s was not imported: %2$s"
 msgstr ""
 
 #: src/Import/Importer.php:351
-#: src/Setup/SampleData.php:367
+#: src/Setup/SampleData.php:370
 #: assets/build/trip-editor.js:5
 msgid "Adult"
 msgstr ""
 
 #: src/Import/Importer.php:365
 #: src/Pricing/Pricing.php:77
-#: src/Setup/SampleData.php:363
+#: src/Setup/SampleData.php:366
 msgid "Standard"
 msgstr ""
 
@@ -2157,245 +2159,245 @@ msgstr ""
 msgid "Enter your name and a valid email address."
 msgstr ""
 
-#: src/Setup/SampleData.php:53
+#: src/Setup/SampleData.php:56
 msgid "The sample trips are already there."
 msgstr ""
 
-#: src/Setup/SampleData.php:147
+#: src/Setup/SampleData.php:150
 msgid "Annapurna Base Camp Trek"
 msgstr ""
 
-#: src/Setup/SampleData.php:148
+#: src/Setup/SampleData.php:151
 msgid "Twelve days through rhododendron forests and Gurung villages to the foot of Annapurna."
 msgstr ""
 
-#: src/Setup/SampleData.php:149
+#: src/Setup/SampleData.php:152
 msgid "Walk from the lakeside town of Pokhara into the Annapurna Sanctuary, a ring of peaks over 7,000 m. Nights are spent in family-run teahouses, and an experienced local guide leads every group."
 msgstr ""
 
-#: src/Setup/SampleData.php:151
+#: src/Setup/SampleData.php:154
 msgid "Nepal"
 msgstr ""
 
-#: src/Setup/SampleData.php:152
+#: src/Setup/SampleData.php:155
 msgid "Trekking"
 msgstr ""
 
-#: src/Setup/SampleData.php:153
+#: src/Setup/SampleData.php:156
 msgid "Small group"
 msgstr ""
 
-#: src/Setup/SampleData.php:167
+#: src/Setup/SampleData.php:170
 msgid "Hotel lobby, Lakeside, Pokhara"
 msgstr ""
 
-#: src/Setup/SampleData.php:169
+#: src/Setup/SampleData.php:172
 msgid "Sunrise over Annapurna South from Poon Hill"
 msgstr ""
 
-#: src/Setup/SampleData.php:170
+#: src/Setup/SampleData.php:173
 msgid "Two nights inside the Annapurna Sanctuary"
 msgstr ""
 
-#: src/Setup/SampleData.php:171
+#: src/Setup/SampleData.php:174
 msgid "Natural hot springs at Jhinu Danda"
 msgstr ""
 
-#: src/Setup/SampleData.php:175
+#: src/Setup/SampleData.php:178
 msgid "Arrive in Pokhara"
 msgstr ""
 
-#: src/Setup/SampleData.php:176
+#: src/Setup/SampleData.php:179
 msgid "Meet your guide and the group for a briefing and dinner by the lake."
 msgstr ""
 
-#: src/Setup/SampleData.php:178
+#: src/Setup/SampleData.php:181
 msgid "Lakeside hotel"
 msgstr ""
 
-#: src/Setup/SampleData.php:181
+#: src/Setup/SampleData.php:184
 msgid "Drive to Nayapul, walk to Ulleri"
 msgstr ""
 
-#: src/Setup/SampleData.php:182
+#: src/Setup/SampleData.php:185
 msgid "A short drive, then stone steps up through terraced farms."
 msgstr ""
 
-#: src/Setup/SampleData.php:184
-#: src/Setup/SampleData.php:190
-#: src/Setup/SampleData.php:196
+#: src/Setup/SampleData.php:187
+#: src/Setup/SampleData.php:193
+#: src/Setup/SampleData.php:199
 msgid "Teahouse"
 msgstr ""
 
-#: src/Setup/SampleData.php:187
+#: src/Setup/SampleData.php:190
 msgid "Poon Hill and Tadapani"
 msgstr ""
 
-#: src/Setup/SampleData.php:188
+#: src/Setup/SampleData.php:191
 msgid "An early start for sunrise over the Himalaya, then forest trails to Tadapani."
 msgstr ""
 
-#: src/Setup/SampleData.php:193
+#: src/Setup/SampleData.php:196
 msgid "Annapurna Base Camp"
 msgstr ""
 
-#: src/Setup/SampleData.php:194
+#: src/Setup/SampleData.php:197
 msgid "Through Machapuchare Base Camp into the sanctuary at 4,130 m."
 msgstr ""
 
-#: src/Setup/SampleData.php:200
+#: src/Setup/SampleData.php:203
 msgid "Licensed English-speaking guide and porters"
 msgstr ""
 
-#: src/Setup/SampleData.php:201
+#: src/Setup/SampleData.php:204
 msgid "All teahouse nights and meals on the trek"
 msgstr ""
 
-#: src/Setup/SampleData.php:202
+#: src/Setup/SampleData.php:205
 msgid "Trekking permits (ACAP and TIMS)"
 msgstr ""
 
-#: src/Setup/SampleData.php:205
+#: src/Setup/SampleData.php:208
 msgid "International flights"
 msgstr ""
 
-#: src/Setup/SampleData.php:206
+#: src/Setup/SampleData.php:209
 msgid "Travel insurance (required)"
 msgstr ""
 
-#: src/Setup/SampleData.php:210
+#: src/Setup/SampleData.php:213
 msgid "How fit do I need to be?"
 msgstr ""
 
-#: src/Setup/SampleData.php:211
+#: src/Setup/SampleData.php:214
 msgid "You should be comfortable walking 5–7 hours a day with a light daypack. No climbing experience is needed."
 msgstr ""
 
-#: src/Setup/SampleData.php:214
+#: src/Setup/SampleData.php:217
 msgid "What about altitude sickness?"
 msgstr ""
 
-#: src/Setup/SampleData.php:215
+#: src/Setup/SampleData.php:218
 msgid "The itinerary climbs slowly, and guides are trained to spot symptoms early."
 msgstr ""
 
-#: src/Setup/SampleData.php:222
+#: src/Setup/SampleData.php:225
 msgid "Annapurna Sanctuary, Nepal"
 msgstr ""
 
-#: src/Setup/SampleData.php:245
+#: src/Setup/SampleData.php:248
 msgid "Lisbon Food and History Walk"
 msgstr ""
 
-#: src/Setup/SampleData.php:246
+#: src/Setup/SampleData.php:249
 msgid "Four hours of pastries, petiscos and stories through Alfama and Baixa."
 msgstr ""
 
-#: src/Setup/SampleData.php:247
+#: src/Setup/SampleData.php:250
 msgid "Taste your way through two of Lisbon’s oldest neighbourhoods with a local guide, stopping at family bakeries, a tinned-fish shop and a tasca for wine."
 msgstr ""
 
-#: src/Setup/SampleData.php:249
+#: src/Setup/SampleData.php:252
 msgid "Portugal"
 msgstr ""
 
-#: src/Setup/SampleData.php:250
+#: src/Setup/SampleData.php:253
 msgid "Food tour"
 msgstr ""
 
-#: src/Setup/SampleData.php:250
+#: src/Setup/SampleData.php:253
 msgid "Walking tour"
 msgstr ""
 
-#: src/Setup/SampleData.php:251
+#: src/Setup/SampleData.php:254
 msgid "Day tour"
 msgstr ""
 
-#: src/Setup/SampleData.php:261
+#: src/Setup/SampleData.php:264
 msgid "Praça do Comércio, by the arch"
 msgstr ""
 
-#: src/Setup/SampleData.php:263
+#: src/Setup/SampleData.php:266
 msgid "Eight tastings, including pastéis de nata warm from the oven"
 msgstr ""
 
-#: src/Setup/SampleData.php:264
+#: src/Setup/SampleData.php:267
 msgid "Hidden viewpoints over the Tagus"
 msgstr ""
 
-#: src/Setup/SampleData.php:267
+#: src/Setup/SampleData.php:270
 msgid "All food and two glasses of wine"
 msgstr ""
 
-#: src/Setup/SampleData.php:268
+#: src/Setup/SampleData.php:271
 msgid "Local guide"
 msgstr ""
 
-#: src/Setup/SampleData.php:270
+#: src/Setup/SampleData.php:273
 msgid "Hotel pickup"
 msgstr ""
 
-#: src/Setup/SampleData.php:273
+#: src/Setup/SampleData.php:276
 msgid "Can you cater for vegetarians?"
 msgstr ""
 
-#: src/Setup/SampleData.php:274
+#: src/Setup/SampleData.php:277
 msgid "Yes. Tell us when you book and we will swap the meat and fish tastings."
 msgstr ""
 
-#: src/Setup/SampleData.php:281
+#: src/Setup/SampleData.php:284
 msgid "Praça do Comércio, Lisbon"
 msgstr ""
 
-#: src/Setup/SampleData.php:298
+#: src/Setup/SampleData.php:301
 msgid "Serengeti Migration Safari"
 msgstr ""
 
-#: src/Setup/SampleData.php:299
+#: src/Setup/SampleData.php:302
 msgid "Six days following the great migration across the Serengeti and into Ngorongoro Crater."
 msgstr ""
 
-#: src/Setup/SampleData.php:300
+#: src/Setup/SampleData.php:303
 msgid "Game drives in a private 4x4 with a pop-up roof, nights in tented camps, and a full day in the Ngorongoro Crater."
 msgstr ""
 
-#: src/Setup/SampleData.php:302
+#: src/Setup/SampleData.php:305
 msgid "Tanzania"
 msgstr ""
 
-#: src/Setup/SampleData.php:303
+#: src/Setup/SampleData.php:306
 msgid "Wildlife safari"
 msgstr ""
 
-#: src/Setup/SampleData.php:304
+#: src/Setup/SampleData.php:307
 msgid "Private tour"
 msgstr ""
 
-#: src/Setup/SampleData.php:319
+#: src/Setup/SampleData.php:322
 msgid "River crossings during the migration season"
 msgstr ""
 
-#: src/Setup/SampleData.php:320
+#: src/Setup/SampleData.php:323
 msgid "A full day in Ngorongoro Crater"
 msgstr ""
 
-#: src/Setup/SampleData.php:323
+#: src/Setup/SampleData.php:326
 msgid "Private 4x4 with driver-guide"
 msgstr ""
 
-#: src/Setup/SampleData.php:324
+#: src/Setup/SampleData.php:327
 msgid "Park fees and all meals on safari"
 msgstr ""
 
-#: src/Setup/SampleData.php:326
+#: src/Setup/SampleData.php:329
 msgid "Visa and tips"
 msgstr ""
 
-#: src/Setup/SampleData.php:331
+#: src/Setup/SampleData.php:334
 msgid "Serengeti National Park, Tanzania"
 msgstr ""
 
-#: src/Setup/SampleData.php:374
+#: src/Setup/SampleData.php:377
 msgid "Child"
 msgstr ""
 
@@ -2917,7 +2919,19 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: templates/parts/price.php:22
+#: templates/parts/price.php:19
+#: templates/parts/trip-card.php:59
+#: assets/build/booking.js:2
+msgid "Original price:"
+msgstr ""
+
+#: templates/parts/price.php:21
+#: templates/parts/trip-card.php:61
+#: assets/build/booking.js:2
+msgid "Sale price:"
+msgstr ""
+
+#: templates/parts/price.php:24
 msgid "per person"
 msgstr ""
 

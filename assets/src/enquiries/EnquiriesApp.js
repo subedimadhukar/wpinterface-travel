@@ -117,6 +117,9 @@ export default function EnquiriesApp( { config } ) {
 			) }
 			{ items && items.length > 0 && (
 				<table className="widefat striped">
+					<caption className="screen-reader-text">
+						{ __( 'Enquiries', 'wpinterface-travel' ) }
+					</caption>
 					<thead>
 						<tr>
 							<th>{ __( 'Received', 'wpinterface-travel' ) }</th>

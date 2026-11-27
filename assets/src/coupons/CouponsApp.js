@@ -306,6 +306,9 @@ export default function CouponsApp( { config } ) {
 			) }
 			{ coupons && coupons.length > 0 && (
 				<table className="widefat striped">
+					<caption className="screen-reader-text">
+						{ __( 'Coupons', 'wpinterface-travel' ) }
+					</caption>
 					<thead>
 						<tr>
 							<th>{ __( 'Code', 'wpinterface-travel' ) }</th>

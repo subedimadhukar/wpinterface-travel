@@ -56,7 +56,9 @@ $wpitravel_card = $args['card'];
 			<p class="wpitravel-card__price">
 				<?php esc_html_e( 'From', 'wpinterface-travel' ); ?>
 				<?php if ( $wpitravel_card['price']['sale'] ) : ?>
+					<span class="screen-reader-text"><?php esc_html_e( 'Original price:', 'wpinterface-travel' ); ?></span>
 					<del data-wpitravel-amount="<?php echo esc_attr( (string) ( $wpitravel_card['price']['regular_amount'] ?? '' ) ); ?>"><?php echo esc_html( $wpitravel_card['price']['regular'] ); ?></del>
+					<span class="screen-reader-text"><?php esc_html_e( 'Sale price:', 'wpinterface-travel' ); ?></span>
 				<?php endif; ?>
 				<strong data-wpitravel-amount="<?php echo esc_attr( (string) ( $wpitravel_card['price']['amount'] ?? '' ) ); ?>"><?php echo esc_html( $wpitravel_card['price']['price'] ); ?></strong>
 			</p>

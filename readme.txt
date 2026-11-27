@@ -101,7 +101,8 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 == Changelog ==
 
 = 0.9.0 =
-* Accessibility: in the booking form, focus moves to the next step's heading; the calendar is one Tab stop and arrow keys, Home and End move between dates; traveler counts are read with their type; the seat-hold countdown is announced once and again near the end, not every second.
+* Accessibility: in the booking form, focus moves to the next step's heading; the calendar is one Tab stop and arrow keys, Home and End move between dates; traveler counts are read with their type; the seat-hold countdown is announced once and again near the end, not every second. Sale prices are read as "Original price" and "Sale price". On "My bookings", focus moves to the heading when a booking opens or closes. Admin lists of bookings, coupons and enquiries have table captions.
+* Sample trips are listed in the order they were created.
 * Reviews: with "Anyone can review" on, trip pages show a "Write a review" form, and the Reviews section appears before the first review. Reviews still wait for your approval.
 * For add-ons: the `wpitravel_trip_parts` filter adds or replaces trip page sections, and `wpitravel_customer_booking_links` adds files and links to the customer's booking.
 * Security: a PayPal payment is never captured once its booking or payment attempt was closed; money that still arrives late is recorded and flagged for staff.

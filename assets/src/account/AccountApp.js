@@ -2,7 +2,7 @@
  * My bookings: a list (logged in), a lookup form (guests) and booking details.
  */
 import { __ } from '@wordpress/i18n';
-import { useEffect, useState } from '@wordpress/element';
+import { useEffect, useRef, useState } from '@wordpress/element';
 import { useInstanceId } from '@wordpress/compose';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
@@ -180,6 +180,45 @@ function MyBookings( { config, onOpen } ) {
 
 export default function AccountApp( { config } ) {
 	const [ open, setOpen ] = useState( fromUrl );
+	const card = useRef();
+	const firstView = useRef( true );
+
+	// Opening a booking or going back removes the pressed button, so move
+	// focus to the new view's heading once it has loaded.
+	useEffect( () => {
+		if ( firstView.current ) {
+			firstView.current = false;
+			return;
+		}
+		const root = card.current;
+		if ( ! root ) {
+			return;
+		}
+		const focusHeading = () => {
+			const heading = root.querySelector( 'h2' );
+			if ( ! heading ) {
+				return false;
+			}
+			heading.setAttribute( 'tabindex', '-1' );
+			heading.focus( { preventScroll: true } );
+			return true;
+		};
+		if ( focusHeading() ) {
+			return;
+		}
+		// The booking details load first; wait for their heading (up to 10s).
+		const observer = new window.MutationObserver( () => {
+			if ( focusHeading() ) {
+				observer.disconnect();
+			}
+		} );
+		observer.observe( root, { childList: true, subtree: true } );
+		const timer = setTimeout( () => observer.disconnect(), 10000 );
+		return () => {
+			observer.disconnect();
+			clearTimeout( timer );
+		};
+	}, [ open ] );
 
 	const openBooking = ( booking ) => {
 		setOpen( booking );
@@ -200,7 +239,10 @@ export default function AccountApp( { config } ) {
 
 	return (
 		<div className="wpitravel-booking wpitravel-account__app">
-			<div className="wpitravel-booking__card wpitravel-account__card">
+			<div
+				className="wpitravel-booking__card wpitravel-account__card"
+				ref={ card }
+			>
 				{ open ? (
 					<BookingDetail
 						config={ config }

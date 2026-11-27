@@ -13,7 +13,7 @@
 	--wpitravel-gap: clamp(16px, 2.5vw, 32px);
 }
 
-.screen-reader-text:where(.wpitravel-card *, .wpitravel-search *) {
+.screen-reader-text:where(.wpitravel-card *, .wpitravel-search *, .wpitravel-price *) {
 	position: absolute;
 	width: 1px;
 	height: 1px;

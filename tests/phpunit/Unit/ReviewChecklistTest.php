@@ -297,7 +297,11 @@ class ReviewChecklistTest extends WP_UnitTestCase {
 		$this->assertNotInstanceOf( \WP_Error::class, $created );
 		wp_set_current_user( 0 );
 
-		$trip  = (int) SampleData::ids()[0];
+		// The first sample trip (the trek) fills every section. ids() must keep
+		// creation order: the trips share one timestamp, so date order is random.
+		$ids = SampleData::ids();
+		$this->assertSame( $created, $ids );
+		$trip  = (int) $ids[0];
 		$image = self::factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/2004-07-22-DSC_0007.jpg', $trip );
 		set_post_thumbnail( $trip, $image );
 		update_post_meta( $trip, '_wpitravel_gallery', array( $image ) );

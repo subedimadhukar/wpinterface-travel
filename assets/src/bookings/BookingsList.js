@@ -250,6 +250,9 @@ export default function BookingsList( { config, navigate } ) {
 			{ result && (
 				<>
 					<table className="wp-list-table widefat fixed striped wpitravel-bookings__table">
+						<caption className="screen-reader-text">
+							{ __( 'Bookings', 'wpinterface-travel' ) }
+						</caption>
 						<thead>
 							<tr>
 								<th scope="col" className="column-primary">

@@ -32,13 +32,27 @@ export default function PaxSelector( {
 							<span>{ category.label }</span>
 							<span className="wpitravel-booking__muted">
 								{ category.price !== category.regular && (
-									<del>
-										{ displayPrice(
-											category.regular,
-											currency,
-											currency.symbol
-										) }
-									</del>
+									<>
+										<span className="screen-reader-text">
+											{ __(
+												'Original price:',
+												'wpinterface-travel'
+											) }{ ' ' }
+										</span>
+										<del>
+											{ displayPrice(
+												category.regular,
+												currency,
+												currency.symbol
+											) }
+										</del>{ ' ' }
+										<span className="screen-reader-text">
+											{ __(
+												'Sale price:',
+												'wpinterface-travel'
+											) }
+										</span>
+									</>
 								) }{ ' ' }
 								{ displayPrice(
 									category.price,
