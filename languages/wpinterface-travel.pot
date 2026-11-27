@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T06:10:19+00:00\n"
+"POT-Creation-Date: 2026-11-27T07:52:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -863,20 +863,20 @@ msgstr ""
 #: src/Frontend/Parts.php:351
 #: src/Privacy/PersonalData.php:182
 #: templates/voucher/voucher.php:78
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Name"
 msgstr ""
 
 #: src/Emails/Tags.php:59
-#: assets/build/booking.js:6
-#: assets/build/booking.js:15
+#: assets/build/booking.js:7
+#: assets/build/booking.js:16
 #: assets/build/bookings.js:9
 msgid "Email"
 msgstr ""
 
 #: src/Emails/Tags.php:60
 #: src/Privacy/PersonalData.php:186
-#: assets/build/booking.js:6
+#: assets/build/booking.js:7
 #: assets/build/bookings.js:9
 msgid "Phone"
 msgstr ""
@@ -1012,8 +1012,8 @@ msgid "our trips"
 msgstr ""
 
 #: src/Emails/Templates.php:28
-#: assets/build/booking.js:11
-#: assets/build/booking.js:15
+#: assets/build/booking.js:12
+#: assets/build/booking.js:16
 msgid "Booking received"
 msgstr ""
 
@@ -1911,7 +1911,7 @@ msgid "Status"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:113
-#: assets/build/booking.js:6
+#: assets/build/booking.js:7
 msgid "Contact"
 msgstr ""
 
@@ -3010,7 +3010,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: templates/single-trip.php:104
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Book this trip"
 msgstr ""
 
@@ -3058,13 +3058,13 @@ msgid "WPInterface Travel requires PHP %1$s and WordPress %2$s or newer. The plu
 msgstr ""
 
 #: assets/build/account.js:1
-#: assets/build/booking.js:10
+#: assets/build/booking.js:11
 msgid "Please wait…"
 msgstr ""
 
 #. translators: %s: payment method name.
 #: assets/build/account.js:2
-#: assets/build/booking.js:11
+#: assets/build/booking.js:12
 #, js-format
 msgid "Pay with %s"
 msgstr ""
@@ -3343,181 +3343,193 @@ msgstr ""
 msgid "Your details"
 msgstr ""
 
-#: assets/build/booking.js:5
+#. translators: %d: minutes.
+#: assets/build/booking.js:6
+#, js-format
+msgid "Your seats are held for %d minute."
+msgid_plural "Your seats are held for %d minutes."
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/build/booking.js:6
+msgid "Less than 2 minutes left to finish your booking."
+msgstr ""
+
+#: assets/build/booking.js:6
 msgid "Your reserved seats have expired."
 msgstr ""
 
 #. translators: %s: time left, e.g. 14:59.
-#: assets/build/booking.js:6
+#: assets/build/booking.js:7
 #, js-format
 msgid "Your seats are held for %s."
 msgstr ""
 
-#: assets/build/booking.js:6
+#: assets/build/booking.js:7
 #: assets/build/bookings.js:9
 msgid "First name"
 msgstr ""
 
-#: assets/build/booking.js:6
+#: assets/build/booking.js:7
 #: assets/build/bookings.js:9
 msgid "Last name"
 msgstr ""
 
-#: assets/build/booking.js:6
-msgid "Traveler names (optional, can be sent later)"
-msgstr ""
-
-#. translators: %s: traveler, e.g. "Adult 1".
 #: assets/build/booking.js:7
-#, js-format
-msgid "%s: first name"
+msgid "Traveler names (optional, can be sent later)"
 msgstr ""
 
 #. translators: %s: traveler, e.g. "Adult 1".
 #: assets/build/booking.js:8
 #, js-format
+msgid "%s: first name"
+msgstr ""
+
+#. translators: %s: traveler, e.g. "Adult 1".
+#: assets/build/booking.js:9
+#, js-format
 msgid "%s: last name"
 msgstr ""
 
 #. translators: %s: coupon code.
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 #, js-format
 msgid "Coupon %s applied."
 msgstr ""
 
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 msgid "Remove"
 msgstr ""
 
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 msgid "Coupon code"
 msgstr ""
 
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 msgid "Apply"
 msgstr ""
 
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 msgid "Notes for the organizer (optional)"
 msgstr ""
 
-#: assets/build/booking.js:9
+#: assets/build/booking.js:10
 msgid "Create an account to manage this booking"
 msgstr ""
 
 #. translators: %s: terms page title.
-#: assets/build/booking.js:10
+#: assets/build/booking.js:11
 #, js-format
 msgid "I accept the <a>%s</a>"
 msgstr ""
 
-#: assets/build/booking.js:10
+#: assets/build/booking.js:11
 msgid "Choose again"
 msgstr ""
 
-#: assets/build/booking.js:10
+#: assets/build/booking.js:11
 #: assets/build/setup.js:6
 msgid "Back"
 msgstr ""
 
-#: assets/build/booking.js:10
+#: assets/build/booking.js:11
 msgid "Booking…"
-msgstr ""
-
-#. translators: %s: booking number.
-#: assets/build/booking.js:12
-#, js-format
-msgid "Your booking number is %s."
-msgstr ""
-
-#: assets/build/booking.js:12
-msgid "The organizer will confirm your booking and contact you about payment."
 msgstr ""
 
 #. translators: %s: booking number.
 #: assets/build/booking.js:13
 #, js-format
-msgid "Thank you! We received your payment for booking %s."
+msgid "Your booking number is %s."
+msgstr ""
+
+#: assets/build/booking.js:13
+msgid "The organizer will confirm your booking and contact you about payment."
 msgstr ""
 
 #. translators: %s: booking number.
 #: assets/build/booking.js:14
 #, js-format
-msgid "Your payment for booking %s is being processed. We will let you know when it is complete."
+msgid "Thank you! We received your payment for booking %s."
 msgstr ""
 
 #. translators: %s: booking number.
 #: assets/build/booking.js:15
 #, js-format
+msgid "Your payment for booking %s is being processed. We will let you know when it is complete."
+msgstr ""
+
+#. translators: %s: booking number.
+#: assets/build/booking.js:16
+#, js-format
 msgid "The payment was not completed. Booking %s is saved but not paid yet."
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Payment not completed"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Book another date"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Thank you! We received your message and will reply by email."
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Ask a question"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Phone (optional)"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Your question"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 #: assets/build/coupons.js:4
 #: assets/build/coupons.js:5
 #: assets/build/enquiries.js:3
 msgid "Cancel"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Sending…"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 #: assets/build/bookings.js:6
 msgid "Send"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Option"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "1. Choose a date"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "2. Travelers"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Log in to book"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Reserving…"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 #: assets/build/setup.js:6
 msgid "Continue"
 msgstr ""
 
-#: assets/build/booking.js:15
+#: assets/build/booking.js:16
 msgid "Have a question? Ask us"
 msgstr ""
 

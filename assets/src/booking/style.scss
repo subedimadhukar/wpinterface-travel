@@ -25,6 +25,21 @@
 	}
 }
 
+/* Text for screen readers only, in case the theme has no such class. */
+.screen-reader-text:where(.wpitravel-booking *) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Step headings take focus when the step changes; no outline for them. */
+.wpitravel-booking [tabindex="-1"]:focus {
+	outline: none;
+}
+
 .wpitravel-booking__card {
 	border: 1px solid var(--wpitravel-border);
 	border-radius: var(--wpitravel-radius);

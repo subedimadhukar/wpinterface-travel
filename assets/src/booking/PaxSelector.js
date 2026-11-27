@@ -65,7 +65,12 @@ export default function PaxSelector( {
 							>
 								−
 							</button>
-							<output aria-live="polite">{ count }</output>
+							<output aria-live="polite">
+								<span className="screen-reader-text">
+									{ category.label }:{ ' ' }
+								</span>
+								{ count }
+							</output>
 							<button
 								type="button"
 								disabled={ ! canAdd }

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1544 500" width="1544" height="500">
+	<rect width="1544" height="500" fill="#F7F4EE"/>
+	<circle cx="1210" cy="130" r="74" fill="#F0B429"/>
+	<circle cx="1210" cy="130" r="120" fill="#F0B429" opacity="0.14"/>
+	<path d="M560 500 L820 230 L930 340 L1060 190 L1300 430 L1380 360 L1544 500 Z" fill="#E0E7D3"/>
+	<path d="M820 230 L868 280 L842 272 L818 292 L798 268 Z" fill="#FFFFFF"/>
+	<path d="M1060 190 L1112 246 L1084 236 L1058 258 L1036 232 Z" fill="#FFFFFF"/>
+	<path d="M700 500 L960 320 L1080 410 L1200 330 L1420 500 Z" fill="#233F2F"/>
+	<path d="M1080 410 L1150 360 L1240 420 L1290 400 L1400 500 L1000 500 Z" fill="#1A3324"/>
+	<path d="M640 470 C 760 400, 860 440, 930 380 S 1080 300, 1150 300 S 1290 250, 1352 200" fill="none" stroke="#F0B429" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 26"/>
+	<g transform="translate(930 380)">
+		<path d="M0 0 C -15 -18, -22 -29, -22 -40 A 22 22 0 0 1 22 -40 C 22 -29, 15 -18, 0 0 Z" fill="#FFFFFF" stroke="#233F2F" stroke-width="4"/>
+		<circle cx="0" cy="-40" r="8" fill="#233F2F"/>
+	</g>
+	<g transform="translate(1352 200)">
+		<path d="M0 0 C -19 -22, -28 -36, -28 -50 A 28 28 0 0 1 28 -50 C 28 -36, 19 -22, 0 0 Z" fill="#F0B429" stroke="#233F2F" stroke-width="4"/>
+		<circle cx="0" cy="-50" r="10" fill="#233F2F"/>
+	</g>
+	<g font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" fill="#1A1815">
+		<text x="96" y="118" font-size="30" font-weight="600" fill="#63615D" letter-spacing="3">WPINTERFACE</text>
+		<text x="92" y="196" font-size="84" font-weight="800">Travel</text>
+		<text x="96" y="256" font-size="32" font-weight="500" fill="#233F2F">Tours, departures, bookings</text>
+		<text x="96" y="298" font-size="32" font-weight="500" fill="#233F2F">and payments for agencies</text>
+	</g>
+</svg>

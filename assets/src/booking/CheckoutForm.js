@@ -1,7 +1,7 @@
 /**
  * Contact and traveler details, coupon and terms, while seats are held.
  */
-import { __, sprintf } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import {
 	createInterpolateElement,
 	useEffect,
@@ -83,6 +83,10 @@ export default function CheckoutForm( {
 	}, [ hold.expires_at ] );
 
 	const expired = remaining === 0;
+	// Whole minutes held, fixed when the form opens.
+	const [ heldMinutes ] = useState( () =>
+		Math.max( 1, Math.round( secondsUntil( hold.expires_at ) / 60 ) )
+	);
 	const needsPayment =
 		parseFloat( quote.total ) > 0 && config.gateways.length > 0;
 	const online =
@@ -195,13 +199,34 @@ export default function CheckoutForm( {
 				{ quote.time && ` · ${ quote.time }` }
 			</p>
 
+			{ ! expired && (
+				// Announced once at the start and once near the end, not every second.
+				<p className="screen-reader-text" role="status">
+					{ remaining > 120
+						? sprintf(
+								/* translators: %d: minutes. */
+								_n(
+									'Your seats are held for %d minute.',
+									'Your seats are held for %d minutes.',
+									heldMinutes,
+									'wpinterface-travel'
+								),
+								heldMinutes
+						  )
+						: __(
+								'Less than 2 minutes left to finish your booking.',
+								'wpinterface-travel'
+						  ) }
+				</p>
+			) }
 			<p
 				className={
 					expired
 						? 'wpitravel-booking__error'
 						: 'wpitravel-booking__hold'
 				}
-				role={ expired ? 'alert' : 'status' }
+				role={ expired ? 'alert' : undefined }
+				aria-hidden={ expired ? undefined : 'true' }
 			>
 				{ expired
 					? __(

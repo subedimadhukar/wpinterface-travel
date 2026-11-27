@@ -112,6 +112,23 @@ export default function BookingApp( { trip, config } ) {
 	const scrollToTop = () =>
 		root.current?.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
+	// When the step changes, move keyboard and screen reader focus to the
+	// new step's heading (the button that was pressed is gone).
+	const firstStep = useRef( true );
+	useEffect( () => {
+		if ( firstStep.current ) {
+			firstStep.current = false;
+			return;
+		}
+		const heading = root.current?.querySelector(
+			'h2, .wpitravel-confirmation'
+		);
+		if ( heading ) {
+			heading.setAttribute( 'tabindex', '-1' );
+			heading.focus( { preventScroll: true } );
+		}
+	}, [ step ] );
+
 	const changeOption = ( key ) => {
 		const next = trip.options.find( ( item ) => item.key === key );
 		setOptionKey( key );
