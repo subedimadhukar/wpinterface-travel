@@ -74,6 +74,10 @@
 	text-align: center;
 }
 
+.wpitravel-bar__message[hidden] {
+	display: none;
+}
+
 .wpitravel-bar--align-left .wpitravel-bar__message {
 	justify-content: flex-start;
 	text-align: left;

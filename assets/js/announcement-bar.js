@@ -120,7 +120,7 @@
 			};
 
 			if ( tick() ) {
-				var timer = setInterval( function () {
+				const timer = setInterval( function () {
 					if ( ! tick() ) {
 						clearInterval( timer );
 					}
@@ -235,7 +235,12 @@
 		} );
 	};
 
+	let started = false;
 	const run = function () {
+		if ( started ) {
+			return;
+		}
+		started = true;
 		document.querySelectorAll( '.wpitravel-bar' ).forEach( init );
 		setHeight();
 		window.addEventListener( 'resize', setHeight, { passive: true } );

@@ -1,6 +1,8 @@
+/* global jQuery */
 /**
  * WPInterface Travel: announcement bar settings, live preview.
- * @param $
+ *
+ * @param {Function} $ jQuery.
  */
 ( function ( $ ) {
 	'use strict';

@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WPInterface Travel – Tour & Trip Booking 0.9.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpinterface-travel/\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpinterface-travel\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T14:52:37+00:00\n"
+"POT-Creation-Date: 2026-11-27T15:03:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -61,7 +61,7 @@ msgstr ""
 #. translators: Accessibility text for a link opening in a new tab.
 #: src/Admin/Admin.php:91
 #: templates/parts/announcement-bar.php:48
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:417
 msgid "(opens in a new tab)"
 msgstr ""
 
@@ -73,17 +73,19 @@ msgstr ""
 #: src/Admin/BookingsPage.php:69
 #: src/Admin/BookingsPage.php:131
 #: src/Admin/TripList.php:55
-#: assets/build/bookings.js:1
-#: assets/build/dashboard.js:4
-#: assets/build/dashboard.js:6
-#: assets/build/setup.js:5
+#: assets/src/bookings/BookingsList.js:128
+#: assets/src/bookings/BookingsList.js:254
+#: assets/src/dashboard/DashboardApp.js:158
+#: assets/src/dashboard/DashboardApp.js:234
+#: assets/src/setup/SetupWizard.js:29
+#: assets/src/setup/SetupWizard.js:276
 msgid "Bookings"
 msgstr ""
 
 #: src/Admin/CouponsPage.php:43
 #: src/Admin/CouponsPage.php:44
 #: src/Admin/CouponsPage.php:94
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:310
 msgid "Coupons"
 msgstr ""
 
@@ -102,7 +104,7 @@ msgstr ""
 
 #. translators: %s: number of bookings.
 #: src/Admin/DashboardPage.php:127
-#: assets/build/dashboard.js:2
+#: assets/src/dashboard/DashboardApp.js:61
 #, php-format,js-format
 msgid "%s booking awaiting confirmation"
 msgid_plural "%s bookings awaiting confirmation"
@@ -111,7 +113,7 @@ msgstr[1] ""
 
 #. translators: %s: number of bookings.
 #: src/Admin/DashboardPage.php:132
-#: assets/build/dashboard.js:3
+#: assets/src/dashboard/DashboardApp.js:72
 #, php-format,js-format
 msgid "%s cancellation request"
 msgid_plural "%s cancellation requests"
@@ -120,7 +122,7 @@ msgstr[1] ""
 
 #. translators: %s: number of bookings.
 #: src/Admin/DashboardPage.php:137
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:83
 #, php-format,js-format
 msgid "%s unpaid booking leaving within a week"
 msgid_plural "%s unpaid bookings leaving within a week"
@@ -144,22 +146,22 @@ msgstr ""
 #: src/Admin/EmailsPage.php:47
 #: src/Admin/EmailsPage.php:48
 #: src/Admin/EmailsPage.php:100
-#: assets/build/bookings.js:5
+#: assets/src/bookings/BookingDetail.js:701
 msgid "Emails"
 msgstr ""
 
 #: src/Admin/EnquiriesPage.php:49
 #: src/Admin/EnquiriesPage.php:50
 #: src/Admin/EnquiriesPage.php:76
-#: assets/build/enquiries.js:2
+#: assets/src/enquiries/EnquiriesApp.js:121
 msgid "Enquiries"
 msgstr ""
 
 #: src/Admin/ManifestPage.php:49
 #: src/Admin/ManifestPage.php:58
 #: src/Admin/ManifestPage.php:121
-#: assets/build/bookings.js:4
-#: assets/build/trip-editor.js:7
+#: assets/src/bookings/BookingDetail.js:209
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:161
 msgid "Traveler list"
 msgstr ""
 
@@ -212,8 +214,8 @@ msgid "Travelers on this departure"
 msgstr ""
 
 #: src/Admin/ManifestPage.php:176
-#: assets/build/bookings.js:1
-#: assets/build/settings.js:2
+#: assets/src/bookings/BookingsList.js:259
+#: assets/src/settings/SettingsApp.js:252
 msgid "Booking"
 msgstr ""
 
@@ -230,15 +232,15 @@ msgstr ""
 #: src/Admin/ManifestPage.php:179
 #: src/Emails/Tags.php:62
 #: src/Privacy/PersonalData.php:186
-#: assets/build/booking.js:7
-#: assets/build/bookings.js:9
+#: assets/src/booking/CheckoutForm.js:293
+#: assets/src/bookings/NewBooking.js:375
 msgid "Phone"
 msgstr ""
 
 #: src/Admin/ManifestPage.php:180
 #: templates/voucher/voucher.php:73
-#: assets/build/account.js:3
-#: assets/build/bookings.js:4
+#: assets/src/account/BookingDetail.js:179
+#: assets/src/bookings/BookingDetail.js:220
 msgid "Pickup"
 msgstr ""
 
@@ -272,7 +274,7 @@ msgstr ""
 
 #: src/Admin/SetupPage.php:79
 #: src/Admin/SetupPage.php:203
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:146
 msgid "Set up WPInterface Travel"
 msgstr ""
 
@@ -328,13 +330,13 @@ msgstr ""
 
 #: src/Admin/TripList.php:76
 #: src/Frontend/TripData.php:153
-#: assets/build/trip-editor.js:9
+#: assets/src/trip-editor/tabs/OverviewTab.js:25
 msgid "Trip code"
 msgstr ""
 
 #: src/Admin/TripList.php:77
 #: src/Frontend/TripData.php:133
-#: assets/build/trip-editor.js:9
+#: assets/src/trip-editor/tabs/OverviewTab.js:55
 msgid "Duration"
 msgstr ""
 
@@ -428,7 +430,7 @@ msgid "Save announcement bar"
 msgstr ""
 
 #: src/Announcements/AnnouncementsPage.php:152
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:137
 msgid "Preview"
 msgstr ""
 
@@ -437,7 +439,7 @@ msgid "Show the bar"
 msgstr ""
 
 #: src/Announcements/AnnouncementsPage.php:170
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:75
 msgid "On"
 msgstr ""
 
@@ -463,7 +465,7 @@ msgstr ""
 #: src/Announcements/AnnouncementsPage.php:203
 #: src/Announcements/AnnouncementsPage.php:259
 #: src/Elementor/TripSearchWidget.php:93
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:366
 msgid "Button text"
 msgstr ""
 
@@ -521,7 +523,7 @@ msgid "Crimson"
 msgstr ""
 
 #: src/Announcements/AnnouncementsPage.php:245
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/DatesTab.js:19
 msgid "Sun"
 msgstr ""
 
@@ -610,7 +612,7 @@ msgid "When and where"
 msgstr ""
 
 #: src/Announcements/AnnouncementsPage.php:332
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/TripEditor.js:32
 msgid "Dates"
 msgstr ""
 
@@ -618,8 +620,8 @@ msgstr ""
 #: templates/parts/departures.php:44
 #: templates/parts/price.php:17
 #: templates/parts/trip-card.php:57
-#: assets/build/enquiries.js:2
-#: assets/build/trip-editor.js:7
+#: assets/src/enquiries/EnquiriesApp.js:126
+#: assets/src/trip-editor/tabs/DatesTab.js:149
 msgid "From"
 msgstr ""
 
@@ -692,62 +694,62 @@ msgid "IDs of pages, posts or trips where the bar should not show, separated by 
 msgstr ""
 
 #: src/Booking/BookingAccess.php:133
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:9
+#: assets/src/bookings/BookingsList.js:18
+#: assets/src/bookings/NewBooking.js:494
 msgid "Awaiting confirmation"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:134
 #: src/Rest/EmailsController.php:182
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:9
+#: assets/src/bookings/BookingsList.js:19
+#: assets/src/bookings/NewBooking.js:487
 msgid "Confirmed"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:135
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:5
+#: assets/src/bookings/BookingDetail.js:26
+#: assets/src/bookings/BookingsList.js:24
 msgid "Completed"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:136
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:22
 msgid "Cancellation requested"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:137
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:5
-#: assets/build/trip-editor.js:7
+#: assets/src/bookings/BookingDetail.js:28
+#: assets/src/bookings/BookingsList.js:25
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:17
 msgid "Cancelled"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:138
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:5
+#: assets/src/bookings/BookingDetail.js:27
+#: assets/src/bookings/BookingsList.js:26
 msgid "Failed"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:151
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:211
 msgid "Not paid"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:152
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:215
 msgid "Partly paid"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:153
 #: templates/voucher/voucher.php:111
-#: assets/build/account.js:3
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
+#: assets/src/account/BookingDetail.js:227
+#: assets/src/bookings/BookingDetail.js:279
+#: assets/src/bookings/BookingsList.js:219
 msgid "Paid"
 msgstr ""
 
 #: src/Booking/BookingAccess.php:154
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:223
 msgid "Refunded"
 msgstr ""
 
@@ -1315,7 +1317,7 @@ msgid "Trip Departures"
 msgstr ""
 
 #: src/Elementor/TripDeparturesWidget.php:37
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:404
 msgid "Number of departures"
 msgstr ""
 
@@ -1349,7 +1351,7 @@ msgstr ""
 
 #: src/Elementor/TripItineraryWidget.php:37
 #: templates/parts/itinerary.php:18
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:417
 msgid "Expand all days"
 msgstr ""
 
@@ -1371,7 +1373,7 @@ msgid "Trip Search"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:61
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:310
 msgid "Fields"
 msgstr ""
 
@@ -1383,28 +1385,28 @@ msgstr ""
 #: src/Frontend/BlockTemplates.php:64
 #: src/Frontend/TripData.php:135
 #: templates/parts/search-form.php:17
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:294
 msgid "Destination"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:68
 #: src/Frontend/BlockTemplates.php:65
 #: templates/parts/search-form.php:18
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:295
 msgid "Activity"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:69
 #: templates/parts/search-form.php:19
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:296
 msgid "Trip type"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:70
 #: src/Frontend/TripData.php:134
 #: templates/parts/search-form.php:47
-#: assets/build/blocks.js:1
-#: assets/build/trip-editor.js:9
+#: assets/src/blocks/index.js:297
+#: assets/src/trip-editor/tabs/OverviewTab.js:38
 msgid "Difficulty"
 msgstr ""
 
@@ -1415,22 +1417,23 @@ msgstr ""
 #: src/Elementor/TripSearchWidget.php:72
 #: src/Elementor/TripsWidget.php:133
 #: templates/voucher/voucher.php:98
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:262
+#: assets/src/blocks/index.js:299
 msgid "Price"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:73
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:300
 msgid "Sort"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:81
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:338
 msgid "Show results on"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:84
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:345
 msgid "The trips page"
 msgstr ""
 
@@ -1440,40 +1443,40 @@ msgstr ""
 
 #: src/Elementor/TripsWidget.php:31
 #: src/Elementor/TripsWidget.php:52
-#: assets/build/blocks.js:1
-#: assets/build/settings.js:3
-#: assets/build/setup.js:5
+#: assets/src/blocks/index.js:120
+#: assets/src/settings/SettingsApp.js:494
+#: assets/src/setup/SetupWizard.js:31
 msgid "Trips"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:57
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:141
 msgid "Number of trips"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:67
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:231
 msgid "Layout"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:70
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:235
 msgid "Grid"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:71
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:239
 msgid "List"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:79
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:251
 msgid "Columns"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:90
 #: templates/parts/search-form.php:85
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:155
 msgid "Sort by"
 msgstr ""
 
@@ -1518,28 +1521,28 @@ msgstr ""
 #: src/Frontend/Parts.php:406
 #: src/Privacy/PersonalData.php:182
 #: templates/voucher/voucher.php:87
-#: assets/build/booking.js:17
+#: assets/src/booking/EnquiryForm.js:72
 msgid "Name"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:106
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:504
 msgid "Destinations"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:107
 #: src/Frontend/TripData.php:136
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:514
 msgid "Activities"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:108
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:524
 msgid "Trip types"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:125
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:211
 msgid "Follow the search form"
 msgstr ""
 
@@ -1549,12 +1552,12 @@ msgstr ""
 
 #: src/Elementor/TripsWidget.php:134
 #: src/Reviews/Reviews.php:328
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:270
 msgid "Rating"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:135
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:278
 msgid "Excerpt"
 msgstr ""
 
@@ -1567,12 +1570,14 @@ msgstr ""
 #: src/Privacy/PersonalData.php:157
 #: templates/voucher/voucher.php:55
 #: templates/voucher/voucher.php:57
-#: assets/build/blocks.js:1
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:9
-#: assets/build/dashboard.js:6
-#: assets/build/enquiries.js:2
+#: assets/src/blocks/index.js:93
+#: assets/src/bookings/BookingDetail.js:185
+#: assets/src/bookings/BookingDetail.js:189
+#: assets/src/bookings/BookingsList.js:186
+#: assets/src/bookings/BookingsList.js:262
+#: assets/src/bookings/NewBooking.js:221
+#: assets/src/dashboard/DashboardApp.js:228
+#: assets/src/enquiries/EnquiriesApp.js:127
 msgid "Trip"
 msgstr ""
 
@@ -1605,16 +1610,16 @@ msgid "Site address"
 msgstr ""
 
 #: src/Emails/Tags.php:61
-#: assets/build/booking.js:7
-#: assets/build/booking.js:17
-#: assets/build/bookings.js:9
+#: assets/src/booking/CheckoutForm.js:280
+#: assets/src/booking/EnquiryForm.js:76
+#: assets/src/bookings/NewBooking.js:366
 msgid "Email"
 msgstr ""
 
 #: src/Emails/Tags.php:63
 #: src/Privacy/PersonalData.php:190
-#: assets/build/emails.js:2
-#: assets/build/enquiries.js:2
+#: assets/src/emails/EmailsApp.js:100
+#: assets/src/enquiries/EnquiriesApp.js:128
 msgid "Message"
 msgstr ""
 
@@ -1632,7 +1637,7 @@ msgid "Booking number, e.g. TRV-1042"
 msgstr ""
 
 #: src/Emails/Tags.php:76
-#: assets/build/bookings.js:5
+#: assets/src/bookings/BookingDetail.js:557
 msgid "Booking status"
 msgstr ""
 
@@ -1669,7 +1674,7 @@ msgid "Customer phone"
 msgstr ""
 
 #: src/Emails/Tags.php:85
-#: assets/build/bookings.js:4
+#: assets/src/bookings/BookingDetail.js:306
 msgid "Note from the customer"
 msgstr ""
 
@@ -1682,7 +1687,7 @@ msgid "Departure date"
 msgstr ""
 
 #: src/Emails/Tags.php:89
-#: assets/build/booking.js:2
+#: assets/src/booking/Calendar.js:286
 msgid "Start time"
 msgstr ""
 
@@ -1693,7 +1698,7 @@ msgstr ""
 #: src/Emails/Tags.php:91
 #: src/Frontend/TripData.php:152
 #: templates/voucher/voucher.php:69
-#: assets/build/trip-editor.js:9
+#: assets/src/trip-editor/tabs/OverviewTab.js:127
 msgid "Meeting point"
 msgstr ""
 
@@ -1709,11 +1714,11 @@ msgstr ""
 #: src/Emails/Tags.php:287
 #: src/Privacy/PersonalData.php:109
 #: templates/voucher/voucher.php:107
-#: assets/build/account.js:3
-#: assets/build/booking.js:5
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:9
+#: assets/src/account/BookingDetail.js:223
+#: assets/src/booking/QuoteSummary.js:38
+#: assets/src/bookings/BookingDetail.js:266
+#: assets/src/bookings/BookingsList.js:273
+#: assets/src/bookings/NewBooking.js:451
 msgid "Total"
 msgstr ""
 
@@ -1746,8 +1751,8 @@ msgid "our trips"
 msgstr ""
 
 #: src/Emails/Templates.php:28
-#: assets/build/booking.js:13
-#: assets/build/booking.js:17
+#: assets/src/booking/Confirmation.js:16
+#: assets/src/booking/PaymentResult.js:45
 msgid "Booking received"
 msgstr ""
 
@@ -2035,7 +2040,7 @@ msgid "Your message could not be sent. Try again."
 msgstr ""
 
 #: src/Frontend/AccountPage.php:66
-#: assets/build/account.js:5
+#: assets/src/account/AccountApp.js:259
 msgid "My bookings"
 msgstr ""
 
@@ -2087,12 +2092,12 @@ msgstr ""
 
 #: src/Frontend/Parts.php:72
 #: templates/parts/trip-card.php:66
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/PricingTab.js:143
 msgid "Price on request"
 msgstr ""
 
 #: src/Frontend/Parts.php:368
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:368
 msgid "Find trips"
 msgstr ""
 
@@ -2137,7 +2142,7 @@ msgstr ""
 
 #: src/Frontend/ReviewsDisplay.php:173
 #: src/Reviews/Reviews.php:100
-#: assets/build/account.js:2
+#: assets/src/account/ReviewForm.js:33
 msgid "Choose 1 to 5 stars."
 msgstr ""
 
@@ -2150,7 +2155,7 @@ msgid "Write a review"
 msgstr ""
 
 #: src/Frontend/ReviewsDisplay.php:183
-#: assets/build/account.js:2
+#: assets/src/account/ReviewForm.js:64
 msgid "Your rating"
 msgstr ""
 
@@ -2172,12 +2177,12 @@ msgid "Email (not shown)"
 msgstr ""
 
 #: src/Frontend/ReviewsDisplay.php:205
-#: assets/build/account.js:3
+#: assets/src/account/ReviewForm.js:93
 msgid "Title (optional)"
 msgstr ""
 
 #: src/Frontend/ReviewsDisplay.php:209
-#: assets/build/account.js:3
+#: assets/src/account/ReviewForm.js:104
 msgid "Your review"
 msgstr ""
 
@@ -2190,7 +2195,7 @@ msgid "Turn on JavaScript to send a review."
 msgstr ""
 
 #: src/Frontend/TripData.php:141
-#: assets/build/trip-editor.js:9
+#: assets/src/trip-editor/tabs/OverviewTab.js:91
 msgid "Group size"
 msgstr ""
 
@@ -2208,7 +2213,7 @@ msgstr ""
 
 #. translators: %d: minimum age.
 #: src/Frontend/TripData.php:151
-#: assets/build/trip-editor.js:9
+#: assets/src/trip-editor/tabs/OverviewTab.js:116
 msgid "Minimum age"
 msgstr ""
 
@@ -2224,7 +2229,7 @@ msgstr ""
 
 #: src/Frontend/Voucher.php:50
 #: src/Frontend/Voucher.php:54
-#: assets/build/bookings.js:5
+#: assets/src/bookings/BookingDetail.js:654
 msgid "Voucher"
 msgstr ""
 
@@ -2240,7 +2245,7 @@ msgstr ""
 
 #: src/Import/Importer.php:351
 #: src/Setup/SampleData.php:370
-#: assets/build/trip-editor.js:5
+#: assets/src/trip-editor/tabs/PricingTab.js:27
 msgid "Adult"
 msgstr ""
 
@@ -2352,7 +2357,7 @@ msgstr ""
 #: src/Payments/Gateways/BankTransfer.php:31
 #: src/Payments/Gateways/BankTransfer.php:42
 #: src/Rest/EmailsController.php:203
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:354
 msgid "Bank transfer"
 msgstr ""
 
@@ -2569,51 +2574,55 @@ msgid "Trip bookings"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:93
-#: assets/build/account.js:3
-#: assets/build/account.js:5
+#: assets/src/account/AccountApp.js:70
+#: assets/src/account/BookingDetail.js:168
 msgid "Booking number"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:101
 #: src/Privacy/PersonalData.php:178
 #: templates/voucher/voucher.php:59
-#: assets/build/account.js:3
-#: assets/build/bookings.js:5
-#: assets/build/trip-editor.js:7
+#: assets/src/account/BookingDetail.js:170
+#: assets/src/bookings/BookingDetail.js:367
+#: assets/src/trip-editor/tabs/DatesTab.js:91
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:111
 msgid "Date"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:105
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:5
-#: assets/build/bookings.js:9
-#: assets/build/coupons.js:1
-#: assets/build/coupons.js:4
-#: assets/build/enquiries.js:2
-#: assets/build/trip-editor.js:7
+#: assets/src/bookings/BookingDetail.js:379
+#: assets/src/bookings/BookingDetail.js:550
+#: assets/src/bookings/BookingsList.js:276
+#: assets/src/bookings/NewBooking.js:479
+#: assets/src/coupons/CouponsApp.js:95
+#: assets/src/coupons/CouponsApp.js:320
+#: assets/src/enquiries/EnquiriesApp.js:98
+#: assets/src/enquiries/EnquiriesApp.js:129
+#: assets/src/enquiries/EnquiriesApp.js:165
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:114
 msgid "Status"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:113
-#: assets/build/booking.js:7
+#: assets/src/booking/CheckoutForm.js:253
 msgid "Contact"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:117
 #: templates/voucher/voucher.php:81
-#: assets/build/account.js:3
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:5
-#: assets/build/dashboard.js:4
-#: assets/build/dashboard.js:6
+#: assets/src/account/BookingDetail.js:193
+#: assets/src/bookings/BookingDetail.js:233
+#: assets/src/bookings/BookingDetail.js:662
+#: assets/src/bookings/BookingsList.js:269
+#: assets/src/dashboard/DashboardApp.js:162
+#: assets/src/dashboard/DashboardApp.js:240
 msgid "Travelers"
 msgstr ""
 
 #: src/Privacy/PersonalData.php:121
-#: assets/build/bookings.js:7
-#: assets/build/bookings.js:9
-#: assets/build/trip-editor.js:10
+#: assets/src/bookings/BookingDetail.js:803
+#: assets/src/bookings/NewBooking.js:396
+#: assets/src/trip-editor/tabs/OverviewTab.js:183
 msgid "Note"
 msgstr ""
 
@@ -2821,7 +2830,7 @@ msgid "Customer wrote a review."
 msgstr ""
 
 #: src/Reviews/Reviews.php:315
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:382
 msgid "Trip reviews"
 msgstr ""
 
@@ -3556,7 +3565,7 @@ msgid "Upcoming departures"
 msgstr ""
 
 #: templates/parts/departures.php:35
-#: assets/build/booking.js:2
+#: assets/src/booking/Calendar.js:270
 msgid "Full"
 msgstr ""
 
@@ -3583,12 +3592,12 @@ msgid "Questions"
 msgstr ""
 
 #: templates/parts/highlights.php:15
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/OverviewTab.js:193
 msgid "Highlights"
 msgstr ""
 
 #: templates/parts/includes.php:17
-#: assets/build/trip-editor.js:14
+#: assets/src/trip-editor/tabs/IncludesTab.js:11
 msgid "Included"
 msgstr ""
 
@@ -3597,7 +3606,7 @@ msgid "Not included"
 msgstr ""
 
 #: templates/parts/itinerary.php:15
-#: assets/build/trip-editor.js:12
+#: assets/src/trip-editor/TripEditor.js:37
 msgid "Itinerary"
 msgstr ""
 
@@ -3607,7 +3616,7 @@ msgstr ""
 
 #. translators: %d: day number.
 #: templates/parts/itinerary.php:28
-#: assets/build/trip-editor.js:14
+#: assets/src/trip-editor/tabs/ItineraryTab.js:39
 #, php-format,js-format
 msgid "Day %d"
 msgstr ""
@@ -3621,7 +3630,7 @@ msgid "Stay:"
 msgstr ""
 
 #: templates/parts/map.php:16
-#: assets/build/trip-editor.js:16
+#: assets/src/trip-editor/TripEditor.js:62
 msgid "Map"
 msgstr ""
 
@@ -3639,13 +3648,13 @@ msgstr ""
 
 #: templates/parts/price.php:19
 #: templates/parts/trip-card.php:59
-#: assets/build/booking.js:2
+#: assets/src/booking/PaxSelector.js:37
 msgid "Original price:"
 msgstr ""
 
 #: templates/parts/price.php:21
 #: templates/parts/trip-card.php:61
-#: assets/build/booking.js:2
+#: assets/src/booking/PaxSelector.js:50
 msgid "Sale price:"
 msgstr ""
 
@@ -3663,13 +3672,13 @@ msgstr ""
 
 #: templates/parts/search-form.php:36
 #: templates/parts/search-form.php:49
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:208
 msgid "Any"
 msgstr ""
 
 #: templates/parts/search-form.php:59
-#: assets/build/blocks.js:1
-#: assets/build/trip-editor.js:9
+#: assets/src/blocks/index.js:298
+#: assets/src/trip-editor/tabs/OverviewTab.js:59
 msgid "Days"
 msgstr ""
 
@@ -3679,7 +3688,7 @@ msgstr ""
 
 #: templates/parts/search-form.php:62
 #: templates/parts/search-form.php:75
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:93
 msgid "Min"
 msgstr ""
 
@@ -3689,7 +3698,7 @@ msgstr ""
 
 #: templates/parts/search-form.php:65
 #: templates/parts/search-form.php:78
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:98
 msgid "Max"
 msgstr ""
 
@@ -3732,7 +3741,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: templates/single-trip.php:104
-#: assets/build/booking.js:17
+#: assets/src/booking/BookingApp.js:189
+#: assets/src/booking/BookingApp.js:194
 msgid "Book this trip"
 msgstr ""
 
@@ -3755,8 +3765,8 @@ msgid "Also traveling"
 msgstr ""
 
 #: templates/voucher/voucher.php:115
-#: assets/build/account.js:3
-#: assets/build/bookings.js:4
+#: assets/src/account/BookingDetail.js:231
+#: assets/src/bookings/BookingDetail.js:290
 msgid "Balance"
 msgstr ""
 
@@ -3774,1382 +3784,1413 @@ msgstr ""
 msgid "WPInterface Travel requires PHP %1$s and WordPress %2$s or newer. The plugin is inactive until the server is updated."
 msgstr ""
 
-#: assets/build/account.js:1
-#: assets/build/booking.js:12
-msgid "Please wait…"
+#: assets/src/account/AccountApp.js:60
+msgid "Find your booking"
 msgstr ""
 
-#. translators: %s: payment method name.
-#: assets/build/account.js:2
-#: assets/build/booking.js:13
-#, js-format
-msgid "Pay with %s"
+#: assets/src/account/AccountApp.js:82
+msgid "Email used to book"
 msgstr ""
 
-#: assets/build/account.js:2
-msgid "How was your trip?"
+#: assets/src/account/AccountApp.js:104
+msgid "Find booking"
 msgstr ""
 
-#. translators: %d: stars.
-#: assets/build/account.js:3
-#, js-format
-msgid "%d stars"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "Publish review"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "Why do you want to cancel? (optional)"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "We will review your request and contact you about any refund, according to our cancellation terms."
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "Keep my booking"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "Send cancellation request"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "Ask to cancel this booking"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "← All my bookings"
-msgstr ""
-
-#: assets/build/account.js:3
-msgid "← Find another booking"
-msgstr ""
-
-#: assets/build/account.js:3
-#: assets/build/account.js:5
+#: assets/src/account/AccountApp.js:131
+#: assets/src/account/BookingDetail.js:146
 msgid "Loading…"
 msgstr ""
 
-#: assets/build/account.js:3
+#: assets/src/account/AccountApp.js:139
+msgid "You have no bookings yet. Bookings made as a guest appear here once you open them from the link in your booking email."
+msgstr ""
+
+#: assets/src/account/AccountApp.js:274
+msgid "Have an account? Log in to see all your bookings."
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:48
+msgid "Ask to cancel this booking"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:57
+msgid "Why do you want to cancel? (optional)"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:70
+msgid "We will review your request and contact you about any refund, according to our cancellation terms."
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:86
+msgid "Keep my booking"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:93
+msgid "Send cancellation request"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:127
+msgid "← All my bookings"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:128
+msgid "← Find another booking"
+msgstr ""
+
+#: assets/src/account/BookingDetail.js:245
 msgid "Files for your trip"
 msgstr ""
 
 #. translators: %s: amount.
-#: assets/build/account.js:4
+#: assets/src/account/BookingDetail.js:269
 #, js-format
 msgid "Pay %s now"
 msgstr ""
 
 #. translators: %s: amount.
-#: assets/build/account.js:5
+#: assets/src/account/BookingDetail.js:274
 #, js-format
 msgid "Pay the balance of %s"
 msgstr ""
 
-#: assets/build/account.js:5
+#: assets/src/account/BookingDetail.js:300
 msgid "Voucher (print or PDF)"
 msgstr ""
 
-#: assets/build/account.js:5
+#: assets/src/account/BookingDetail.js:324
 msgid "Thank you! Your review is now on the trip page."
 msgstr ""
 
-#: assets/build/account.js:5
+#: assets/src/account/BookingDetail.js:328
 msgid "Thank you! Your review will appear after we check it."
 msgstr ""
 
-#: assets/build/account.js:5
-msgid "Find your booking"
+#: assets/src/account/ReviewForm.js:61
+msgid "How was your trip?"
 msgstr ""
 
-#: assets/build/account.js:5
-msgid "Email used to book"
+#. translators: %d: stars.
+#: assets/src/account/ReviewForm.js:83
+#, js-format
+msgid "%d stars"
 msgstr ""
 
-#: assets/build/account.js:5
-msgid "Find booking"
+#: assets/src/account/ReviewForm.js:125
+msgid "Publish review"
 msgstr ""
 
-#: assets/build/account.js:5
-msgid "You have no bookings yet. Bookings made as a guest appear here once you open them from the link in your booking email."
-msgstr ""
-
-#: assets/build/account.js:5
-msgid "Have an account? Log in to see all your bookings."
-msgstr ""
-
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:75
 msgid "Trip ID"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:76
 msgid "Leave at 0 to show the trip of the page it is on."
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:123
 msgid "Use the page’s trips"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:127
 msgid "On trip archive and destination pages, list the trips of that page."
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:167
 msgid "Destination (slug)"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:174
 msgid "Activity (slug)"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:181
 msgid "Trip type (slug)"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:189
 msgid "Only these trips (IDs)"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:193
 msgid "Comma-separated, in the order to show them."
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:215
 msgid "Apply filters from a Trip Search block on this page."
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:227
 msgid "Display"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:293
 msgid "Keyword"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:334
 msgid "Results"
 msgstr ""
 
-#: assets/build/blocks.js:1
+#: assets/src/blocks/index.js:352
 msgid "This page (with a Trips block that follows the search form)"
 msgstr ""
 
-#: assets/build/booking.js:1
+#: assets/src/booking/BookingApp.js:200
+msgid "Option"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:225
+msgid "1. Choose a date"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:238
+msgid "2. Travelers"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:248
+msgid "Private departure: your group has this date to itself."
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:302
+msgid "Log in to book"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:312
+msgid "Reserving…"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:313
+#: assets/src/setup/SetupWizard.js:484
+msgid "Continue"
+msgstr ""
+
+#: assets/src/booking/BookingApp.js:341
+msgid "Have a question? Ask us"
+msgstr ""
+
+#: assets/src/booking/Calendar.js:160
+msgid "There are no upcoming departures. Send us an enquiry for other dates."
+msgstr ""
+
+#: assets/src/booking/Calendar.js:176
 msgid "Previous month"
 msgstr ""
 
-#: assets/build/booking.js:1
+#: assets/src/booking/Calendar.js:185
 msgid "Next month"
 msgstr ""
 
 #. translators: 1: date, 2: price.
-#: assets/build/booking.js:2
+#: assets/src/booking/Calendar.js:241
 #, js-format
 msgid "%1$s, from %2$s"
 msgstr ""
 
-#: assets/build/booking.js:2
+#: assets/src/booking/Calendar.js:279
 msgid "Loading dates…"
 msgstr ""
 
-#: assets/build/booking.js:2
+#: assets/src/booking/Calendar.js:303
 msgid "Any time"
 msgstr ""
 
-#: assets/build/booking.js:2
-msgid "There are no upcoming departures. Send us an enquiry for other dates."
-msgstr ""
-
-#. translators: %s: traveler type.
-#: assets/build/booking.js:3
-#, js-format
-msgid "Fewer %s"
-msgstr ""
-
-#. translators: %s: traveler type.
-#: assets/build/booking.js:4
-#, js-format
-msgid "More %s"
-msgstr ""
-
-#. translators: %d: seats left.
-#: assets/build/booking.js:5
-#, js-format
-msgid "Only %d seats left on this date."
-msgstr ""
-
-#: assets/build/booking.js:5
-#: assets/build/bookings.js:1
-msgid "Payment"
-msgstr ""
-
-#: assets/build/booking.js:5
+#: assets/src/booking/CheckoutForm.js:100
 msgid "Continue to payment"
 msgstr ""
 
-#: assets/build/booking.js:5
+#: assets/src/booking/CheckoutForm.js:101
 msgid "Confirm booking"
 msgstr ""
 
-#: assets/build/booking.js:5
+#: assets/src/booking/CheckoutForm.js:201
 msgid "Your details"
 msgstr ""
 
 #. translators: %d: minutes.
-#: assets/build/booking.js:6
+#: assets/src/booking/CheckoutForm.js:214
 #, js-format
 msgid "Your seats are held for %d minute."
 msgid_plural "Your seats are held for %d minutes."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/build/booking.js:6
+#: assets/src/booking/CheckoutForm.js:222
 msgid "Less than 2 minutes left to finish your booking."
 msgstr ""
 
-#: assets/build/booking.js:6
+#: assets/src/booking/CheckoutForm.js:238
 msgid "Your reserved seats have expired."
 msgstr ""
 
 #. translators: %s: time left, e.g. 14:59.
-#: assets/build/booking.js:7
+#: assets/src/booking/CheckoutForm.js:244
 #, js-format
 msgid "Your seats are held for %s."
 msgstr ""
 
-#: assets/build/booking.js:7
-#: assets/build/bookings.js:9
+#: assets/src/booking/CheckoutForm.js:256
+#: assets/src/bookings/NewBooking.js:349
 msgid "First name"
 msgstr ""
 
-#: assets/build/booking.js:7
-#: assets/build/bookings.js:9
+#: assets/src/booking/CheckoutForm.js:268
+#: assets/src/bookings/NewBooking.js:357
 msgid "Last name"
 msgstr ""
 
-#: assets/build/booking.js:7
+#: assets/src/booking/CheckoutForm.js:310
 msgid "Pickup point"
 msgstr ""
 
-#: assets/build/booking.js:7
+#: assets/src/booking/CheckoutForm.js:323
 msgid "Choose a pickup point"
 msgstr ""
 
 #. translators: 1: pickup place, 2: time.
-#: assets/build/booking.js:8
+#: assets/src/booking/CheckoutForm.js:333
 #, js-format
 msgid "%1$s, %2$s"
 msgstr ""
 
-#: assets/build/booking.js:8
+#: assets/src/booking/CheckoutForm.js:360
 msgid "Traveler names (optional, can be sent later)"
 msgstr ""
 
 #. translators: %s: traveler, e.g. "Adult 1".
-#: assets/build/booking.js:9
+#: assets/src/booking/CheckoutForm.js:373
 #, js-format
 msgid "%s: first name"
 msgstr ""
 
 #. translators: %s: traveler, e.g. "Adult 1".
-#: assets/build/booking.js:10
+#: assets/src/booking/CheckoutForm.js:393
 #, js-format
 msgid "%s: last name"
 msgstr ""
 
 #. translators: %s: coupon code.
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:417
 #, js-format
 msgid "Coupon %s applied."
 msgstr ""
 
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:425
 msgid "Remove"
 msgstr ""
 
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:431
 msgid "Coupon code"
 msgstr ""
 
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:443
 msgid "Apply"
 msgstr ""
 
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:456
 msgid "Notes for the organizer (optional)"
 msgstr ""
 
-#: assets/build/booking.js:11
+#: assets/src/booking/CheckoutForm.js:484
 msgid "Create an account to manage this booking"
 msgstr ""
 
 #. translators: %s: terms page title.
-#: assets/build/booking.js:12
+#: assets/src/booking/CheckoutForm.js:529
 #, js-format
 msgid "I accept the <a>%s</a>"
 msgstr ""
 
-#: assets/build/booking.js:12
+#: assets/src/booking/CheckoutForm.js:564
 msgid "Choose again"
 msgstr ""
 
-#: assets/build/booking.js:12
-#: assets/build/setup.js:6
+#: assets/src/booking/CheckoutForm.js:565
+#: assets/src/setup/SetupWizard.js:469
 msgid "Back"
 msgstr ""
 
-#: assets/build/booking.js:12
+#: assets/src/booking/CheckoutForm.js:573
 msgid "Booking…"
 msgstr ""
 
 #. translators: %s: booking number.
-#: assets/build/booking.js:14
+#: assets/src/booking/Confirmation.js:21
 #, js-format
 msgid "Your booking number is %s."
 msgstr ""
 
-#: assets/build/booking.js:14
+#: assets/src/booking/Confirmation.js:52
 msgid "The organizer will confirm your booking and contact you about payment."
 msgstr ""
 
+#: assets/src/booking/EnquiryForm.js:46
+msgid "Thank you! We received your message and will reply by email."
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:69
+msgid "Ask a question"
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:83
+msgid "Phone (optional)"
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:92
+msgid "Your question"
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:126
+#: assets/src/coupons/CouponsApp.js:237
+#: assets/src/coupons/CouponsApp.js:393
+#: assets/src/enquiries/EnquiriesApp.js:225
+msgid "Cancel"
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:135
+msgid "Sending…"
+msgstr ""
+
+#: assets/src/booking/EnquiryForm.js:136
+#: assets/src/bookings/BookingDetail.js:743
+msgid "Send"
+msgstr ""
+
+#. translators: %s: traveler type.
+#: assets/src/booking/PaxSelector.js:70
+#, js-format
+msgid "Fewer %s"
+msgstr ""
+
+#. translators: %s: traveler type.
+#: assets/src/booking/PaxSelector.js:93
+#, js-format
+msgid "More %s"
+msgstr ""
+
+#. translators: %d: seats left.
+#: assets/src/booking/PaxSelector.js:115
+#, js-format
+msgid "Only %d seats left on this date."
+msgstr ""
+
+#: assets/src/booking/PayAgain.js:43
+msgid "Please wait…"
+msgstr ""
+
+#. translators: %s: payment method name.
+#: assets/src/booking/PayAgain.js:46
+#, js-format
+msgid "Pay with %s"
+msgstr ""
+
+#: assets/src/booking/PaymentMethods.js:16
+#: assets/src/bookings/BookingsList.js:205
+msgid "Payment"
+msgstr ""
+
 #. translators: %s: booking number.
-#: assets/build/booking.js:15
+#: assets/src/booking/PaymentResult.js:15
 #, js-format
 msgid "Thank you! We received your payment for booking %s."
 msgstr ""
 
 #. translators: %s: booking number.
-#: assets/build/booking.js:16
+#: assets/src/booking/PaymentResult.js:23
 #, js-format
 msgid "Your payment for booking %s is being processed. We will let you know when it is complete."
 msgstr ""
 
 #. translators: %s: booking number.
-#: assets/build/booking.js:17
+#: assets/src/booking/PaymentResult.js:31
 #, js-format
 msgid "The payment was not completed. Booking %s is saved but not paid yet."
 msgstr ""
 
-#: assets/build/booking.js:17
+#: assets/src/booking/PaymentResult.js:44
 msgid "Payment not completed"
 msgstr ""
 
-#: assets/build/booking.js:17
+#: assets/src/booking/PaymentResult.js:59
 msgid "Book another date"
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Thank you! We received your message and will reply by email."
+#: assets/src/bookings/BookingDetail.js:25
+msgid "Pending"
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Ask a question"
+#: assets/src/bookings/BookingDetail.js:104
+msgid "Status updated."
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Phone (optional)"
+#: assets/src/bookings/BookingDetail.js:115
+msgid "Note added."
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Your question"
+#: assets/src/bookings/BookingDetail.js:126
+msgid "Email sent."
 msgstr ""
 
-#: assets/build/booking.js:17
-#: assets/build/coupons.js:4
-#: assets/build/coupons.js:5
-#: assets/build/enquiries.js:3
-msgid "Cancel"
+#: assets/src/bookings/BookingDetail.js:137
+msgid "Payment recorded."
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Sending…"
+#: assets/src/bookings/BookingDetail.js:148
+msgid "Refund recorded."
 msgstr ""
 
-#: assets/build/booking.js:17
-#: assets/build/bookings.js:6
-msgid "Send"
+#. translators: %s: booking number.
+#: assets/src/bookings/BookingDetail.js:158
+#, js-format
+msgid "Booking %s"
 msgstr ""
 
-#: assets/build/booking.js:17
-msgid "Option"
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "1. Choose a date"
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "2. Travelers"
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "Private departure: your group has this date to itself."
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "Log in to book"
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "Reserving…"
-msgstr ""
-
-#: assets/build/booking.js:17
-#: assets/build/setup.js:6
-msgid "Continue"
-msgstr ""
-
-#: assets/build/booking.js:17
-msgid "Have a question? Ask us"
-msgstr ""
-
-#: assets/build/bookings.js:1
-msgid "Could not load bookings."
-msgstr ""
-
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:9
-msgid "Add booking"
-msgstr ""
-
-#: assets/build/bookings.js:1
-#: assets/build/enquiries.js:2
-msgid "All"
-msgstr ""
-
-#: assets/build/bookings.js:1
-#: assets/build/enquiries.js:2
-msgid "Search"
-msgstr ""
-
-#: assets/build/bookings.js:1
-msgid "Booking number, name, email or phone"
-msgstr ""
-
-#: assets/build/bookings.js:1
-msgid "All trips"
-msgstr ""
-
-#: assets/build/bookings.js:1
-msgid "Departs from"
-msgstr ""
-
-#: assets/build/bookings.js:1
-msgid "Departs until"
-msgstr ""
-
-#: assets/build/bookings.js:1
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:9
+#: assets/src/bookings/BookingDetail.js:200
+#: assets/src/bookings/BookingsList.js:266
+#: assets/src/bookings/NewBooking.js:270
 msgid "Departure"
 msgstr ""
 
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingDetail.js:239
+#: assets/src/bookings/NewBooking.js:331
+msgid "Coupon"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:321
+#: assets/src/settings/SettingsApp.js:435
+#: assets/src/setup/SetupWizard.js:30
+#: assets/src/setup/SetupWizard.js:345
+msgid "Payments"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:335
+#: assets/src/bookings/BookingDetail.js:815
+msgid "Record payment"
+msgstr ""
+
+#. translators: %s: payment method.
+#: assets/src/bookings/BookingDetail.js:347
+#, js-format
+msgid "Customer chose: %s"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:357
+msgid "No payments yet."
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:373
+msgid "Method"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:385
+msgid "Amount"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:392
+#: assets/src/coupons/CouponsApp.js:323
+#: assets/src/enquiries/EnquiriesApp.js:132
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:117
+msgid "Actions"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:457
+#: assets/src/bookings/BookingDetail.js:881
+msgid "Refund"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:472
+msgid "No completed payments."
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:483
+msgid "History"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:489
+msgid "Add a note (staff only)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:502
+msgid "Add note"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:573
+msgid "Reason (optional, staff only)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:584
+msgid "The customer is emailed about this change."
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:596
+msgid "Update status"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:609
+#: assets/src/bookings/NewBooking.js:344
+msgid "Customer"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:643
+msgid "View as the customer"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:675
+msgid "(lead)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:708
+msgid "Send again"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:716
+msgid "Choose an email"
+msgstr ""
+
+#. translators: %s: email name.
+#: assets/src/bookings/BookingDetail.js:727
+#, js-format
+msgid "%s (to staff)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:753
+msgid "Record a payment"
+msgstr ""
+
+#. translators: %s: currency code.
+#: assets/src/bookings/BookingDetail.js:760
+#: assets/src/bookings/BookingDetail.js:830
+#, js-format
+msgid "Amount (%s)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:772
+msgid "Received by"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:777
+msgid "Other (cash, card terminal…)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:792
+msgid "Reference"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:793
+msgid "Receipt or transfer reference, if any."
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:823
+msgid "Refund a payment"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:840
+msgid "Reason"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:849
+msgid "How"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:854
+msgid "Refund through the payment provider"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:861
+msgid "Only record it (money returned another way)"
+msgstr ""
+
+#: assets/src/bookings/BookingDetail.js:900
+#: assets/src/bookings/NewBooking.js:187
+msgid "← All bookings"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:17
+#: assets/src/enquiries/EnquiriesApp.js:101
+msgid "All"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:77
+msgid "Could not load bookings."
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:139
+#: assets/src/bookings/NewBooking.js:190
+msgid "Add booking"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:175
+#: assets/src/enquiries/EnquiriesApp.js:109
+msgid "Search"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:176
+msgid "Booking number, name, email or phone"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:191
+msgid "All trips"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:230
+msgid "Departs from"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:236
+msgid "Departs until"
+msgstr ""
+
+#: assets/src/bookings/BookingsList.js:280
 msgid "Booked"
 msgstr ""
 
-#: assets/build/bookings.js:1
+#: assets/src/bookings/BookingsList.js:288
 msgid "No bookings found."
 msgstr ""
 
 #. translators: %s: number of bookings.
-#: assets/build/bookings.js:2
+#: assets/src/bookings/BookingsList.js:363
 #, js-format
 msgid "%s booking"
 msgid_plural "%s bookings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/build/bookings.js:2
+#: assets/src/bookings/BookingsList.js:380
 msgid "Previous"
 msgstr ""
 
 #. translators: 1: current page, 2: number of pages.
-#: assets/build/bookings.js:3
+#: assets/src/bookings/BookingsList.js:387
 #, js-format
 msgid "%1$d of %2$d"
 msgstr ""
 
-#: assets/build/bookings.js:3
+#: assets/src/bookings/BookingsList.js:400
 msgid "Next"
 msgstr ""
 
-#. translators: %s: booking number.
-#: assets/build/bookings.js:4
-#, js-format
-msgid "Booking %s"
-msgstr ""
-
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:9
-msgid "Coupon"
-msgstr ""
-
-#: assets/build/bookings.js:4
-#: assets/build/settings.js:3
-#: assets/build/setup.js:5
-msgid "Payments"
-msgstr ""
-
-#: assets/build/bookings.js:4
-#: assets/build/bookings.js:7
-msgid "Record payment"
-msgstr ""
-
-#. translators: %s: payment method.
-#: assets/build/bookings.js:5
-#, js-format
-msgid "Customer chose: %s"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "No payments yet."
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Method"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Amount"
-msgstr ""
-
-#: assets/build/bookings.js:5
-#: assets/build/coupons.js:4
-#: assets/build/enquiries.js:2
-#: assets/build/trip-editor.js:7
-msgid "Actions"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Pending"
-msgstr ""
-
-#: assets/build/bookings.js:5
-#: assets/build/bookings.js:8
-msgid "Refund"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "No completed payments."
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "History"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Add a note (staff only)"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Note added."
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Add note"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Reason (optional, staff only)"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "The customer is emailed about this change."
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Status updated."
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Update status"
-msgstr ""
-
-#: assets/build/bookings.js:5
-#: assets/build/bookings.js:9
-msgid "Customer"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "View as the customer"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "(lead)"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Send again"
-msgstr ""
-
-#: assets/build/bookings.js:5
-msgid "Choose an email"
-msgstr ""
-
-#. translators: %s: email name.
-#: assets/build/bookings.js:6
-#, js-format
-msgid "%s (to staff)"
-msgstr ""
-
-#: assets/build/bookings.js:6
-msgid "Email sent."
-msgstr ""
-
-#: assets/build/bookings.js:6
-msgid "Record a payment"
-msgstr ""
-
-#. translators: %s: currency code.
-#: assets/build/bookings.js:7
-#: assets/build/bookings.js:8
-#, js-format
-msgid "Amount (%s)"
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Received by"
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Other (cash, card terminal…)"
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Reference"
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Receipt or transfer reference, if any."
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Payment recorded."
-msgstr ""
-
-#: assets/build/bookings.js:7
-msgid "Refund a payment"
-msgstr ""
-
-#: assets/build/bookings.js:8
-msgid "Reason"
-msgstr ""
-
-#: assets/build/bookings.js:8
-msgid "How"
-msgstr ""
-
-#: assets/build/bookings.js:8
-msgid "Refund through the payment provider"
-msgstr ""
-
-#: assets/build/bookings.js:8
-msgid "Only record it (money returned another way)"
-msgstr ""
-
-#: assets/build/bookings.js:8
-msgid "Refund recorded."
-msgstr ""
-
-#: assets/build/bookings.js:8
-#: assets/build/bookings.js:9
-msgid "← All bookings"
-msgstr ""
-
-#: assets/build/bookings.js:8
+#: assets/src/bookings/NewBooking.js:124
 msgid "sold out"
 msgstr ""
 
-#: assets/build/bookings.js:8
+#: assets/src/bookings/NewBooking.js:127
 msgid "closed"
 msgstr ""
 
-#: assets/build/bookings.js:8
+#: assets/src/bookings/NewBooking.js:130
 msgid "past booking cut-off"
 msgstr ""
 
-#: assets/build/bookings.js:8
+#: assets/src/bookings/NewBooking.js:133
 msgid "open"
 msgstr ""
 
 #. translators: %d: seats left.
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:136
 #, js-format
 msgid "%d seats left"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:200
 msgid "Add prices to a trip before entering bookings."
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:211
 msgid "Trip and date"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:240
 msgid "Price option"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:260
 msgid "This trip has no departures in the next 12 months. Add dates in the trip’s Departures tab."
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:278
 msgid "Choose a date"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:383
 msgid "Country code"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:387
 msgid "Two letters, e.g. GB"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:409
 msgid "Summary"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:415
 msgid "Choose a departure to see the price."
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:504
 msgid "Email the customer"
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:512
 msgid "Record any payment on the booking after saving it."
 msgstr ""
 
-#: assets/build/bookings.js:9
+#: assets/src/bookings/NewBooking.js:523
 msgid "Save booking"
 msgstr ""
 
-#: assets/build/coupons.js:1
+#. translators: %s: row label.
+#: assets/src/components/Repeater.js:65
+#, js-format
+msgid "Move %s up"
+msgstr ""
+
+#. translators: %s: row label.
+#: assets/src/components/Repeater.js:79
+#, js-format
+msgid "Move %s down"
+msgstr ""
+
+#. translators: %s: row label.
+#: assets/src/components/Repeater.js:94
+#, js-format
+msgid "Remove %s"
+msgstr ""
+
+#. translators: 1: list label, 2: line number.
+#: assets/src/components/StringList.js:37
+#, js-format
+msgid "%1$s, line %2$d"
+msgstr ""
+
+#: assets/src/components/StringList.js:48
+msgid "Remove line"
+msgstr ""
+
+#: assets/src/coupons/CouponsApp.js:68
 msgid "Edit coupon"
 msgstr ""
 
-#: assets/build/coupons.js:1
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:69
+#: assets/src/coupons/CouponsApp.js:300
 msgid "Add coupon"
 msgstr ""
 
-#: assets/build/coupons.js:1
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:82
+#: assets/src/coupons/CouponsApp.js:314
 msgid "Code"
 msgstr ""
 
-#: assets/build/coupons.js:1
+#: assets/src/coupons/CouponsApp.js:83
 msgid "Letters, digits, - and _. Not case-sensitive."
 msgstr ""
 
-#: assets/build/coupons.js:1
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:100
+#: assets/src/coupons/CouponsApp.js:346
 msgid "Active"
 msgstr ""
 
-#: assets/build/coupons.js:1
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:104
+#: assets/src/coupons/CouponsApp.js:347
 msgid "Inactive"
 msgstr ""
 
-#: assets/build/coupons.js:1
+#: assets/src/coupons/CouponsApp.js:111
 msgid "Description (internal)"
 msgstr ""
 
-#: assets/build/coupons.js:1
+#: assets/src/coupons/CouponsApp.js:122
 msgid "Discount type"
 msgstr ""
 
-#: assets/build/coupons.js:1
+#: assets/src/coupons/CouponsApp.js:127
 msgid "Percentage"
 msgstr ""
 
 #. translators: %s: currency code.
-#: assets/build/coupons.js:2
+#: assets/src/coupons/CouponsApp.js:133
 #, js-format
 msgid "Fixed amount (%s)"
 msgstr ""
 
-#: assets/build/coupons.js:2
+#: assets/src/coupons/CouponsApp.js:146
 msgid "Discount (%)"
 msgstr ""
 
 #. translators: %s: currency code.
-#: assets/build/coupons.js:3
+#: assets/src/coupons/CouponsApp.js:149
 #, js-format
 msgid "Discount (%s)"
 msgstr ""
 
 #. translators: %s: currency code.
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:163
 #, js-format
 msgid "Minimum booking (%s)"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:175
 msgid "Valid from"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:183
+#: assets/src/coupons/CouponsApp.js:318
 msgid "Valid until"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:192
 msgid "Total uses"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:193
 msgid "0 = unlimited."
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:198
 msgid "Uses per customer"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:202
 msgid "0 = unlimited. Counted by email address."
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:215
 msgid "Only for these trips (empty = all trips)"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:245
 msgid "Save coupon"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:305
 msgid "No coupons yet."
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:315
 msgid "Discount"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:316
 msgid "Used"
 msgstr ""
 
-#: assets/build/coupons.js:4
-#: assets/build/emails.js:2
+#: assets/src/coupons/CouponsApp.js:357
+#: assets/src/emails/EmailsApp.js:87
 msgid "Edit"
 msgstr ""
 
-#: assets/build/coupons.js:4
-#: assets/build/coupons.js:5
-#: assets/build/enquiries.js:2
-#: assets/build/enquiries.js:3
+#: assets/src/coupons/CouponsApp.js:364
+#: assets/src/coupons/CouponsApp.js:400
+#: assets/src/enquiries/EnquiriesApp.js:197
+#: assets/src/enquiries/EnquiriesApp.js:232
 msgid "Delete"
 msgstr ""
 
-#: assets/build/coupons.js:4
+#: assets/src/coupons/CouponsApp.js:374
 msgid "Delete coupon"
 msgstr ""
 
 #. translators: %s: coupon code.
-#: assets/build/coupons.js:5
+#: assets/src/coupons/CouponsApp.js:381
 #, js-format
 msgid "Delete coupon %s? Bookings that used it keep their discount."
 msgstr ""
 
-#: assets/build/coupons.js:5
+#: assets/src/coupons/CouponsApp.js:414
 msgid "Coupon saved."
 msgstr ""
 
-#: assets/build/dashboard.js:1
-msgid "No payments in this period."
-msgstr ""
-
-#: assets/build/dashboard.js:1
-msgid "Money received over the period"
-msgstr ""
-
-#: assets/build/dashboard.js:1
-#: assets/build/dashboard.js:6
-msgid "Money received"
-msgstr ""
-
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:100
 msgid "Period"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:105
 msgid "Last 7 days"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:109
 msgid "Last 30 days"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:113
 msgid "Last 90 days"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:117
 msgid "Last 12 months"
 msgstr ""
 
-#: assets/build/dashboard.js:4
-#: assets/build/enquiries.js:2
+#: assets/src/dashboard/DashboardApp.js:150
+#: assets/src/enquiries/EnquiriesApp.js:125
 msgid "Received"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:152
 msgid "Payments minus refunds"
 msgstr ""
 
-#: assets/build/dashboard.js:4
+#: assets/src/dashboard/DashboardApp.js:166
 msgid "Booking value"
 msgstr ""
 
 #. translators: %s: average booking value.
-#: assets/build/dashboard.js:5
+#: assets/src/dashboard/DashboardApp.js:173
 #, js-format
 msgid "Average %s"
 msgstr ""
 
 #. translators: %s: currency codes.
-#: assets/build/dashboard.js:6
+#: assets/src/dashboard/DashboardApp.js:183
 #, js-format
 msgid "Payments in %s are not included in these totals."
 msgstr ""
 
-#: assets/build/dashboard.js:6
+#: assets/src/dashboard/DashboardApp.js:195
+#: assets/src/dashboard/RevenueChart.js:135
+msgid "Money received"
+msgstr ""
+
+#: assets/src/dashboard/DashboardApp.js:212
 msgid "Top trips"
 msgstr ""
 
-#: assets/build/dashboard.js:6
+#: assets/src/dashboard/DashboardApp.js:218
 msgid "No bookings in this period."
 msgstr ""
 
-#: assets/build/dashboard.js:6
-#: assets/build/trip-editor.js:16
+#: assets/src/dashboard/DashboardApp.js:246
+#: assets/src/trip-editor/tabs/FactsTab.js:42
 msgid "Value"
 msgstr ""
 
-#: assets/build/dashboard.js:6
+#: assets/src/dashboard/DashboardApp.js:288
 msgid "Next 14 days"
 msgstr ""
 
-#: assets/build/dashboard.js:6
+#: assets/src/dashboard/DashboardApp.js:297
 msgid "No departures with travelers."
 msgstr ""
 
 #. translators: 1: seats booked, 2: capacity.
-#: assets/build/dashboard.js:7
+#: assets/src/dashboard/DashboardApp.js:321
 #, js-format
 msgid "%1$d / %2$d seats"
 msgstr ""
 
 #. translators: %d: travelers.
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:330
 #, js-format
 msgid "%d traveler"
 msgid_plural "%d travelers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:350
 msgid "Latest bookings"
 msgstr ""
 
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:408
 msgid "WPInterface Travel Pro"
 msgstr ""
 
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:410
 msgid "adds card payments with Stripe and other gateways, deposits and installments, tour extras, group discounts and branded invoices."
 msgstr ""
 
-#: assets/build/dashboard.js:8
+#: assets/src/dashboard/DashboardApp.js:415
 msgid "Learn more"
 msgstr ""
 
+#: assets/src/dashboard/RevenueChart.js:47
+msgid "No payments in this period."
+msgstr ""
+
+#: assets/src/dashboard/RevenueChart.js:73
+msgid "Money received over the period"
+msgstr ""
+
 #. translators: %s: email address.
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:44
 #, js-format
 msgid "Test email sent to %s."
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:64
 msgid "To staff"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:65
 msgid "To the customer"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:86
 msgid "Close"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:94
 msgid "Subject"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:101
 msgid "Plain text or basic HTML. Blank lines start new paragraphs."
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:111
 msgid "Merge tags (click to add)"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:143
 msgid "Send me a test"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:156
 msgid "Restore default text"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:174
 msgid "Subject:"
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:179
 msgid "Email preview"
 msgstr ""
 
-#: assets/build/emails.js:2
-msgid "Sender"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "\"From\" name"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "\"From\" address"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Use an address on your own domain, or emails may land in spam. Empty = WordPress default."
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Staff notifications go to"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "One or more addresses, separated by commas."
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Trip reminder (days before departure)"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "0 = no reminder."
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Review request (days after the trip)"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Footer (address, phone, licence number…)"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Emails to customers"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Emails to staff"
-msgstr ""
-
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:227
 msgid "Emails saved."
 msgstr ""
 
-#: assets/build/emails.js:2
+#: assets/src/emails/EmailsApp.js:262
+msgid "Sender"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:267
+msgid "\"From\" name"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:273
+msgid "\"From\" address"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:277
+msgid "Use an address on your own domain, or emails may land in spam. Empty = WordPress default."
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:287
+msgid "Staff notifications go to"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:291
+msgid "One or more addresses, separated by commas."
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:303
+msgid "Trip reminder (days before departure)"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:307
+msgid "0 = no reminder."
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:318
+msgid "Review request (days after the trip)"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:331
+msgid "Footer (address, phone, licence number…)"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:342
+msgid "Emails to customers"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:344
+msgid "Emails to staff"
+msgstr ""
+
+#: assets/src/emails/EmailsApp.js:354
 msgid "Save emails"
 msgstr ""
 
-#: assets/build/enquiries.js:1
+#: assets/src/enquiries/EnquiriesApp.js:20
 msgid "New"
 msgstr ""
 
-#: assets/build/enquiries.js:1
+#: assets/src/enquiries/EnquiriesApp.js:21
 msgid "Replied"
 msgstr ""
 
-#: assets/build/enquiries.js:1
-#: assets/build/trip-editor.js:7
+#: assets/src/enquiries/EnquiriesApp.js:22
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:16
 msgid "Closed"
 msgstr ""
 
 #. translators: %s: trip name or site name.
-#: assets/build/enquiries.js:2
+#: assets/src/enquiries/EnquiriesApp.js:79
 #, js-format
 msgid "Re: your question about %s"
 msgstr ""
 
-#: assets/build/enquiries.js:2
+#: assets/src/enquiries/EnquiriesApp.js:116
 msgid "No enquiries."
 msgstr ""
 
-#: assets/build/enquiries.js:2
+#: assets/src/enquiries/EnquiriesApp.js:190
 msgid "Reply"
 msgstr ""
 
-#: assets/build/enquiries.js:2
+#: assets/src/enquiries/EnquiriesApp.js:207
 msgid "Delete enquiry"
 msgstr ""
 
 #. translators: %s: sender name.
-#: assets/build/enquiries.js:3
+#: assets/src/enquiries/EnquiriesApp.js:214
 #, js-format
 msgid "Delete the enquiry from %s? This cannot be undone."
 msgstr ""
 
+#: assets/src/settings/PaymentGateway.js:52
+msgid "Saved. Type a new value to replace it."
+msgstr ""
+
 #. translators: %s: payment method name.
-#: assets/build/settings.js:2
+#: assets/src/settings/PaymentGateway.js:84
 #, js-format
 msgid "Accept %s"
 msgstr ""
 
-#: assets/build/settings.js:2
-msgid "Saved. Type a new value to replace it."
-msgstr ""
-
-#: assets/build/settings.js:2
+#: assets/src/settings/PaymentGateway.js:95
 msgid "Webhook URL"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/PaymentGateway.js:96
 msgid "Copy this into your provider account."
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:23
 msgid "Comma (1,000)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:24
 msgid "Period (1.000)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:25
 msgid "Space (1 000)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:26
 msgid "Apostrophe (1'000)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:27
 msgid "None (1000)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:31
 msgid "Period (0.50)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:32
 msgid "Comma (0,50)"
 msgstr ""
 
-#: assets/build/settings.js:2
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:96
+msgid "Settings saved."
+msgstr ""
+
+#: assets/src/settings/SettingsApp.js:103
+msgid "Settings could not be saved."
+msgstr ""
+
+#: assets/src/settings/SettingsApp.js:122
+#: assets/src/settings/SettingsApp.js:126
+#: assets/src/setup/SetupWizard.js:28
+#: assets/src/setup/SetupWizard.js:187
 msgid "Currency"
 msgstr ""
 
-#: assets/build/settings.js:2
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:138
+#: assets/src/setup/SetupWizard.js:197
 msgid "Symbol position"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:148
 msgid "Thousand separator"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:161
 msgid "Decimal separator"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:172
 msgid "Decimals"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:182
 msgid "Preview:"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:193
 msgid "Tax"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:196
 msgid "Charge tax on bookings"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:207
 msgid "Tax label"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:211
 msgid "e.g. VAT, GST, Sales tax."
 msgstr ""
 
-#: assets/build/settings.js:2
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:221
+#: assets/src/setup/SetupWizard.js:217
 msgid "Tax rate (%)"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:235
 msgid "Trip prices already include tax"
 msgstr ""
 
-#: assets/build/settings.js:2
+#: assets/src/settings/SettingsApp.js:239
 msgid "Common in Europe and Australia. When off, tax is added at checkout."
 msgstr ""
 
-#: assets/build/settings.js:2
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:255
+#: assets/src/setup/SetupWizard.js:307
 msgid "Booking number prefix"
 msgstr ""
 
 #. translators: %s: example booking number.
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:261
 #, js-format
 msgid "Bookings are numbered like %s."
 msgstr ""
 
-#: assets/build/settings.js:3
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:273
+#: assets/src/setup/SetupWizard.js:297
 msgid "Hold seats during checkout (minutes)"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:277
 msgid "Seats are reserved while the customer pays, so nobody else can book them."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:291
 msgid "Allow booking without an account"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:302
 msgid "Let guests create an account while booking"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:306
 msgid "The customer gets an email to set a password and can then see their bookings."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:317
 msgid "Add the booking form to trip pages"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:321
 msgid "Turn off to place it yourself with the [wpitravel_booking] shortcode."
 msgstr ""
 
-#: assets/build/settings.js:3
-#: assets/build/setup.js:5
+#: assets/src/settings/SettingsApp.js:333
+#: assets/src/setup/SetupWizard.js:318
 msgid "Terms and conditions page"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:337
 msgid "When set, customers must accept this page to book."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:345
+#: assets/src/settings/SettingsApp.js:368
 msgid "None"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:355
 msgid "Customers"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:359
 msgid "\"My bookings\" page"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:360
 msgid "Customers see, pay and manage their bookings here. Links in emails point to it. The page needs the [wpitravel_account] shortcode."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:391
 msgid "Who can review"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:399
 msgid "Only travelers who booked (recommended)"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:406
 msgid "Anyone (held for moderation)"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:418
 msgid "Publish reviews from travelers who booked right away"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:422
 msgid "Spam checks still apply. Moderate reviews in Comments → Trip reviews."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:438
 msgid "Confirm bookings automatically when fully paid"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:448
 msgid "Cancel unpaid online bookings after (minutes)"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:452
 msgid "Frees the seats when a customer leaves the online payment page without paying. 0 = never. Bank transfer and pay later bookings are not affected."
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:491
 msgid "Permalinks"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:536
 msgid "Data"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:539
 msgid "Delete all data when the plugin is deleted"
 msgstr ""
 
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:543
 msgid "Removes trips, bookings, payments and settings permanently when you delete the plugin. Leave off unless you are sure."
 msgstr ""
 
-#: assets/build/settings.js:3
-msgid "Settings saved."
-msgstr ""
-
-#: assets/build/settings.js:3
-msgid "Settings could not be saved."
-msgstr ""
-
-#: assets/build/settings.js:3
+#: assets/src/settings/SettingsApp.js:561
 msgid "Save settings"
 msgstr ""
 
-#: assets/build/setup.js:1
+#: assets/src/setup/ContentStep.js:76
 msgid "Add your trips"
 msgstr ""
 
-#: assets/build/setup.js:1
+#: assets/src/setup/ContentStep.js:87
 msgid "Import from another plugin"
 msgstr ""
 
-#: assets/build/setup.js:1
+#: assets/src/setup/ContentStep.js:93
 msgid "Trips are copied with their itinerary, prices, upcoming dates, photos and destinations. The other plugin’s data is not changed, and running an import again skips trips already copied. Imported trips keep their original status (published or draft)."
 msgstr ""
 
 #. translators: 1: trips found, 2: trips already imported.
-#: assets/build/setup.js:2
+#: assets/src/setup/ContentStep.js:111
 #, js-format
 msgid "%1$d trip found, %2$d imported"
 msgid_plural "%1$d trips found, %2$d imported"
@@ -5157,740 +5198,713 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: trips created, 2: trips skipped.
-#: assets/build/setup.js:3
+#: assets/src/setup/ContentStep.js:129
 #, js-format
 msgid "Done: %1$d created, %2$d skipped."
 msgstr ""
 
 #. translators: 1: trips processed, 2: total.
-#: assets/build/setup.js:4
+#: assets/src/setup/ContentStep.js:138
 #, js-format
 msgid "Importing %1$d of %2$d…"
 msgstr ""
 
-#: assets/build/setup.js:4
+#: assets/src/setup/ContentStep.js:166
 msgid "Import new trips"
 msgstr ""
 
-#: assets/build/setup.js:4
+#: assets/src/setup/ContentStep.js:170
 msgid "Import trips"
 msgstr ""
 
-#: assets/build/setup.js:4
+#: assets/src/setup/ContentStep.js:182
 msgid "Sample trips"
 msgstr ""
 
 #. translators: %d: number of sample trips.
-#: assets/build/setup.js:5
+#: assets/src/setup/ContentStep.js:188
 #, js-format
 msgid "%d sample trip is on your site. Remove it when you have added your own."
 msgid_plural "%d sample trips are on your site. Remove them when you have added your own."
 msgstr[0] ""
 msgstr[1] ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/ContentStep.js:204
 msgid "Remove sample trips"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/ContentStep.js:213
 msgid "Add three example trips (a trek, a city walk and a safari) with prices, dates, itineraries and FAQs, to see how everything looks. You can remove them in one click later."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/ContentStep.js:224
 msgid "Add sample trips"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:32
 msgid "Ready"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:176
 msgid "Currency and tax"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:179
 msgid "Prices are shown and charged in this currency."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:207
 msgid "Charge tax (VAT, GST, sales tax)"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:227
 msgid "Tax name"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:237
 msgid "Trip prices"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:249
 msgid "include tax"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:256
 msgid "exclude tax (added at checkout)"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:279
 msgid "Let customers book without an account"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:288
 msgid "Offer to create an account when booking"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:322
 msgid "Customers must accept it to book. Leave empty to skip."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:347
 msgid "Choose how customers pay. You can change this any time in Travel → Settings → Payments."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:366
 msgid "Bank details"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:370
 msgid "Account holder, IBAN or account number, bank and SWIFT/BIC. Shown to customers after booking."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:386
 msgid "Pay later (on arrival or by arrangement)"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:395
 msgid "To take card and PayPal payments online, add your PayPal app keys in Travel → Settings → Payments after setup."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:411
 msgid "You’re ready to take bookings"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:419
 msgid "Add a trip"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:421
 msgid "with its itinerary, prices and departure dates."
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:428
 msgid "View your trips page"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:436
 msgid "Review all settings"
 msgstr ""
 
-#: assets/build/setup.js:5
+#: assets/src/setup/SetupWizard.js:441
 msgid "(emails, reviews, permalinks)."
 msgstr ""
 
 #. translators: %d: number of sample trips.
-#: assets/build/setup.js:6
+#: assets/src/setup/SetupWizard.js:451
 #, js-format
 msgid "%d sample trips are published. Remove them from this wizard (Travel → Settings → Setup wizard) when you are ready."
 msgstr ""
 
-#: assets/build/setup.js:6
+#: assets/src/setup/SetupWizard.js:476
 msgid "Skip setup"
 msgstr ""
 
-#: assets/build/setup.js:6
+#: assets/src/setup/SetupWizard.js:489
 msgid "Add your first trip"
 msgstr ""
 
-#. translators: 1: list label, 2: line number.
-#: assets/build/trip-editor.js:2
+#: assets/src/trip-editor/tabs/DatesTab.js:13
+msgid "Mon"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:14
+msgid "Tue"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:15
+msgid "Wed"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:16
+msgid "Thu"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:17
+msgid "Fri"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:18
+msgid "Sat"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:23
+msgid "Jan"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:24
+msgid "Feb"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:25
+msgid "Mar"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:26
+msgid "Apr"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:27
+msgid "May"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:28
+msgid "Jun"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:29
+msgid "Jul"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:30
+msgid "Aug"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:31
+msgid "Sep"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:32
+msgid "Oct"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:33
+msgid "Nov"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:34
+msgid "Dec"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:85
+msgid "Fixed dates"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:97
+msgid "Start time (optional)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:105
+msgid "Seats (0 = trip default)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:117
+#: assets/src/trip-editor/tabs/DatesTab.js:308
+msgid "Remove date"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:136
+msgid "Add date"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:154
+msgid "Until (empty = no end)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:164
+msgid "Days of the week (none = every day)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:189
+msgid "Months (none = every month)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:214
+msgid "Start times (none = no fixed time)"
+msgstr ""
+
+#. translators: %d: time number.
+#: assets/src/trip-editor/tabs/DatesTab.js:226
 #, js-format
-msgid "%1$s, line %2$d"
+msgid "Time %d"
 msgstr ""
 
-#: assets/build/trip-editor.js:2
-msgid "Remove line"
+#: assets/src/trip-editor/tabs/DatesTab.js:241
+msgid "Remove time"
 msgstr ""
 
-#. translators: %s: row label.
-#: assets/build/trip-editor.js:3
+#: assets/src/trip-editor/tabs/DatesTab.js:260
+msgid "Add start time"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:265
+msgid "Seats per start time (0 = trip default)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:269
+msgid "Each start time sells its own seats, e.g. 12 for a morning tour and 20 for an afternoon one in a second rule."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:285
+msgid "Excluded dates"
+msgstr ""
+
+#. translators: %d: row number.
+#: assets/src/trip-editor/tabs/DatesTab.js:293
 #, js-format
-msgid "Move %s up"
+msgid "Excluded date %d"
 msgstr ""
 
-#. translators: %s: row label.
-#: assets/build/trip-editor.js:4
+#: assets/src/trip-editor/tabs/DatesTab.js:319
+msgid "No departures on these dates, e.g. public holidays."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:328
+msgid "Add excluded date"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:346
+msgid "Seats per departure"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:347
+msgid "0 = unlimited. Can be changed for single dates below."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:355
+msgid "Stop bookings (hours before start)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:359
+msgid "Dates without a start time begin at midnight."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:370
+msgid "Bookable up to (days ahead)"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:374
+#: assets/src/trip-editor/tabs/OverviewTab.js:106
+#: assets/src/trip-editor/tabs/PricingTab.js:209
+msgid "0 = no limit."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:385
+msgid "Private departures: each date is booked by one group only"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:389
+msgid "After one booking the date closes for everyone else. Seats per departure become the largest group size."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:404
+msgid "Repeating departures"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:417
+msgid "Add repeating rule"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/DatesTab.js:421
+msgid "For trips that run on a pattern, e.g. every Saturday from April to October, or daily."
+msgstr ""
+
+#. translators: %d: rule number.
+#: assets/src/trip-editor/tabs/DatesTab.js:428
 #, js-format
-msgid "Move %s down"
+msgid "Rule %d"
 msgstr ""
 
-#. translators: %s: row label.
-#: assets/build/trip-editor.js:5
+#: assets/src/trip-editor/tabs/FactsTab.js:12
+msgid "Duration, difficulty, group size and minimum age are shown automatically. Add any other facts here."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FactsTab.js:21
+msgid "Add fact"
+msgstr ""
+
+#. translators: %d: fact number.
+#: assets/src/trip-editor/tabs/FactsTab.js:26
 #, js-format
-msgid "Remove %s"
+msgid "Fact %d"
 msgstr ""
 
-#: assets/build/trip-editor.js:5
+#: assets/src/trip-editor/tabs/FactsTab.js:33
+msgid "Label"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FactsTab.js:34
+msgid "e.g. Max altitude"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FactsTab.js:43
+msgid "e.g. 5,364 m"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FaqsTab.js:14
+msgid "Add question"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FaqsTab.js:15
+msgid "No questions yet."
+msgstr ""
+
+#. translators: %d: question number.
+#: assets/src/trip-editor/tabs/FaqsTab.js:20
+#, js-format
+msgid "Question %d"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FaqsTab.js:27
+msgid "Question"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/FaqsTab.js:32
+msgid "Answer"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/GalleryTab.js:43
+msgid "Remove image"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/GalleryTab.js:62
+msgid "Trip gallery"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/GalleryTab.js:76
+msgid "Edit gallery"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/GalleryTab.js:77
+msgid "Add images"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/IncludesTab.js:14
+msgid "Add included item"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/IncludesTab.js:15
+msgid "e.g. Airport pickup"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/IncludesTab.js:21
+msgid "Excluded"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/IncludesTab.js:24
+msgid "Add excluded item"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/IncludesTab.js:25
+msgid "e.g. International flights"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:24
+msgid "Add day"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:25
+msgid "No days yet. Add one row per day of the trip."
+msgstr ""
+
+#. translators: 1: day number, 2: day title.
+#: assets/src/trip-editor/tabs/ItineraryTab.js:33
+#, js-format
+msgid "Day %1$d: %2$s"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:46
+msgid "Title"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:51
+msgid "Description"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:59
+msgid "Meals included"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:86
+msgid "Accommodation"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/ItineraryTab.js:87
+msgid "e.g. Teahouse in Namche"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:18
+msgid "Address or place"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:24
+msgid "Latitude"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:31
+msgid "Longitude"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:38
+msgid "Zoom"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:46
+msgid "Find coordinates by right-clicking a place on any online map."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/MapTab.js:54
+msgid "Check on OpenStreetMap"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:26
+msgid "Your internal reference, shown on bookings and invoices."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:43
+msgid "Not set"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:66
+msgid "Nights"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:76
+msgid "Hours"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:77
+msgid "For day trips."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:95
+msgid "Minimum"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:105
+msgid "Maximum"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:117
+msgid "0 = all ages."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:136
+msgid "Pickup points"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:139
+msgid "When you add pickup points, customers choose one when they book. The voucher, emails ({pickup_point}) and the traveler list show it."
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:153
+msgid "Add pickup point"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:154
+msgid "No pickup points: travelers come to the meeting point."
+msgstr ""
+
+#. translators: %d: pickup point number.
+#: assets/src/trip-editor/tabs/OverviewTab.js:162
+#, js-format
+msgid "Pickup point %d"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:169
+msgid "Place"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:174
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:112
+msgid "Time"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:175
+msgid "24-hour, e.g. 06:30"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:196
+msgid "Add highlight"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/OverviewTab.js:197
+msgid "e.g. Sunrise view from the summit"
+msgstr ""
+
+#: assets/src/trip-editor/tabs/PricingTab.js:49
 msgid "Prices per traveler"
 msgstr ""
 
-#: assets/build/trip-editor.js:5
+#: assets/src/trip-editor/tabs/PricingTab.js:55
 msgid "Traveler type"
 msgstr ""
 
-#: assets/build/trip-editor.js:5
+#: assets/src/trip-editor/tabs/PricingTab.js:59
 msgid "e.g. Adult"
 msgstr ""
 
 #. translators: %s: currency code.
-#: assets/build/trip-editor.js:6
+#: assets/src/trip-editor/tabs/PricingTab.js:69
 #, js-format
 msgid "Price (%s)"
 msgstr ""
 
 #. translators: %s: currency code.
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:79
 #, js-format
 msgid "Sale price (%s)"
 msgstr ""
 
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:83
 msgid "Optional"
 msgstr ""
 
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:106
 msgid "Remove traveler type"
 msgstr ""
 
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:121
 msgid "Prices are per traveler. Min and max limit how many of each type one booking can include (0 = no limit). A sale price only applies when it is lower than the price."
 msgstr ""
 
-#: assets/build/trip-editor.js:7
+#: assets/src/trip-editor/tabs/PricingTab.js:130
 msgid "Add traveler type"
 msgstr ""
 
-#: assets/build/trip-editor.js:7
-msgid "Open"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Sold out"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Booking closed (cut-off)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Not yet bookable"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Removed from schedule"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Upcoming departures (next 90 days)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Based on the saved schedule. Save the trip to see changes above reflected here."
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "No departures in the next 90 days."
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-#: assets/build/trip-editor.js:10
-msgid "Time"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Seats"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Reopen"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Close date"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Mon"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Tue"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Wed"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Thu"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Fri"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Sat"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Jan"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Feb"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Mar"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Apr"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "May"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Jun"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Jul"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Aug"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Sep"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Oct"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Nov"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Dec"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Fixed dates"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Start time (optional)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Seats (0 = trip default)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-#: assets/build/trip-editor.js:9
-msgid "Remove date"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Add date"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Until (empty = no end)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Days of the week (none = every day)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Months (none = every month)"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
-msgid "Start times (none = no fixed time)"
-msgstr ""
-
-#. translators: %d: time number.
-#: assets/build/trip-editor.js:8
-#, js-format
-msgid "Time %d"
-msgstr ""
-
-#: assets/build/trip-editor.js:8
-msgid "Remove time"
-msgstr ""
-
-#: assets/build/trip-editor.js:8
-msgid "Add start time"
-msgstr ""
-
-#: assets/build/trip-editor.js:8
-msgid "Seats per start time (0 = trip default)"
-msgstr ""
-
-#: assets/build/trip-editor.js:8
-msgid "Each start time sells its own seats, e.g. 12 for a morning tour and 20 for an afternoon one in a second rule."
-msgstr ""
-
-#: assets/build/trip-editor.js:8
-msgid "Excluded dates"
-msgstr ""
-
-#. translators: %d: row number.
-#: assets/build/trip-editor.js:9
-#, js-format
-msgid "Excluded date %d"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "No departures on these dates, e.g. public holidays."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Add excluded date"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Overview"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Your internal reference, shown on bookings and invoices."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Not set"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Nights"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Hours"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "For day trips."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Minimum"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Maximum"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-#: assets/build/trip-editor.js:11
-msgid "0 = no limit."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "0 = all ages."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Pickup points"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "When you add pickup points, customers choose one when they book. The voucher, emails ({pickup_point}) and the traveler list show it."
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "Add pickup point"
-msgstr ""
-
-#: assets/build/trip-editor.js:9
-msgid "No pickup points: travelers come to the meeting point."
-msgstr ""
-
-#. translators: %d: pickup point number.
-#: assets/build/trip-editor.js:10
-#, js-format
-msgid "Pickup point %d"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
-msgid "Place"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
-msgid "24-hour, e.g. 06:30"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
-msgid "Add highlight"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
-msgid "e.g. Sunrise view from the summit"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
-msgid "Pricing"
-msgstr ""
-
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/PricingTab.js:144
 msgid "Hide prices and online booking; the trip page shows \"Price on request\" and an enquiry form instead. Good for tailor-made trips."
 msgstr ""
 
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/PricingTab.js:154
 msgid "Add at least one price option, e.g. \"Standard\" or \"Private group\". Customers pick an option, then how many travelers of each type."
 msgstr ""
 
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/PricingTab.js:165
 msgid "Add price option"
 msgstr ""
 
-#: assets/build/trip-editor.js:10
+#: assets/src/trip-editor/tabs/PricingTab.js:166
 msgid "No prices yet, so this trip cannot be booked."
 msgstr ""
 
 #. translators: %d: option number.
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/tabs/PricingTab.js:174
 #, js-format
 msgid "Price option %d"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/tabs/PricingTab.js:182
 msgid "Option name"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/tabs/PricingTab.js:186
 msgid "e.g. Standard"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/tabs/PricingTab.js:194
 msgid "Minimum travelers per booking"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
+#: assets/src/trip-editor/tabs/PricingTab.js:205
 msgid "Maximum travelers per booking"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Seats per departure"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:14
+msgid "Open"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "0 = unlimited. Can be changed for single dates below."
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:15
+msgid "Sold out"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Stop bookings (hours before start)"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:18
+msgid "Booking closed (cut-off)"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Dates without a start time begin at midnight."
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:19
+msgid "Not yet bookable"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Bookable up to (days ahead)"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:20
+msgid "Removed from schedule"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Private departures: each date is booked by one group only"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:82
+msgid "Upcoming departures (next 90 days)"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "After one booking the date closes for everyone else. Seats per departure become the largest group size."
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:88
+msgid "Based on the saved schedule. Save the trip to see changes above reflected here."
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Repeating departures"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:101
+msgid "No departures in the next 90 days."
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "Add repeating rule"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:113
+msgid "Seats"
 msgstr ""
 
-#: assets/build/trip-editor.js:11
-msgid "For trips that run on a pattern, e.g. every Saturday from April to October, or daily."
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:181
+msgid "Reopen"
 msgstr ""
 
-#. translators: %d: rule number.
-#: assets/build/trip-editor.js:12
-#, js-format
-msgid "Rule %d"
+#: assets/src/trip-editor/tabs/UpcomingDepartures.js:185
+msgid "Close date"
 msgstr ""
 
-#: assets/build/trip-editor.js:12
-msgid "Add day"
+#: assets/src/trip-editor/TripEditor.js:22
+msgid "Overview"
 msgstr ""
 
-#: assets/build/trip-editor.js:12
-msgid "No days yet. Add one row per day of the trip."
+#: assets/src/trip-editor/TripEditor.js:27
+msgid "Pricing"
 msgstr ""
 
-#. translators: 1: day number, 2: day title.
-#: assets/build/trip-editor.js:13
-#, js-format
-msgid "Day %1$d: %2$s"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Title"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Description"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Meals included"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Accommodation"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "e.g. Teahouse in Namche"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
+#: assets/src/trip-editor/TripEditor.js:42
 msgid "Included / Excluded"
 msgstr ""
 
-#: assets/build/trip-editor.js:14
-msgid "Add included item"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "e.g. Airport pickup"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Excluded"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "Add excluded item"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "e.g. International flights"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
+#: assets/src/trip-editor/TripEditor.js:47
 msgid "FAQs"
 msgstr ""
 
-#: assets/build/trip-editor.js:14
-msgid "Add question"
-msgstr ""
-
-#: assets/build/trip-editor.js:14
-msgid "No questions yet."
-msgstr ""
-
-#. translators: %d: question number.
-#: assets/build/trip-editor.js:15
-#, js-format
-msgid "Question %d"
-msgstr ""
-
-#: assets/build/trip-editor.js:15
-msgid "Question"
-msgstr ""
-
-#: assets/build/trip-editor.js:15
-msgid "Answer"
-msgstr ""
-
-#: assets/build/trip-editor.js:15
+#: assets/src/trip-editor/TripEditor.js:52
 msgid "Facts"
 msgstr ""
 
-#: assets/build/trip-editor.js:15
-msgid "Duration, difficulty, group size and minimum age are shown automatically. Add any other facts here."
-msgstr ""
-
-#: assets/build/trip-editor.js:15
-msgid "Add fact"
-msgstr ""
-
-#. translators: %d: fact number.
-#: assets/build/trip-editor.js:16
-#, js-format
-msgid "Fact %d"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Label"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "e.g. Max altitude"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "e.g. 5,364 m"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
+#: assets/src/trip-editor/TripEditor.js:57
 msgid "Gallery"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Remove image"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Trip gallery"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Edit gallery"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Add images"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Address or place"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Latitude"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Longitude"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Zoom"
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Find coordinates by right-clicking a place on any online map."
-msgstr ""
-
-#: assets/build/trip-editor.js:16
-msgid "Check on OpenStreetMap"
 msgstr ""
 
 #: blocks/booking-form/block.json
