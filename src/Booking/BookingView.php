@@ -122,6 +122,41 @@ final class BookingView {
 			 * @param array    $booking Booking.
 			 */
 			'notes'                => array_values( array_map( 'strval', (array) apply_filters( 'wpitravel_customer_booking_notes', array(), $booking ) ) ),
+			'links'                => self::links( $booking ),
 		);
+	}
+
+	/**
+	 * Files and links for the customer, from add-ons.
+	 *
+	 * @param array<string, mixed> $booking Booking.
+	 * @return list<array{label: string, url: string, note: string}>
+	 */
+	private static function links( array $booking ): array {
+		/**
+		 * Filters files and links shown to the customer on their booking
+		 * (e.g. Pro's downloads: itineraries, souvenirs).
+		 *
+		 * @param array<int, array{label: string, url: string, note?: string}> $links   Links.
+		 * @param array                                                        $booking Booking.
+		 */
+		$links = (array) apply_filters( 'wpitravel_customer_booking_links', array(), $booking );
+		$clean = array();
+
+		foreach ( $links as $link ) {
+			$url = is_array( $link ) ? esc_url_raw( (string) ( $link['url'] ?? '' ) ) : '';
+
+			if ( '' === $url || '' === trim( (string) ( $link['label'] ?? '' ) ) ) {
+				continue;
+			}
+
+			$clean[] = array(
+				'label' => sanitize_text_field( (string) $link['label'] ),
+				'url'   => $url,
+				'note'  => sanitize_text_field( (string) ( $link['note'] ?? '' ) ),
+			);
+		}
+
+		return $clean;
 	}
 }

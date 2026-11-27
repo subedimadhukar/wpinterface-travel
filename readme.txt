@@ -101,6 +101,8 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 == Changelog ==
 
 = 0.9.0 =
+* Reviews: with "Anyone can review" on, trip pages show a "Write a review" form, and the Reviews section appears before the first review. Reviews still wait for your approval.
+* For add-ons: the `wpitravel_trip_parts` filter adds or replaces trip page sections, and `wpitravel_customer_booking_links` adds files and links to the customer's booking.
 * Security: a PayPal payment is never captured once its booking or payment attempt was closed; money that still arrives late is recorded and flagged for staff.
 * Security: "Find your booking" now emails a link to the booking's own address instead of opening it.
 * Security: one visitor can hold at most 20 seats at a time, so nobody can block departures.

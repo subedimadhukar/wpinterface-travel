@@ -31,7 +31,7 @@ final class Parts {
 	 * @return array<string, callable(int, array<string, mixed>): string>
 	 */
 	public static function sections(): array {
-		return array(
+		$sections = array(
 			'price'      => array( self::class, 'price' ),
 			'facts'      => array( self::class, 'facts' ),
 			'highlights' => array( self::class, 'highlights' ),
@@ -44,6 +44,17 @@ final class Parts {
 			'reviews'    => array( self::class, 'reviews' ),
 			'enquiry'    => array( self::class, 'enquiry' ),
 		);
+
+		/**
+		 * Filters trip page sections and their renderers. Add-ons can add a
+		 * section (e.g. Pro's downloads) or replace one (e.g. Pro's maps).
+		 * Each renderer takes the trip ID and attributes and returns HTML.
+		 *
+		 * @param array<string, callable> $sections Section name => renderer.
+		 */
+		$filtered = apply_filters( 'wpitravel_trip_parts', $sections );
+
+		return is_array( $filtered ) ? array_filter( $filtered, 'is_callable' ) : $sections;
 	}
 
 	/**

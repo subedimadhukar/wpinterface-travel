@@ -32,3 +32,110 @@
 	color: rgba(0, 0, 0, 0.6);
 	font-size: 0.9em;
 }
+
+.wpitravel-reviews__empty {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+/* Public review form ("Anyone can review"). */
+.wpitravel-review-form {
+	margin-top: 1.5em;
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	padding-top: 1em;
+}
+
+.wpitravel-review-form > summary {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.wpitravel-review-form form {
+	display: grid;
+	gap: 0.9em;
+	margin-top: 1em;
+	max-width: 40em;
+}
+
+.wpitravel-review-form form > p {
+	margin: 0;
+}
+
+.wpitravel-review-form__row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+	gap: 0.9em;
+}
+
+.wpitravel-review-form__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+}
+
+.wpitravel-review-form__field input,
+.wpitravel-review-form__field textarea {
+	width: 100%;
+	box-sizing: border-box;
+	font: inherit;
+}
+
+.wpitravel-review-form__stars {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.wpitravel-review-form__stars legend {
+	margin-bottom: 0.3em;
+	padding: 0;
+	font-weight: 600;
+}
+
+/* Stars are printed 5→1 and shown reversed, so ~ can light the lower ones. */
+.wpitravel-review-form__star-row {
+	display: inline-flex;
+	flex-direction: row-reverse;
+	gap: 0.15em;
+}
+
+.wpitravel-review-form__stars input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.wpitravel-review-form__stars label {
+	color: rgba(0, 0, 0, 0.25);
+	font-size: 1.8em;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.wpitravel-review-form__stars input:checked ~ label,
+.wpitravel-review-form__stars label:hover,
+.wpitravel-review-form__stars label:hover ~ label {
+	color: #b45309;
+}
+
+.wpitravel-review-form__stars input:focus-visible + label {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.wpitravel-review-form__message:empty {
+	display: none;
+}
+
+.wpitravel-review-form__message.is-error {
+	color: #b91c1c;
+}
+
+.wpitravel-reviews .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+}

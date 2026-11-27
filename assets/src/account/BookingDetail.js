@@ -223,6 +223,26 @@ export default function BookingDetail( {
 				</p>
 			) ) }
 
+			{ booking.links?.length > 0 && (
+				<>
+					<h3 className="wpitravel-booking__step">
+						{ __( 'Files for your trip', 'wpinterface-travel' ) }
+					</h3>
+					<ul className="wpitravel-booking__links">
+						{ booking.links.map( ( link ) => (
+							<li key={ link.url }>
+								<a href={ link.url }>{ link.label }</a>
+								{ link.note && (
+									<span className="wpitravel-booking__link-note">
+										{ link.note }
+									</span>
+								) }
+							</li>
+						) ) }
+					</ul>
+				</>
+			) }
+
 			{ booking.can_pay && ! instructions && (
 				<>
 					<h3 className="wpitravel-booking__step">

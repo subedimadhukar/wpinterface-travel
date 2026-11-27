@@ -68,7 +68,10 @@ final class ReviewsDisplay {
 
 		$summary = Reviews::summary( $trip_id );
 
-		if ( $summary['count'] < 1 ) {
+		// "Anyone can review": the section and its form show even before the first review.
+		$open = 'anyone' === wpitravel()->options()->get( 'reviews.who', 'verified' ) && 'publish' === get_post_status( $trip_id );
+
+		if ( $summary['count'] < 1 && ! $open ) {
 			return '';
 		}
 
@@ -83,6 +86,9 @@ final class ReviewsDisplay {
 		?>
 		<section class="wpitravel-reviews" id="wpitravel-reviews" aria-labelledby="wpitravel-reviews-title">
 			<h2 id="wpitravel-reviews-title"><?php esc_html_e( 'Reviews', 'wpinterface-travel' ); ?></h2>
+			<?php if ( $summary['count'] < 1 ) : ?>
+				<p class="wpitravel-reviews__empty"><?php esc_html_e( 'No reviews yet. Travelled with us? Be the first to share how it went.', 'wpinterface-travel' ); ?></p>
+			<?php else : ?>
 			<p class="wpitravel-reviews__summary">
 				<span class="wpitravel-stars" aria-hidden="true"><?php echo esc_html( self::stars( (int) round( $summary['average'] ) ) ); ?></span>
 				<?php
@@ -116,7 +122,7 @@ final class ReviewsDisplay {
 					</li>
 				<?php endforeach; ?>
 			</ol>
-			<?php if ( $pages > 1 ) : ?>
+				<?php if ( $pages > 1 ) : ?>
 				<nav class="wpitravel-reviews__pages" aria-label="<?php esc_attr_e( 'More reviews', 'wpinterface-travel' ); ?>">
 					<?php
 					echo wp_kses_post(
@@ -132,9 +138,80 @@ final class ReviewsDisplay {
 					?>
 				</nav>
 			<?php endif; ?>
+			<?php endif; ?>
+			<?php
+			if ( $open ) {
+				$this->form( $trip_id );
+			}
+			?>
 		</section>
 		<?php
 		return (string) ob_get_clean();
+	}
+
+	/**
+	 * Prints the public review form, for "Anyone can review". Sent by
+	 * assets/js/review-form.js to the reviews REST route, which checks,
+	 * rate-limits and holds the review for moderation.
+	 *
+	 * @param int $trip_id Trip.
+	 */
+	private function form( int $trip_id ): void {
+		$id = 'wpitravel-review-' . $trip_id;
+
+		wp_enqueue_script( 'wpitravel-review-form', WPITRAVEL_URL . 'assets/js/review-form.js', array(), WPITRAVEL_VERSION, true );
+		wp_localize_script(
+			'wpitravel-review-form',
+			'wpitravelReviewForm',
+			array(
+				'rest'   => esc_url_raw( rest_url( 'wpinterface-travel/v1/trips/' ) ),
+				'thanks' => __( 'Thank you! Your review will appear once we have checked it.', 'wpinterface-travel' ),
+				'live'   => __( 'Thank you! Your review is now live.', 'wpinterface-travel' ),
+				'stars'  => __( 'Choose 1 to 5 stars.', 'wpinterface-travel' ),
+				'failed' => __( 'Your review could not be sent. Try again.', 'wpinterface-travel' ),
+			)
+		);
+
+		?>
+		<details class="wpitravel-review-form">
+			<summary><?php esc_html_e( 'Write a review', 'wpinterface-travel' ); ?></summary>
+			<form data-wpitravel-review-form="<?php echo esc_attr( (string) $trip_id ); ?>" novalidate>
+				<fieldset class="wpitravel-review-form__stars">
+					<legend><?php esc_html_e( 'Your rating', 'wpinterface-travel' ); ?></legend>
+					<span class="wpitravel-review-form__star-row">
+					<?php for ( $star = 5; $star >= 1; $star-- ) : ?>
+						<input type="radio" id="<?php echo esc_attr( $id . '-star-' . $star ); ?>" name="rating" value="<?php echo esc_attr( (string) $star ); ?>">
+						<label for="<?php echo esc_attr( $id . '-star-' . $star ); ?>" title="<?php echo esc_attr( sprintf( /* translators: %d: stars out of 5. */ _n( '%d star', '%d stars', $star, 'wpinterface-travel' ), $star ) ); ?>">
+							<span aria-hidden="true">★</span>
+							<span class="screen-reader-text"><?php echo esc_html( sprintf( /* translators: %d: stars out of 5. */ _n( '%d star', '%d stars', $star, 'wpinterface-travel' ), $star ) ); ?></span>
+						</label>
+					<?php endfor; ?>
+					</span>
+				</fieldset>
+				<p class="wpitravel-review-form__row">
+					<span class="wpitravel-review-form__field">
+						<label for="<?php echo esc_attr( $id . '-name' ); ?>"><?php esc_html_e( 'Your name', 'wpinterface-travel' ); ?></label>
+						<input id="<?php echo esc_attr( $id . '-name' ); ?>" type="text" name="name" maxlength="100" autocomplete="name" required>
+					</span>
+					<span class="wpitravel-review-form__field">
+						<label for="<?php echo esc_attr( $id . '-email' ); ?>"><?php esc_html_e( 'Email (not shown)', 'wpinterface-travel' ); ?></label>
+						<input id="<?php echo esc_attr( $id . '-email' ); ?>" name="email" type="email" maxlength="100" autocomplete="email" required>
+					</span>
+				</p>
+				<p class="wpitravel-review-form__field">
+					<label for="<?php echo esc_attr( $id . '-title' ); ?>"><?php esc_html_e( 'Title (optional)', 'wpinterface-travel' ); ?></label>
+					<input id="<?php echo esc_attr( $id . '-title' ); ?>" type="text" name="title" maxlength="120">
+				</p>
+				<p class="wpitravel-review-form__field">
+					<label for="<?php echo esc_attr( $id . '-content' ); ?>"><?php esc_html_e( 'Your review', 'wpinterface-travel' ); ?></label>
+					<textarea id="<?php echo esc_attr( $id . '-content' ); ?>" name="content" rows="5" minlength="10" maxlength="5000" required></textarea>
+				</p>
+				<p class="wpitravel-review-form__message" role="status" aria-live="polite"></p>
+				<p><button type="submit" class="wp-element-button"><?php esc_html_e( 'Send review', 'wpinterface-travel' ); ?></button></p>
+				<noscript><p><?php esc_html_e( 'Turn on JavaScript to send a review.', 'wpinterface-travel' ); ?></p></noscript>
+			</form>
+		</details>
+		<?php
 	}
 
 	/**

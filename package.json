@@ -18,6 +18,7 @@
 	"files": [
 		"assets/build",
 		"assets/css",
+		"assets/js",
 		"assets/src",
 		"blocks",
 		"languages",

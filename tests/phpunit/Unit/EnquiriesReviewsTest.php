@@ -265,4 +265,75 @@ class EnquiriesReviewsTest extends WP_UnitTestCase {
 		$this->assertSame( array( '' ), array_column( ( new BookingRepository() )->travelers( $booking['id'] ), 'last_name' ) );
 		$this->assertSame( array(), $privacy->export( 'ada@example.com' )['data'], 'Nothing is left to export.' );
 	}
+
+	public function test_trip_page_shows_a_review_form_when_anyone_can_review(): void {
+		$display = new \WPInterface\Travel\Frontend\ReviewsDisplay();
+
+		$this->assertSame( '', $display->render( $this->trip ), 'Verified-only reviews: nothing to show before the first one.' );
+
+		wpitravel()->options()->update( array( 'reviews' => array( 'who' => 'anyone' ) ) );
+		$html = $display->render( $this->trip );
+
+		$this->assertStringContainsString( 'No reviews yet', $html );
+		$this->assertStringContainsString( 'data-wpitravel-review-form="' . $this->trip . '"', $html );
+		$this->assertSame( 5, substr_count( $html, 'name="rating"' ) );
+		$this->assertTrue( wp_script_is( 'wpitravel-review-form', 'enqueued' ) );
+
+		// The form sends to the existing route; the review waits for moderation.
+		$request = new \WP_REST_Request( 'POST', '/wpinterface-travel/v1/trips/' . $this->trip . '/reviews' );
+		$request->set_body_params(
+			array(
+				'rating'  => 5,
+				'name'    => 'Sam',
+				'email'   => 'sam@example.com',
+				'content' => 'Wonderful guides and views.',
+			)
+		);
+		$response = rest_do_request( $request );
+		$this->assertSame( 201, $response->get_status() );
+		$this->assertFalse( $response->get_data()['published'] );
+	}
+
+	public function test_add_ons_can_add_trip_parts_and_booking_links(): void {
+		$part  = static fn( int $trip_id ): string => '<p>extra ' . $trip_id . '</p>';
+		add_filter(
+			'wpitravel_trip_parts',
+			static function ( $parts ) use ( $part ) {
+				$parts['extra']  = $part;
+				$parts['broken'] = 'not a callable';
+				return $parts;
+			}
+		);
+		$parts = \WPInterface\Travel\Frontend\Parts::sections();
+		$this->assertSame( '<p>extra 7</p>', call_user_func( $parts['extra'], 7, array() ) );
+		$this->assertArrayNotHasKey( 'broken', $parts );
+
+		add_filter(
+			'wpitravel_customer_booking_links',
+			static fn() => array(
+				array(
+					'label' => 'Guide',
+					'url'   => 'https://example.com/guide.pdf',
+					'note'  => '<b>PDF</b>',
+				),
+				array( 'label' => 'No address' ),
+				array(
+					'label' => 'Bad',
+					'url'   => 'javascript:alert(1)',
+				),
+			)
+		);
+		$booking = $this->finished_booking();
+		$view    = \WPInterface\Travel\Booking\BookingView::for_customer( $booking );
+		$this->assertSame(
+			array(
+				array(
+					'label' => 'Guide',
+					'url'   => 'https://example.com/guide.pdf',
+					'note'  => 'PDF',
+				),
+			),
+			$view['links']
+		);
+	}
 }
