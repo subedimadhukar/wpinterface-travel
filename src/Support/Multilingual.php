@@ -39,6 +39,7 @@ final class Multilingual {
 		TripMeta::GALLERY,
 		TripMeta::MAP,
 		TripMeta::SCHEDULE,
+		TripMeta::ON_REQUEST,
 	);
 
 	/**

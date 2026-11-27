@@ -134,6 +134,11 @@ final class BookingWidget {
 			return '';
 		}
 
+		// Priced on request: the enquiry form takes the booking's place.
+		if ( TripMeta::on_request( $trip_id ) ) {
+			return $this->enquiry_shortcode( array( 'trip' => (string) $trip_id ) );
+		}
+
 		$data = self::trip_data( $trip );
 
 		if ( empty( $data['options'] ) ) {

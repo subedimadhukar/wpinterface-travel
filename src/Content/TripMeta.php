@@ -39,6 +39,7 @@ final class TripMeta {
 	public const PRICING       = '_wpitravel_pricing';
 	public const SCHEDULE      = '_wpitravel_departure_rules';
 	public const PICKUPS       = '_wpitravel_pickups';
+	public const ON_REQUEST    = '_wpitravel_price_on_request';
 
 	/**
 	 * Maximum rows in any list field, to keep a malicious request small.
@@ -214,6 +215,11 @@ final class TripMeta {
 				'type'     => 'integer',
 				'default'  => 0,
 				'sanitize' => 'absint',
+			),
+			self::ON_REQUEST    => array(
+				'type'     => 'boolean',
+				'default'  => false,
+				'sanitize' => 'rest_sanitize_boolean',
 			),
 			self::MEETING_POINT => array(
 				'type'     => 'string',
@@ -435,8 +441,9 @@ final class TripMeta {
 					'items' => array(
 						'type'       => 'object',
 						'properties' => array(
-							'date' => array( 'type' => 'string' ),
-							'time' => array( 'type' => 'string' ),
+							'date'     => array( 'type' => 'string' ),
+							'time'     => array( 'type' => 'string' ),
+							'capacity' => $count,
 						),
 					),
 				),
@@ -464,6 +471,7 @@ final class TripMeta {
 								),
 							),
 							'times'    => $strings,
+							'capacity' => $count,
 						),
 					),
 				),
@@ -471,8 +479,18 @@ final class TripMeta {
 				'capacity'     => $count,
 				'cutoff_hours' => $count,
 				'advance_days' => $count,
+				'private'      => array( 'type' => 'boolean' ),
 			),
 		);
+	}
+
+	/**
+	 * Whether a trip has no public price and takes enquiries instead of bookings.
+	 *
+	 * @param int $trip_id Trip (translations follow the original).
+	 */
+	public static function on_request( int $trip_id ): bool {
+		return (bool) get_post_meta( \WPInterface\Travel\Support\Multilingual::original_trip_id( $trip_id ), self::ON_REQUEST, true );
 	}
 
 	/**

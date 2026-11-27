@@ -41,6 +41,7 @@ const EMPTY_SCHEDULE = {
 	capacity: 0,
 	cutoff_hours: 0,
 	advance_days: 365,
+	private: false,
 };
 
 function DateInput( { label, value, onChange, type = 'date' } ) {
@@ -100,6 +101,16 @@ function FixedDates( { dates, onChange } ) {
 							value={ item.time }
 							onChange={ ( time ) => update( index, { time } ) }
 						/>
+						<IntegerField
+							label={ __(
+								'Seats (0 = trip default)',
+								'wpinterface-travel'
+							) }
+							value={ item.capacity || 0 }
+							onChange={ ( capacity ) =>
+								update( index, { capacity } )
+							}
+						/>
 						<Button
 							icon={ trash }
 							isDestructive
@@ -116,7 +127,10 @@ function FixedDates( { dates, onChange } ) {
 			<Button
 				variant="secondary"
 				onClick={ () =>
-					onChange( [ ...dates, { date: '', time: '' } ] )
+					onChange( [
+						...dates,
+						{ date: '', time: '', capacity: 0 },
+					] )
 				}
 			>
 				{ __( 'Add date', 'wpinterface-travel' ) }
@@ -246,6 +260,20 @@ function RecurringRule( { rule, update } ) {
 					{ __( 'Add start time', 'wpinterface-travel' ) }
 				</Button>
 			</fieldset>
+			<div className="wpitravel-grid">
+				<IntegerField
+					label={ __(
+						'Seats per start time (0 = trip default)',
+						'wpinterface-travel'
+					) }
+					help={ __(
+						'Each start time sells its own seats, e.g. 12 for a morning tour and 20 for an afternoon one in a second rule.',
+						'wpinterface-travel'
+					) }
+					value={ rule.capacity || 0 }
+					onChange={ ( capacity ) => update( { capacity } ) }
+				/>
+			</div>
 		</>
 	);
 }
@@ -352,6 +380,20 @@ export default function DatesTab( { meta, set } ) {
 				/>
 			</div>
 
+			<CheckboxControl
+				__nextHasNoMarginBottom
+				label={ __(
+					'Private departures: each date is booked by one group only',
+					'wpinterface-travel'
+				) }
+				help={ __(
+					'After one booking the date closes for everyone else. Seats per departure become the largest group size.',
+					'wpinterface-travel'
+				) }
+				checked={ !! schedule.private }
+				onChange={ ( checked ) => update( { private: checked } ) }
+			/>
+
 			<FixedDates
 				dates={ schedule.fixed }
 				onChange={ ( fixed ) => update( { fixed } ) }
@@ -370,6 +412,7 @@ export default function DatesTab( { meta, set } ) {
 						weekdays: [],
 						months: [],
 						times: [],
+						capacity: 0,
 					} ) }
 					addLabel={ __(
 						'Add repeating rule',

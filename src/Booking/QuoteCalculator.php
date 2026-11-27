@@ -82,6 +82,10 @@ final class QuoteCalculator {
 			return self::error( 'wpitravel_trip_not_found', __( 'Trip not found.', 'wpinterface-travel' ), 404 );
 		}
 
+		if ( TripMeta::on_request( $trip->ID ) ) {
+			return self::error( 'wpitravel_price_on_request', __( 'This trip is priced on request. Send us an enquiry for a quote.', 'wpinterface-travel' ), 409 );
+		}
+
 		$date = Schedule::date( $input['date'] ?? '' );
 		$time = Schedule::time( $input['time'] ?? '' );
 

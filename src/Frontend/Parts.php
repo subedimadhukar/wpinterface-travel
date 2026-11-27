@@ -68,6 +68,10 @@ final class Parts {
 	 * @param array<string, mixed> $atts    Unused.
 	 */
 	public static function price( int $trip_id, array $atts = array() ): string {
+		if ( TripMeta::on_request( $trip_id ) ) {
+			return '<p class="wpitravel-price wpitravel-price--on-request"><strong class="wpitravel-price__amount">' . esc_html__( 'Price on request', 'wpinterface-travel' ) . '</strong></p>';
+		}
+
 		$price = TripData::price( $trip_id );
 
 		return $price ? Templates::part( 'parts/price', array( 'price' => $price ) ) : '';
@@ -128,6 +132,11 @@ final class Parts {
 	 * @param array<string, mixed> $atts    number: how many (default 6).
 	 */
 	public static function departures( int $trip_id, array $atts = array() ): string {
+		// Priced on request: dates are agreed in the enquiry.
+		if ( TripMeta::on_request( $trip_id ) ) {
+			return '';
+		}
+
 		$number       = max( 1, min( 50, (int) ( $atts['number'] ?? 6 ) ) );
 		$availability = new Availability();
 		$today        = $availability->today();

@@ -71,6 +71,7 @@ final class TripData {
 			'image'        => get_the_post_thumbnail( $trip, 'medium_large', array( 'loading' => 'lazy' ) ),
 			'excerpt'      => wp_trim_words( get_the_excerpt( $trip ), 22 ),
 			'price'        => self::price( $trip->ID ),
+			'on_request'   => TripMeta::on_request( $trip->ID ),
 			'duration'     => TripList::duration_label( TripMeta::sanitize_duration( get_post_meta( $trip->ID, TripMeta::DURATION, true ) ) ),
 			'difficulty'   => self::difficulty( $trip->ID ),
 			'rating'       => Reviews::summary( $trip->ID ),
@@ -85,6 +86,10 @@ final class TripData {
 	 * @return array{price: string, regular: string, sale: bool, amount: string, regular_amount: string, currency: string}|null
 	 */
 	public static function price( int $trip_id ): ?array {
+		if ( TripMeta::on_request( $trip_id ) ) {
+			return null;
+		}
+
 		$currency = (array) wpitravel()->options()->get( 'currency', array() );
 		$decimals = (int) ( $currency['decimals'] ?? 2 );
 		// Translations show the original trip's prices.

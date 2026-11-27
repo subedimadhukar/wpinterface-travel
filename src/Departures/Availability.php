@@ -79,7 +79,7 @@ final class Availability {
 		$schedule = Schedule::sanitize( get_post_meta( $trip_id, TripMeta::SCHEDULE, true ) );
 		$decimals = (int) wpitravel()->options()->get( 'currency.decimals', 2 );
 		$pricing  = Pricing::sanitize( get_post_meta( $trip_id, TripMeta::PRICING, true ), $decimals );
-		$price    = Pricing::from_price( $pricing, $option_key, $decimals );
+		$price    = TripMeta::on_request( $trip_id ) ? null : Pricing::from_price( $pricing, $option_key, $decimals );
 		$days     = (int) ( TripMeta::sanitize_duration( get_post_meta( $trip_id, TripMeta::DURATION, true ) )['days'] );
 
 		$slots = Schedule::slots( $schedule, $from, $to );
@@ -110,11 +110,17 @@ final class Availability {
 
 		foreach ( $slots as $key => $slot ) {
 			$row      = $rows[ $key ] ?? null;
-			$capacity = ( $row && null !== $row['capacity'] ) ? $row['capacity'] : ( $schedule['capacity'] > 0 ? (int) $schedule['capacity'] : null );
+			$slot_cap = (int) ( $slot['capacity'] ?? 0 ) > 0 ? (int) $slot['capacity'] : ( $schedule['capacity'] > 0 ? (int) $schedule['capacity'] : null );
+			$capacity = ( $row && null !== $row['capacity'] ) ? $row['capacity'] : $slot_cap;
 			$booked   = $row ? $row['seats_booked'] : 0;
 			$on_hold  = $row ? ( $held[ $row['id'] ] ?? 0 ) : 0;
 			$left     = null === $capacity ? null : max( 0, $capacity - $booked - $on_hold );
-			$status   = $this->status( $slot, $row, $left, $cutoff, $window_end );
+
+			// A private departure is one group's: taken once booked or held.
+			if ( $schedule['private'] && ( $booked > 0 || $on_hold > 0 ) ) {
+				$left = 0;
+			}
+			$status = $this->status( $slot, $row, $left, $cutoff, $window_end );
 
 			if ( ! $include_all && ! in_array( $status, self::PUBLIC_STATUSES, true ) ) {
 				continue;
@@ -131,6 +137,7 @@ final class Availability {
 				'seats_held'    => $on_hold,
 				'seats_left'    => $left,
 				'status'        => $status,
+				'private'       => $schedule['private'],
 				'bookable'      => 'open' === $status && null !== $price,
 				'from_price'    => $price ? $price['price'] : null,
 				'regular_price' => $price ? $price['regular'] : null,

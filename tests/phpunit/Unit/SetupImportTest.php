@@ -302,6 +302,7 @@ class SetupImportTest extends WP_UnitTestCase {
 				'weekdays' => array( 1, 4 ),
 				'months'   => array( 4, 5 ),
 				'times'    => array(),
+				'capacity' => 0,
 			),
 			$schedule['recurring'][0],
 			'Weekday rules are kept as rules.'

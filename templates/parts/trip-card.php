@@ -62,6 +62,8 @@ $wpitravel_card = $args['card'];
 				<?php endif; ?>
 				<strong data-wpitravel-amount="<?php echo esc_attr( (string) ( $wpitravel_card['price']['amount'] ?? '' ) ); ?>"><?php echo esc_html( $wpitravel_card['price']['price'] ); ?></strong>
 			</p>
+		<?php elseif ( $args['show']['price'] && ! empty( $wpitravel_card['on_request'] ) ) : ?>
+			<p class="wpitravel-card__price"><strong><?php esc_html_e( 'Price on request', 'wpinterface-travel' ); ?></strong></p>
 		<?php endif; ?>
 	</div>
 </article>

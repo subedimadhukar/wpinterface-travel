@@ -8,6 +8,8 @@
 namespace WPInterface\Travel;
 
 use WPInterface\Travel\Admin\Admin;
+use WPInterface\Travel\Announcements\AnnouncementBar;
+use WPInterface\Travel\Announcements\AnnouncementsPage;
 use WPInterface\Travel\Content\PostTypes;
 use WPInterface\Travel\Content\TripIndex;
 use WPInterface\Travel\Content\TripMeta;
@@ -129,6 +131,7 @@ final class Plugin {
 			( new AccountPage() )->register();
 			( new ReviewsDisplay() )->register();
 			( new Voucher() )->register();
+			( new AnnouncementBar() )->register();
 		}
 
 		add_action( 'init', array( $this, 'maybe_flush_rewrite_rules' ), 999 );
@@ -138,6 +141,7 @@ final class Plugin {
 
 		if ( is_admin() ) {
 			( new Admin() )->register();
+			( new AnnouncementsPage() )->register();
 		}
 
 		/**

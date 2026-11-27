@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T11:32:48+00:00\n"
+"POT-Creation-Date: 2026-11-27T14:52:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpinterface-travel\n"
@@ -60,6 +60,7 @@ msgstr ""
 
 #. translators: Accessibility text for a link opening in a new tab.
 #: src/Admin/Admin.php:91
+#: templates/parts/announcement-bar.php:48
 #: assets/build/dashboard.js:8
 msgid "(opens in a new tab)"
 msgstr ""
@@ -326,13 +327,13 @@ msgid "Bookings of “%s”"
 msgstr ""
 
 #: src/Admin/TripList.php:76
-#: src/Frontend/TripData.php:148
+#: src/Frontend/TripData.php:153
 #: assets/build/trip-editor.js:9
 msgid "Trip code"
 msgstr ""
 
 #: src/Admin/TripList.php:77
-#: src/Frontend/TripData.php:128
+#: src/Frontend/TripData.php:133
 #: assets/build/trip-editor.js:9
 msgid "Duration"
 msgstr ""
@@ -360,6 +361,335 @@ msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
+
+#. translators: Countdown units, shortest form: days, hours, minutes, seconds.
+#: src/Announcements/AnnouncementBar.php:413
+msgctxt "days"
+msgid "d"
+msgstr ""
+
+#. translators: Countdown units, shortest form: days, hours, minutes, seconds.
+#: src/Announcements/AnnouncementBar.php:413
+msgctxt "hours"
+msgid "h"
+msgstr ""
+
+#. translators: Countdown units, shortest form: days, hours, minutes, seconds.
+#: src/Announcements/AnnouncementBar.php:413
+msgctxt "minutes"
+msgid "m"
+msgstr ""
+
+#. translators: Countdown units, shortest form: days, hours, minutes, seconds.
+#: src/Announcements/AnnouncementBar.php:413
+msgctxt "seconds"
+msgid "s"
+msgstr ""
+
+#: src/Announcements/AnnouncementBar.php:414
+#: templates/parts/announcement-bar.php:70
+msgid "Pause messages"
+msgstr ""
+
+#: src/Announcements/AnnouncementBar.php:415
+msgid "Play messages"
+msgstr ""
+
+#: src/Announcements/AnnouncementBar.php:416
+#: templates/parts/announcement-bar.php:22
+msgid "Previous message"
+msgstr ""
+
+#: src/Announcements/AnnouncementBar.php:417
+#: templates/parts/announcement-bar.php:66
+msgid "Next message"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:37
+#: src/Announcements/AnnouncementsPage.php:38
+#: src/Announcements/AnnouncementsPage.php:102
+msgid "Announcement bar"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:69
+msgid "You are not allowed to change the announcement bar."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:103
+msgid "A slim bar at the top or bottom of your site for offers, news and notices. Up to three messages take turns; visitors can pause them, step through them and close the bar."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:106
+msgid "Announcement bar saved."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:113
+msgid "Save announcement bar"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:152
+#: assets/build/emails.js:2
+msgid "Preview"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:169
+msgid "Show the bar"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:170
+#: assets/build/emails.js:2
+msgid "On"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:174
+msgid "Messages"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:176
+msgid "Bold, italic and links are allowed in the text. Empty messages are skipped."
+msgstr ""
+
+#. translators: %d: message number.
+#: src/Announcements/AnnouncementsPage.php:194
+#, php-format
+msgid "Message %d"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:198
+#: src/Announcements/AnnouncementsPage.php:257
+msgid "Text"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:203
+#: src/Announcements/AnnouncementsPage.php:259
+#: src/Elementor/TripSearchWidget.php:93
+#: assets/build/blocks.js:1
+msgid "Button text"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:207
+msgid "Button link"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:210
+msgid "Open in a new tab"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:217
+msgid "Seconds per message"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:220
+msgid "Messages wait while the visitor points at or focuses the bar, and never move on their own for visitors who ask for reduced motion."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:224
+msgid "Countdown to"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:227
+msgid "Offer ends in"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:227
+msgid "Countdown label"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:228
+msgid "Shown with the first message. Leave empty for no countdown. Site time zone."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:233
+msgid "Look"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:236
+#: src/Announcements/AnnouncementsPage.php:239
+msgid "Colours"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:242
+msgid "Dark"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:243
+msgid "Light"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:244
+msgid "Crimson"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:245
+#: assets/build/trip-editor.js:7
+msgid "Sun"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:246
+msgid "My own colours"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:256
+msgid "Background"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:258
+msgid "Button"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:274
+msgid "Size"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:276
+msgid "Small"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:277
+msgid "Medium"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:278
+msgid "Large"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:282
+msgid "Text alignment"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:284
+msgid "Centre"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:285
+msgid "Left"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:289
+msgid "Position"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:291
+msgid "Top of the page"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:292
+msgid "Bottom of the screen"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:310
+msgid "Stay on screen"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:311
+msgid "Keep the bar visible while scrolling"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:314
+msgid "Close button"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:316
+msgid "Visitors can close the bar"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:319
+msgid "Keep it closed for"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:321
+msgid "days"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:324
+msgid "0 keeps it closed until the browser closes. Changing the messages shows the bar again to everyone. The choice is kept in the visitor’s browser only."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:329
+msgid "When and where"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:332
+#: assets/build/trip-editor.js:11
+msgid "Dates"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:334
+#: templates/parts/departures.php:44
+#: templates/parts/price.php:17
+#: templates/parts/trip-card.php:57
+#: assets/build/enquiries.js:2
+#: assets/build/trip-editor.js:7
+msgid "From"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:335
+msgid "until"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:336
+msgid "Optional. Site time zone. The bar also starts and stops on time on cached pages."
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:342
+msgid "Pages"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:344
+msgid "Every page"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:345
+msgid "Homepage only"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:346
+msgid "Trip pages and trip lists only"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:347
+msgid "Everywhere except trip pages"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:351
+msgid "Visitors"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:353
+msgid "Everyone"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:354
+msgid "Only visitors who are not logged in"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:355
+msgid "Only logged-in users"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:359
+msgid "Screens"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:361
+msgid "Phones and computers"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:362
+msgid "Computers and tablets only"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:363
+msgid "Phones only"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:381
+msgid "Hide on"
+msgstr ""
+
+#: src/Announcements/AnnouncementsPage.php:384
+msgid "IDs of pages, posts or trips where the bar should not show, separated by commas."
+msgstr ""
 
 #: src/Booking/BookingAccess.php:133
 #: assets/build/bookings.js:1
@@ -440,7 +770,7 @@ msgstr ""
 
 #: src/Booking/BookingService.php:111
 #: src/Booking/Holds.php:152
-#: src/Booking/QuoteCalculator.php:111
+#: src/Booking/QuoteCalculator.php:115
 msgid "This date is not available. Choose another date."
 msgstr ""
 
@@ -583,17 +913,21 @@ msgstr ""
 msgid "Seats could not be reserved. Try again."
 msgstr ""
 
+#: src/Booking/Holds.php:170
+msgid "This date has already been booked by another group. Choose another date."
+msgstr ""
+
 #. translators: %d: seats left.
-#: src/Booking/Holds.php:179
-#: src/Booking/QuoteCalculator.php:127
+#: src/Booking/Holds.php:180
+#: src/Booking/QuoteCalculator.php:131
 #, php-format
 msgid "Only %d seat is left on this date."
 msgid_plural "Only %d seats are left on this date."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Booking/Holds.php:180
-#: src/Booking/QuoteCalculator.php:108
+#: src/Booking/Holds.php:181
+#: src/Booking/QuoteCalculator.php:112
 msgid "This date is sold out."
 msgstr ""
 
@@ -613,48 +947,52 @@ msgstr ""
 msgid "Trip not found."
 msgstr ""
 
-#: src/Booking/QuoteCalculator.php:89
+#: src/Booking/QuoteCalculator.php:86
+msgid "This trip is priced on request. Send us an enquiry for a quote."
+msgstr ""
+
+#: src/Booking/QuoteCalculator.php:93
 msgid "Choose a departure date."
 msgstr ""
 
-#: src/Booking/QuoteCalculator.php:97
+#: src/Booking/QuoteCalculator.php:101
 msgid "Choose one of the trip's price options."
 msgstr ""
 
-#: src/Booking/QuoteCalculator.php:104
+#: src/Booking/QuoteCalculator.php:108
 msgid "Bookings for this date have closed."
 msgstr ""
 
 #. translators: %s: coupon code.
-#: src/Booking/QuoteCalculator.php:250
+#: src/Booking/QuoteCalculator.php:254
 #, php-format
 msgid "Coupon %s"
 msgstr ""
 
 #. translators: %s: tax label with rate, e.g. "VAT 13%".
-#: src/Booking/QuoteCalculator.php:270
+#: src/Booking/QuoteCalculator.php:274
 #, php-format
 msgid "Includes %s"
 msgstr ""
 
-#: src/Booking/QuoteCalculator.php:374
+#: src/Booking/QuoteCalculator.php:378
 msgid "Unknown traveler type."
 msgstr ""
 
 #. translators: 1: traveler type, 2: minimum, 3: maximum.
-#: src/Booking/QuoteCalculator.php:386
+#: src/Booking/QuoteCalculator.php:390
 #, php-format
 msgid "%1$s: choose between %2$d and %3$d."
 msgstr ""
 
 #. translators: 1: traveler type, 2: minimum.
-#: src/Booking/QuoteCalculator.php:388
+#: src/Booking/QuoteCalculator.php:392
 #, php-format
 msgid "%1$s: choose at least %2$d."
 msgstr ""
 
 #. translators: %d: minimum travelers.
-#: src/Booking/QuoteCalculator.php:403
+#: src/Booking/QuoteCalculator.php:407
 #, php-format
 msgid "This option needs at least %d traveler."
 msgid_plural "This option needs at least %d travelers."
@@ -662,7 +1000,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %d: maximum travelers.
-#: src/Booking/QuoteCalculator.php:412
+#: src/Booking/QuoteCalculator.php:416
 #, php-format
 msgid "This option allows at most %d traveler."
 msgid_plural "This option allows at most %d travelers."
@@ -935,31 +1273,31 @@ msgstr ""
 msgid "Tours and trips that customers can book."
 msgstr ""
 
-#: src/Content/TripMeta.php:92
+#: src/Content/TripMeta.php:93
 msgid "Easy"
 msgstr ""
 
-#: src/Content/TripMeta.php:93
+#: src/Content/TripMeta.php:94
 msgid "Moderate"
 msgstr ""
 
-#: src/Content/TripMeta.php:94
+#: src/Content/TripMeta.php:95
 msgid "Challenging"
 msgstr ""
 
-#: src/Content/TripMeta.php:95
+#: src/Content/TripMeta.php:96
 msgid "Strenuous"
 msgstr ""
 
-#: src/Content/TripMeta.php:107
+#: src/Content/TripMeta.php:108
 msgid "Breakfast"
 msgstr ""
 
-#: src/Content/TripMeta.php:108
+#: src/Content/TripMeta.php:109
 msgid "Lunch"
 msgstr ""
 
-#: src/Content/TripMeta.php:109
+#: src/Content/TripMeta.php:110
 msgid "Dinner"
 msgstr ""
 
@@ -1043,7 +1381,7 @@ msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:67
 #: src/Frontend/BlockTemplates.php:64
-#: src/Frontend/TripData.php:130
+#: src/Frontend/TripData.php:135
 #: templates/parts/search-form.php:17
 #: assets/build/blocks.js:1
 msgid "Destination"
@@ -1063,7 +1401,7 @@ msgid "Trip type"
 msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:70
-#: src/Frontend/TripData.php:129
+#: src/Frontend/TripData.php:134
 #: templates/parts/search-form.php:47
 #: assets/build/blocks.js:1
 #: assets/build/trip-editor.js:9
@@ -1098,11 +1436,6 @@ msgstr ""
 
 #: src/Elementor/TripSearchWidget.php:85
 msgid "This page (with a Trips widget)"
-msgstr ""
-
-#: src/Elementor/TripSearchWidget.php:93
-#: assets/build/blocks.js:1
-msgid "Button text"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:31
@@ -1146,7 +1479,7 @@ msgstr ""
 
 #: src/Elementor/TripsWidget.php:93
 #: src/Frontend/Blocks.php:243
-#: src/Frontend/Parts.php:392
+#: src/Frontend/Parts.php:401
 msgid "Recommended"
 msgstr ""
 
@@ -1157,32 +1490,32 @@ msgstr ""
 
 #: src/Elementor/TripsWidget.php:95
 #: src/Frontend/Blocks.php:251
-#: src/Frontend/Parts.php:393
+#: src/Frontend/Parts.php:402
 msgid "Price: low to high"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:96
 #: src/Frontend/Blocks.php:255
-#: src/Frontend/Parts.php:394
+#: src/Frontend/Parts.php:403
 msgid "Price: high to low"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:97
 #: src/Frontend/Blocks.php:259
-#: src/Frontend/Parts.php:395
+#: src/Frontend/Parts.php:404
 msgid "Shortest first"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:98
 #: src/Frontend/Blocks.php:263
-#: src/Frontend/Parts.php:396
+#: src/Frontend/Parts.php:405
 msgid "Top rated"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:99
 #: src/Emails/Tags.php:60
 #: src/Frontend/Blocks.php:267
-#: src/Frontend/Parts.php:397
+#: src/Frontend/Parts.php:406
 #: src/Privacy/PersonalData.php:182
 #: templates/voucher/voucher.php:87
 #: assets/build/booking.js:17
@@ -1195,7 +1528,7 @@ msgid "Destinations"
 msgstr ""
 
 #: src/Elementor/TripsWidget.php:107
-#: src/Frontend/TripData.php:131
+#: src/Frontend/TripData.php:136
 #: assets/build/settings.js:3
 msgid "Activities"
 msgstr ""
@@ -1358,7 +1691,7 @@ msgid "Return date"
 msgstr ""
 
 #: src/Emails/Tags.php:91
-#: src/Frontend/TripData.php:147
+#: src/Frontend/TripData.php:152
 #: templates/voucher/voucher.php:69
 #: assets/build/trip-editor.js:9
 msgid "Meeting point"
@@ -1748,11 +2081,17 @@ msgstr ""
 msgid "Turn on JavaScript to send us a message."
 msgstr ""
 
-#: src/Frontend/BookingWidget.php:157
+#: src/Frontend/BookingWidget.php:162
 msgid "Turn on JavaScript to book this trip."
 msgstr ""
 
-#: src/Frontend/Parts.php:359
+#: src/Frontend/Parts.php:72
+#: templates/parts/trip-card.php:66
+#: assets/build/trip-editor.js:10
+msgid "Price on request"
+msgstr ""
+
+#: src/Frontend/Parts.php:368
 #: assets/build/blocks.js:1
 msgid "Find trips"
 msgstr ""
@@ -1850,31 +2189,31 @@ msgstr ""
 msgid "Turn on JavaScript to send a review."
 msgstr ""
 
-#: src/Frontend/TripData.php:136
+#: src/Frontend/TripData.php:141
 #: assets/build/trip-editor.js:9
 msgid "Group size"
 msgstr ""
 
 #. translators: 1: minimum, 2: maximum travelers.
-#: src/Frontend/TripData.php:139
+#: src/Frontend/TripData.php:144
 #, php-format
 msgid "%1$d–%2$d people"
 msgstr ""
 
 #. translators: %d: minimum travelers.
-#: src/Frontend/TripData.php:141
+#: src/Frontend/TripData.php:146
 #, php-format
 msgid "From %d people"
 msgstr ""
 
 #. translators: %d: minimum age.
-#: src/Frontend/TripData.php:146
+#: src/Frontend/TripData.php:151
 #: assets/build/trip-editor.js:9
 msgid "Minimum age"
 msgstr ""
 
 #. translators: %d: minimum age.
-#: src/Frontend/TripData.php:146
+#: src/Frontend/TripData.php:151
 #, php-format
 msgid "%d years"
 msgstr ""
@@ -3204,6 +3543,14 @@ msgstr ""
 msgid "Zambian kwacha"
 msgstr ""
 
+#: templates/parts/announcement-bar.php:18
+msgid "Announcement"
+msgstr ""
+
+#: templates/parts/announcement-bar.php:77
+msgid "Close the announcement"
+msgstr ""
+
 #: templates/parts/departures.php:15
 msgid "Upcoming departures"
 msgstr ""
@@ -3220,14 +3567,6 @@ msgid "%d seat left"
 msgid_plural "%d seats left"
 msgstr[0] ""
 msgstr[1] ""
-
-#: templates/parts/departures.php:44
-#: templates/parts/price.php:17
-#: templates/parts/trip-card.php:57
-#: assets/build/enquiries.js:2
-#: assets/build/trip-editor.js:7
-msgid "From"
-msgstr ""
 
 #: templates/parts/departures.php:50
 msgid "Book"
@@ -3847,6 +4186,10 @@ msgid "2. Travelers"
 msgstr ""
 
 #: assets/build/booking.js:17
+msgid "Private departure: your group has this date to itself."
+msgstr ""
+
+#: assets/build/booking.js:17
 msgid "Log in to book"
 msgstr ""
 
@@ -4443,10 +4786,6 @@ msgid "To the customer"
 msgstr ""
 
 #: assets/build/emails.js:2
-msgid "On"
-msgstr ""
-
-#: assets/build/emails.js:2
 msgid "Close"
 msgstr ""
 
@@ -4460,10 +4799,6 @@ msgstr ""
 
 #: assets/build/emails.js:2
 msgid "Merge tags (click to add)"
-msgstr ""
-
-#: assets/build/emails.js:2
-msgid "Preview"
 msgstr ""
 
 #: assets/build/emails.js:2
@@ -5109,10 +5444,6 @@ msgid "Sat"
 msgstr ""
 
 #: assets/build/trip-editor.js:7
-msgid "Sun"
-msgstr ""
-
-#: assets/build/trip-editor.js:7
 msgid "Jan"
 msgstr ""
 
@@ -5169,6 +5500,10 @@ msgid "Start time (optional)"
 msgstr ""
 
 #: assets/build/trip-editor.js:7
+msgid "Seats (0 = trip default)"
+msgstr ""
+
+#: assets/build/trip-editor.js:7
 #: assets/build/trip-editor.js:9
 msgid "Remove date"
 msgstr ""
@@ -5205,6 +5540,14 @@ msgstr ""
 
 #: assets/build/trip-editor.js:8
 msgid "Add start time"
+msgstr ""
+
+#: assets/build/trip-editor.js:8
+msgid "Seats per start time (0 = trip default)"
+msgstr ""
+
+#: assets/build/trip-editor.js:8
+msgid "Each start time sells its own seats, e.g. 12 for a morning tour and 20 for an afternoon one in a second rule."
 msgstr ""
 
 #: assets/build/trip-editor.js:8
@@ -5309,6 +5652,10 @@ msgid "Pricing"
 msgstr ""
 
 #: assets/build/trip-editor.js:10
+msgid "Hide prices and online booking; the trip page shows \"Price on request\" and an enquiry form instead. Good for tailor-made trips."
+msgstr ""
+
+#: assets/build/trip-editor.js:10
 msgid "Add at least one price option, e.g. \"Standard\" or \"Private group\". Customers pick an option, then how many travelers of each type."
 msgstr ""
 
@@ -5343,10 +5690,6 @@ msgid "Maximum travelers per booking"
 msgstr ""
 
 #: assets/build/trip-editor.js:11
-msgid "Dates"
-msgstr ""
-
-#: assets/build/trip-editor.js:11
 msgid "Seats per departure"
 msgstr ""
 
@@ -5364,6 +5707,14 @@ msgstr ""
 
 #: assets/build/trip-editor.js:11
 msgid "Bookable up to (days ahead)"
+msgstr ""
+
+#: assets/build/trip-editor.js:11
+msgid "Private departures: each date is booked by one group only"
+msgstr ""
+
+#: assets/build/trip-editor.js:11
+msgid "After one booking the date closes for everyone else. Seats per departure become the largest group size."
 msgstr ""
 
 #: assets/build/trip-editor.js:11

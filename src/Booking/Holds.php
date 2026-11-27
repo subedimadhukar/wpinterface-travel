@@ -153,11 +153,7 @@ final class Holds {
 		}
 
 		$schedule = Schedule::sanitize( get_post_meta( $trip_id, TripMeta::SCHEDULE, true ) );
-		$capacity = null !== $row['capacity'] ? (int) $row['capacity'] : ( $schedule['capacity'] > 0 ? (int) $schedule['capacity'] : null );
-
-		if ( null === $capacity ) {
-			return $row;
-		}
+		$capacity = null !== $row['capacity'] ? (int) $row['capacity'] : Schedule::capacity( $schedule, (string) $row['start_date'], (string) $row['start_time'] );
 
 		$held = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Custom table.
 			$wpdb->prepare(
@@ -169,7 +165,12 @@ final class Holds {
 			)
 		);
 
-		$left = $capacity - (int) $row['seats_booked'] - $held;
+		// A private departure takes one booking.
+		if ( $schedule['private'] && ( (int) $row['seats_booked'] > 0 || $held > 0 ) ) {
+			return new WP_Error( 'wpitravel_private_taken', __( 'This date has already been booked by another group. Choose another date.', 'wpinterface-travel' ), array( 'status' => 409 ) );
+		}
+
+		$left = null === $capacity ? PHP_INT_MAX : $capacity - (int) $row['seats_booked'] - $held;
 
 		if ( $seats > $left ) {
 			return new WP_Error(
@@ -185,7 +186,17 @@ final class Holds {
 			);
 		}
 
-		return $row;
+		/**
+		 * Lets add-ons refuse the seats inside the same transaction, e.g.
+		 * Pro's shared resources (a vehicle used by several trips). Lock
+		 * any rows you check with SELECT … FOR UPDATE.
+		 *
+		 * @param array|WP_Error $row            Locked departure row, or the refusal.
+		 * @param int            $trip_id        Trip.
+		 * @param int            $seats          Seats wanted.
+		 * @param int            $ignore_hold_id Hold being turned into a booking (0 for none).
+		 */
+		return apply_filters( 'wpitravel_seats_check', $row, $trip_id, $seats, $ignore_hold_id );
 	}
 
 	/**

@@ -20,6 +20,8 @@ Staff manage everything from Travel → Bookings: search and filter bookings, se
 
 Trip pages, the trip list and destination pages work with any theme. Block themes get templates you can edit in the Site Editor, built from 14 Travel blocks (Trips, Trip Search, Price, Facts, Itinerary, Departures, Gallery, Map, Booking Form, Reviews and more). Classic themes get ready-made page templates that themes can override. Every block is also a shortcode and, with Elementor, an Elementor widget. Visitors can search trips and filter them by destination, activity, trip type, difficulty, length and price, and sort them by price, length or rating. Trip pages include TouristTrip structured data for search engines, with prices and availability from the coming year's departures.
 
+An announcement bar (Trips → Announcement bar) shows offers and news at the top or bottom of every page: up to three messages that take turns, each with a button, an optional countdown, colour schemes or your own colours, three sizes, a close button that remembers the visitor's choice for as many days as you like, start and end times that also work on cached pages, and rules for which pages, visitors (logged in or not) and screens (phones or computers) see it. Visitors can pause the messages or step through them, and messages never move on their own for visitors who ask for reduced motion.
+
 Multilingual sites work with WPML and Polylang: each translation of a trip shows its own text and shares the original trip's departures, seats, prices, bookings and reviews, and booking emails use the customer's language.
 
 == Installation ==
@@ -103,7 +105,12 @@ Trip maps use OpenStreetMap. The map loads only when a visitor clicks "Show map"
 == Changelog ==
 
 = 0.9.0 =
+* Announcement bar (Trips → Announcement bar): up to three rotating messages with buttons, a countdown, colour schemes or custom colours, size and alignment, top or bottom and sticky, a close button remembered for a set number of days, start and end times, and page, visitor and screen rules, with a live preview. Themes can override `wpitravel/parts/announcement-bar.php`; Pro and add-ons can add bars and rules through filters.
 * Pickup points: add places and times to a trip; customers choose one when they book, and the voucher, "My bookings", emails ({pickup_point}) and the traveler list show it.
+* Day tours: each start time can have its own seats (per repeating rule or fixed date), and each time slot sells them separately.
+* Private departures: a trip setting where each date is booked by one group only; the date closes for everyone else once it is held or booked, and opens again if that booking is cancelled.
+* Price on request: trips without a public price show "Price on request" on cards and trip pages and an enquiry form instead of the booking form.
+* For add-ons: the `wpitravel_seats_check` filter can refuse seats inside the booking lock (Pro uses it for resources shared across trips).
 * Traveler list: a printable list of everyone on a departure (travelers, phone, pickup, amount still to collect, notes), opened from the trip's upcoming departures or a booking.
 * WPML and Polylang: translated trips share the original trip's departures, seats, prices, bookings and reviews; price option and traveler type names, trip texts and email texts can be translated; booking emails and "My bookings" name the trip in the customer's language. A wpml-config.xml is included.
 * Elementor: a widget for every block, in a "Travel" category, printing the same HTML as the blocks.

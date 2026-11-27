@@ -243,6 +243,14 @@ export default function BookingApp( { trip, config } ) {
 								{ departure.end_date !== departure.date &&
 									` – ${ formatDate( departure.end_date ) }` }
 							</p>
+							{ departure.private && (
+								<p className="wpitravel-booking__muted">
+									{ __(
+										'Private departure: your group has this date to itself.',
+										'wpinterface-travel'
+									) }
+								</p>
+							) }
 							<PaxSelector
 								option={ option }
 								pax={ pax }

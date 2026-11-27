@@ -20,9 +20,11 @@ Travel → Add New Trip. The editor has tabs:
 - **Itinerary:** one entry per day, with meals and where travelers sleep.
 - **Highlights, Included, Not included, FAQs.**
 - **Gallery and map:** photos, and a map position. Maps load only when a visitor clicks "Show map".
-- **Pricing:** one or more price options (e.g. "Standard" and "Private"), each with prices per traveler type (adult, child, senior…), optional sale prices and group limits.
+- **Pricing:** one or more price options (e.g. "Standard" and "Private"), each with prices per traveler type (adult, child, senior…), optional sale prices and group limits. Tick **Price on request** for tailor-made trips: the trip then shows "Price on request" and an enquiry form instead of prices and the booking form.
 - **Pickup points** (Overview tab): places and times travelers can be collected from. When a trip has any, customers choose one when they book.
 - **Departures:** fixed dates, repeating rules (e.g. every Saturday from March to May, at 07:30), excluded dates, seats per departure, booking cut-off (hours before departure) and how far ahead people can book.
+  - **Day tours with several start times:** add the times to a repeating rule (e.g. 09:00, 11:00 and 14:00). Each time is its own departure with its own seats. **Seats per start time** on the rule (or **Seats** on a fixed date) overrides the trip's seats per departure, so a rule can sell 12 seats in the morning and another rule 20 in the afternoon.
+  - **Private departures:** each date is booked by one group only. Once a group holds or books a date, nobody else can; if that booking is cancelled, the date opens again. Set **Seats per departure** to the largest group you take.
 
 Organise trips with **Destinations**, **Activities** and **Trip types**. Each gets its own page listing its trips.
 
@@ -252,6 +254,7 @@ Colours, fonts and focus outlines come mostly from your theme, so check them wit
   - `wpitravel_booking_created`, `wpitravel_booking_status_changed`, `wpitravel_payment_completed`: booking events.
   - `wpitravel_send_booking_email`: send or skip a booking email.
   - `wpitravel_verify_request`: add a CAPTCHA to quotes, holds and bookings.
+  - `wpitravel_seats_check`: refuse seats inside the booking lock (e.g. a vehicle shared by several trips).
   - `wpitravel_client_ip`: real visitor IP behind a proxy or CDN.
   - `wpitravel_max_held_seats`, `wpitravel_rate_limit`: abuse limits.
   - `wpitravel_customer_role`: role of accounts created at checkout.

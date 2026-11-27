@@ -2,7 +2,7 @@
  * Price options, each with prices per traveler type.
  */
 import { __, sprintf } from '@wordpress/i18n';
-import { Button } from '@wordpress/components';
+import { Button, CheckboxControl } from '@wordpress/components';
 import { trash } from '@wordpress/icons';
 import Repeater from '../../components/Repeater';
 import { IntegerField, TextField } from '../../components/fields';
@@ -138,6 +138,18 @@ export default function PricingTab( { meta, set } ) {
 
 	return (
 		<>
+			<CheckboxControl
+				__nextHasNoMarginBottom
+				label={ __( 'Price on request', 'wpinterface-travel' ) }
+				help={ __(
+					'Hide prices and online booking; the trip page shows "Price on request" and an enquiry form instead. Good for tailor-made trips.',
+					'wpinterface-travel'
+				) }
+				checked={ !! meta._wpitravel_price_on_request }
+				onChange={ ( checked ) =>
+					set( '_wpitravel_price_on_request', checked )
+				}
+			/>
 			<p className="wpitravel-help">
 				{ __(
 					'Add at least one price option, e.g. "Standard" or "Private group". Customers pick an option, then how many travelers of each type.',

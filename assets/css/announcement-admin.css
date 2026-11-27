@@ -1,0 +1,85 @@
+/**
+ * WPInterface Travel: announcement bar settings screen.
+ */
+
+.wpitravel-bar-editor__preview {
+	position: sticky;
+	top: 32px;
+	z-index: 10;
+	margin: 16px 0 8px;
+	padding: 12px 0;
+	background: #f0f0f1;
+}
+
+.wpitravel-bar-editor__preview-label {
+	margin: 0 0 6px;
+	color: #50575e;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.wpitravel-bar--preview {
+	border-radius: 6px;
+}
+
+.wpitravel-bar--preview .wpitravel-bar__button:empty,
+.wpitravel-bar--preview .wpitravel-bar__text:empty {
+	display: none;
+}
+
+.wpitravel-bar-editor__message {
+	max-width: 900px;
+	margin: 0 0 12px;
+	padding: 12px 16px 4px;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	background: #fff;
+}
+
+.wpitravel-bar-editor__message legend {
+	padding: 0 6px;
+	font-weight: 600;
+}
+
+.wpitravel-bar-editor__message label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 500;
+}
+
+.wpitravel-bar-editor__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 12px 20px;
+}
+
+.wpitravel-bar-editor__row .wpitravel-bar-editor__check {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 400;
+}
+
+.wpitravel-bar-editor__schemes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 18px;
+}
+
+.wpitravel-bar-editor__colors {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 24px;
+	margin-top: 14px;
+}
+
+.wpitravel-bar-editor__colors[hidden] {
+	display: none;
+}
+
+.wpitravel-bar-editor__color-label {
+	display: block;
+	margin-bottom: 4px;
+}

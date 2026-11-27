@@ -50,6 +50,7 @@ final class Schedule {
 			'capacity'     => 0,
 			'cutoff_hours' => 0,
 			'advance_days' => self::DEFAULT_WINDOW,
+			'private'      => false,
 		);
 	}
 
@@ -74,8 +75,9 @@ final class Schedule {
 
 			$seen[ $date . '|' . $time ] = true;
 			$fixed[]                     = array(
-				'date' => $date,
-				'time' => $time,
+				'date'     => $date,
+				'time'     => $time,
+				'capacity' => absint( is_array( $slot ) ? ( $slot['capacity'] ?? 0 ) : 0 ),
 			);
 		}
 
@@ -111,6 +113,7 @@ final class Schedule {
 			'capacity'     => absint( $value['capacity'] ?? 0 ),
 			'cutoff_hours' => min( 8760, absint( $value['cutoff_hours'] ?? 0 ) ),
 			'advance_days' => min( 3650, absint( $value['advance_days'] ?? self::DEFAULT_WINDOW ) ),
+			'private'      => ! empty( $value['private'] ),
 		);
 	}
 
@@ -120,7 +123,7 @@ final class Schedule {
 	 * @param array<string, mixed> $schedule Sanitized schedule.
 	 * @param string               $from     First date, Y-m-d.
 	 * @param string               $to       Last date, Y-m-d.
-	 * @return array<string, array{date: string, time: string, source: string}> Keyed by "date|time", sorted.
+	 * @return array<string, array{date: string, time: string, source: string, capacity: int}> Keyed by "date|time", sorted.
 	 */
 	public static function slots( array $schedule, string $from, string $to ): array {
 		$slots    = array();
@@ -129,9 +132,10 @@ final class Schedule {
 		foreach ( (array) ( $schedule['fixed'] ?? array() ) as $slot ) {
 			if ( $slot['date'] >= $from && $slot['date'] <= $to ) {
 				$slots[ $slot['date'] . '|' . $slot['time'] ] = array(
-					'date'   => $slot['date'],
-					'time'   => $slot['time'],
-					'source' => 'fixed',
+					'date'     => $slot['date'],
+					'time'     => $slot['time'],
+					'source'   => 'fixed',
+					'capacity' => (int) ( $slot['capacity'] ?? 0 ),
 				);
 			}
 		}
@@ -163,9 +167,10 @@ final class Schedule {
 
 						if ( ! isset( $slots[ $key ] ) ) {
 							$slots[ $key ] = array(
-								'date'   => $date,
-								'time'   => $time,
-								'source' => 'recurring',
+								'date'     => $date,
+								'time'     => $time,
+								'source'   => 'recurring',
+								'capacity' => (int) ( $rule['capacity'] ?? 0 ),
 							);
 						}
 					}
@@ -185,7 +190,7 @@ final class Schedule {
 	 * Cleans one recurring rule.
 	 *
 	 * @param array<string, mixed> $rule Raw rule.
-	 * @return array{start: string, end: string, weekdays: list<int>, months: list<int>, times: list<string>}
+	 * @return array{start: string, end: string, weekdays: list<int>, months: list<int>, times: list<string>, capacity: int}
 	 */
 	private static function sanitize_rule( array $rule ): array {
 		$start = self::date( $rule['start'] ?? '' );
@@ -215,7 +220,27 @@ final class Schedule {
 			'weekdays' => $weekdays,
 			'months'   => $months,
 			'times'    => $times,
+			'capacity' => absint( $rule['capacity'] ?? 0 ),
 		);
+	}
+
+	/**
+	 * Seats of one slot when staff set none on the departure itself: the
+	 * fixed date's or repeating rule's own seats, else the trip's. Null
+	 * means unlimited.
+	 *
+	 * @param array<string, mixed> $schedule Sanitized schedule.
+	 * @param string               $date     Y-m-d.
+	 * @param string               $time     H:i or ''.
+	 */
+	public static function capacity( array $schedule, string $date, string $time ): ?int {
+		$slot = self::slots( $schedule, $date, $date )[ $date . '|' . $time ] ?? null;
+
+		if ( $slot && ! empty( $slot['capacity'] ) ) {
+			return (int) $slot['capacity'];
+		}
+
+		return (int) ( $schedule['capacity'] ?? 0 ) > 0 ? (int) $schedule['capacity'] : null;
 	}
 
 	/**
